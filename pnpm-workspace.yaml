@@ -1,0 +1,7 @@
+allowBuilds:
+  msw: true
+  sharp: false
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+storeDir: /home/developer/.local/share/pnpm/store/v11

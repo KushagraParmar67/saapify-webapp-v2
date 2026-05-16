@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.saapify.in
+
+# Sitemaps
+Sitemap: https://www.saapify.in/sitemap.xml
