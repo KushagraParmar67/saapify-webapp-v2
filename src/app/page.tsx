@@ -1,12 +1,11 @@
-import CosmicHero from '@/components/home/cosmic-hero';
-import { HeroSection } from '@/components/home/hero-section';
+import CosmicHero from "@/components/home/cosmic-hero";
+import { HomeContent } from "@/components/home/home-content";
 
 export default function Home() {
   return (
-    <main>
-      {/* <HeroSection /> */}
-      <br />
+    <>
       <CosmicHero />
-    </main>
+      <HomeContent />
+    </>
   );
 }
