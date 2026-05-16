@@ -93,15 +93,16 @@ const CosmicParallaxBg: React.FC<CosmicParallaxBgProps> = ({
       <div id="earth"></div>
       
       {/* Title and subtitle */}
-      <div id="title">{head.toUpperCase()}</div>
+      <div id="title">{head}</div>
       <div id="subtitle">
-        {textParts.map((part, index) => (
-          <React.Fragment key={index}>
-            <span className={`subtitle-part-${index + 1}`}>{part.toUpperCase()}</span>
-            {index < textParts.length - 1 && ' '}
-          </React.Fragment>
-        ))}
-      </div>
+  {textParts.map((part, index) => (
+    <React.Fragment key={index}>
+      <span className={`subtitle-part-${index + 1}`}>
+        {part === '-' ? '—' : part.toUpperCase()}
+      </span>
+    </React.Fragment>
+  ))}
+</div>
     </div>
   );
 };

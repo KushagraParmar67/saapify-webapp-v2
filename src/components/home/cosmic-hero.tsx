@@ -4,13 +4,13 @@ import { CosmicParallaxBg } from "@/components/ui/parallax-cosmic-background";
 
 const CosmicHero = () => {
   return (
-    <div className="flex w-full h-screen justify-center items-center">
+    <section className="relative min-h-screen overflow-hidden bg-black">
       <CosmicParallaxBg 
-        head="EaseMize" 
-        text="Easy, customizeable, Best" 
-        loop={true}
+        head="SaaPify" 
+        text="Structured, Services, -, Predictable, Outcomes" 
+        loop={false}
       />
-    </div>
+    </section>
   );
 };
 
