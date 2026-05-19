@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Loader } from '@/components/ui/loader';
 
 const DottedSurface = dynamic(
   () => import('@/components/ui/dotted-surface').then((m) => m.DottedSurface),
@@ -23,8 +22,6 @@ export function HeroSection() {
 
   return (
     <>
-      <Loader isVisible={isLoading} />
-
       {/* Fixed Three.js background — no children, sits behind everything */}
       <DottedSurface />
 
@@ -47,9 +44,8 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="mt-4 sm:mt-6 text-slate-400 font-light tracking-wide max-w-xs sm:max-w-md md:max-w-lg"
+            className="mt-4 sm:mt-6 text-slate-400 font-light leading-relaxed text-center text-sm sm:text-base md:text-lg max-w-[90vw] break-words"
             style={{
-              fontSize: 'clamp(0.875rem, 2.5vw, 1.375rem)',
               animation: heroVisible ? 'fadeInUp 0.9s ease-out 0.25s both' : 'none',
               opacity: heroVisible ? undefined : 0,
             }}

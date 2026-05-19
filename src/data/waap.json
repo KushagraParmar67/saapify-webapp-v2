@@ -1,0 +1,337 @@
+{
+  "tabs": [
+    {
+      "id": "portfolio",
+      "title": "Portfolio",
+      "icon": "Briefcase",
+      "description": "Showcase your work with stunning portfolio websites",
+      "plans": [
+        {
+          "name": "Personal Portfolio",
+          "price": { "inr": "₹15,000 – ₹25,000", "usd": "$300 – $400" },
+          "timeline": "1 Week",
+          "popular": false,
+          "color": "from-cyan-500 to-blue-500",
+          "features": [
+            { "name": "Pages", "value": "4 pages (Home / About / Work / Contact)", "included": true },
+            { "name": "Projects", "value": "3 projects", "included": true },
+            { "name": "Technology", "value": "Static Web App", "included": true },
+            { "name": "CMS Editable", "value": "No", "included": false },
+            { "name": "Admin Panel", "value": "No", "included": false },
+            { "name": "Contact Form", "value": "Basic Email", "included": true },
+            { "name": "Resume Download", "value": "Yes", "included": true }
+          ],
+          "metrics": { "margin": "62–74%", "hours": "16–18 hrs" }
+        },
+        {
+          "name": "Professional Portfolio",
+          "price": { "inr": "₹30,000 – ₹45,000", "usd": "$500 – $700" },
+          "timeline": "2 Weeks",
+          "popular": true,
+          "color": "from-indigo-500 to-purple-500",
+          "features": [
+            { "name": "Pages", "value": "6–8 pages (Work + Blog)", "included": true },
+            { "name": "Projects", "value": "5 projects", "included": true },
+            { "name": "Technology", "value": "CMS (WordPress / Webflow)", "included": true },
+            { "name": "CMS Editable", "value": "Yes (Add / Edit Portfolio)", "included": true },
+            { "name": "Admin Panel", "value": "Simple (Add Projects)", "included": true },
+            { "name": "Contact Form", "value": "Email + Google Sheets", "included": true },
+            { "name": "Blog & SEO", "value": "Yes", "included": true }
+          ],
+          "metrics": { "margin": "62–72%", "hours": "27–30 hrs" }
+        },
+        {
+          "name": "Agency / Studio Portfolio",
+          "price": { "inr": "₹60,000 – ₹80,000", "usd": "$900 – $1,200" },
+          "timeline": "3 Weeks",
+          "popular": false,
+          "color": "from-purple-500 to-pink-500",
+          "features": [
+            { "name": "Pages", "value": "10 pages (Case Studies, Services, Team)", "included": true },
+            { "name": "Projects", "value": "8–10 projects", "included": true },
+            { "name": "Technology", "value": "Custom Web App (Next.js / React)", "included": true },
+            { "name": "CMS Editable", "value": "Yes (Full Portfolio + Blog)", "included": true },
+            { "name": "Admin Panel", "value": "Custom Dashboard with Analytics", "included": true },
+            { "name": "Contact Form", "value": "Auto-responder + WhatsApp", "included": true },
+            { "name": "Animations & Analytics", "value": "Yes", "included": true }
+          ],
+          "metrics": { "margin": "68–74%", "hours": "46–52 hrs" }
+        }
+      ],
+      "targetCustomers": [
+        "Freelancers", "Creators & Influencers", "Individual Professionals",
+        "Trainers & Coaches", "Small Agencies", "Production Houses",
+        "Event & Wedding Planners", "Real Estate Agents"
+      ],
+      "metrics": { "profitMargin": "62–74%", "internalHours": "16–52 hrs" }
+    },
+    {
+      "id": "landing",
+      "title": "Landing Pages",
+      "icon": "Rocket",
+      "description": "High-converting landing pages for campaigns",
+      "plans": [
+        {
+          "name": "Basic Landing Page",
+          "price": { "inr": "₹9,000 – ₹16,000", "usd": "$220 – $320" },
+          "timeline": "3 Days",
+          "popular": false,
+          "color": "from-cyan-500 to-blue-500",
+          "features": [
+            { "name": "Sections", "value": "4–5 Sections", "included": true },
+            { "name": "Technology", "value": "Static HTML / React", "included": true },
+            { "name": "CMS", "value": "No", "included": false },
+            { "name": "Admin Panel", "value": "No", "included": false },
+            { "name": "Contact Form", "value": "1 Email Submission", "included": true },
+            { "name": "Animations", "value": "None", "included": false },
+            { "name": "Tracking", "value": "Basic Google Analytics", "included": true },
+            { "name": "Hosting", "value": "Shared Hosting", "included": true }
+          ],
+          "metrics": { "margin": "61–74%", "hours": "8–12 hrs" }
+        },
+        {
+          "name": "Conversion-Optimized",
+          "price": { "inr": "₹22,000 – ₹32,000", "usd": "$450 – $650" },
+          "timeline": "5–7 Days",
+          "popular": true,
+          "color": "from-indigo-500 to-purple-500",
+          "features": [
+            { "name": "Sections", "value": "7–8 Sections", "included": true },
+            { "name": "Technology", "value": "CMS / Next.js", "included": true },
+            { "name": "CMS", "value": "Optional", "included": true },
+            { "name": "Admin Panel", "value": "Optional", "included": true },
+            { "name": "Contact Form", "value": "3 Emails + Google Sheets", "included": true },
+            { "name": "Animations", "value": "Basic", "included": true },
+            { "name": "Tracking", "value": "Google Analytics + Hotjar", "included": true },
+            { "name": "Hosting", "value": "Vercel / Standard", "included": true }
+          ],
+          "metrics": { "margin": "50–74%", "hours": "14–18 hrs" }
+        },
+        {
+          "name": "Advanced Multi-Section",
+          "price": { "inr": "₹45,000 – ₹65,000", "usd": "$850 – $1,100" },
+          "timeline": "10–14 Days",
+          "popular": false,
+          "color": "from-purple-500 to-pink-500",
+          "features": [
+            { "name": "Sections", "value": "10+ Sections with Dynamic Elements", "included": true },
+            { "name": "Technology", "value": "Advanced SPA with Animations", "included": true },
+            { "name": "CMS", "value": "Yes (Dynamic Text & Images)", "included": true },
+            { "name": "Admin Panel", "value": "Yes (Edit Hero, Content & Forms)", "included": true },
+            { "name": "Contact Form", "value": "Multi-form + CRM Integration", "included": true },
+            { "name": "Animations", "value": "Advanced (GSAP / Lottie)", "included": true },
+            { "name": "Tracking", "value": "GA4 + Heatmaps + A/B Testing", "included": true },
+            { "name": "Hosting", "value": "AWS + CloudFront CDN", "included": true }
+          ],
+          "metrics": { "margin": "49–68%", "hours": "28–35 hrs" }
+        }
+      ],
+      "targetCustomers": [
+        "Local Businesses Launching Offers", "Coaches & Trainers",
+        "Startup MVP Validation", "Course / Webinar Sellers",
+        "SaaS / Tech Startups", "Event & Launch Campaigns", "High-Ticket Offers"
+      ],
+      "metrics": { "profitMargin": "49–74%", "internalHours": "8–35 hrs" }
+    },
+    {
+      "id": "ecommerce",
+      "title": "E-Commerce",
+      "icon": "ShoppingBag",
+      "description": "Online stores with payment integration",
+      "plans": [
+        {
+          "name": "Basic Online Store",
+          "price": { "inr": "₹45,000 – ₹60,000", "usd": "$800 – $1,000" },
+          "timeline": "2–3 Weeks",
+          "popular": false,
+          "color": "from-cyan-500 to-blue-500",
+          "features": [
+            { "name": "Products", "value": "Up to 20 products", "included": true },
+            { "name": "Pages", "value": "Up to 8 pages", "included": true },
+            { "name": "Technology", "value": "Custom E-commerce Stack", "included": true },
+            { "name": "CMS", "value": "Limited (Add / Edit Products)", "included": true },
+            { "name": "Admin Panel", "value": "Basic dashboard", "included": true },
+            { "name": "Payment Gateway", "value": "Razorpay / Stripe", "included": true },
+            { "name": "Hosting", "value": "Shared Hosting", "included": true },
+            { "name": "Security", "value": "Basic SSL", "included": true }
+          ],
+          "metrics": { "margin": "72–80%", "hours": "30–34 hrs" }
+        },
+        {
+          "name": "Standard E-Commerce",
+          "price": { "inr": "₹75,000 – ₹1,00,000", "usd": "$1,200 – $1,500" },
+          "timeline": "4–5 Weeks",
+          "popular": true,
+          "color": "from-indigo-500 to-purple-500",
+          "features": [
+            { "name": "Products", "value": "Up to 100 products", "included": true },
+            { "name": "Pages", "value": "12–15 pages", "included": true },
+            { "name": "Technology", "value": "MERN / FastAPI", "included": true },
+            { "name": "CMS", "value": "Yes (Full Product Management)", "included": true },
+            { "name": "Admin Panel", "value": "Orders, Users, Payments", "included": true },
+            { "name": "Payment Gateway", "value": "Razorpay, PayPal, COD", "included": true },
+            { "name": "Hosting", "value": "Managed VPS", "included": true },
+            { "name": "Security", "value": "Advanced SSL & Firewall", "included": true }
+          ],
+          "metrics": { "margin": "76–81%", "hours": "44–49 hrs" }
+        },
+        {
+          "name": "Advanced E-Commerce",
+          "price": { "inr": "₹1,25,000 – ₹1,60,000", "usd": "$2,000 – $2,500" },
+          "timeline": "6–8 Weeks",
+          "popular": false,
+          "color": "from-purple-500 to-pink-500",
+          "features": [
+            { "name": "Products", "value": "Unlimited products", "included": true },
+            { "name": "Pages", "value": "20+ pages", "included": true },
+            { "name": "Technology", "value": "Next.js / MERN / Custom CMS", "included": true },
+            { "name": "CMS", "value": "Yes (Fully Customizable)", "included": true },
+            { "name": "Admin Panel", "value": "Inventory, Coupons, Analytics", "included": true },
+            { "name": "Payment Gateway", "value": "Multi-gateway + Wallet", "included": true },
+            { "name": "Hosting", "value": "Dedicated Server", "included": true },
+            { "name": "Security", "value": "Enterprise-grade + CDN", "included": true }
+          ],
+          "metrics": { "margin": "76–82%", "hours": "68–74 hrs" }
+        }
+      ],
+      "targetCustomers": [
+        "Local Sellers", "Instagram / WhatsApp Sellers",
+        "Growing E-Commerce Brands", "Niche Market E-Commerce",
+        "Retail Brands Shifting Online", "Startups with Funding", "Global Sellers"
+      ],
+      "metrics": { "profitMargin": "72–82%", "internalHours": "30–74 hrs" }
+    },
+    {
+      "id": "branding",
+      "title": "Branding",
+      "icon": "Layout",
+      "description": "Informative brand websites that build credibility",
+      "plans": [
+        {
+          "name": "Basic Branding",
+          "price": { "inr": "$300 – $400", "usd": "$500 – $600" },
+          "timeline": "1 Week",
+          "popular": false,
+          "color": "from-cyan-500 to-blue-500",
+          "features": [
+            { "name": "Pages", "value": "5 pages (5 sections each)", "included": true },
+            { "name": "Detail Pages", "value": "3 detail pages", "included": true },
+            { "name": "Technology", "value": "Static Web App", "included": true },
+            { "name": "CMS Editable", "value": "No", "included": false },
+            { "name": "Admin Panel", "value": "No", "included": false },
+            { "name": "Contact Form", "value": "Direct email (1 email)", "included": true }
+          ],
+          "metrics": { "margin": "75–88%", "hours": "16–20 hrs" }
+        },
+        {
+          "name": "Professional Branding",
+          "price": { "inr": "$550 – $650", "usd": "$850 – $950" },
+          "timeline": "2 Weeks",
+          "popular": true,
+          "color": "from-indigo-500 to-purple-500",
+          "features": [
+            { "name": "Pages", "value": "8 pages (6 sections each)", "included": true },
+            { "name": "Detail Pages", "value": "5 detail pages", "included": true },
+            { "name": "Technology", "value": "Content Management System", "included": true },
+            { "name": "CMS Editable", "value": "Yes (Content change only)", "included": true },
+            { "name": "Admin Panel", "value": "Yes", "included": true },
+            { "name": "Contact Form", "value": "Submission to 3 emails", "included": true }
+          ],
+          "metrics": { "margin": "80–88%", "hours": "25–31 hrs" }
+        },
+        {
+          "name": "Advanced Branding",
+          "price": { "inr": "$950 – $1,050", "usd": "$1,250 – $1,350" },
+          "timeline": "3 Weeks",
+          "popular": false,
+          "color": "from-purple-500 to-pink-500",
+          "features": [
+            { "name": "Pages", "value": "10 pages", "included": true },
+            { "name": "Detail Pages", "value": "6 detail pages", "included": true },
+            { "name": "Technology", "value": "CMS (Extended)", "included": true },
+            { "name": "CMS Editable", "value": "Yes (Fully editable)", "included": true },
+            { "name": "Admin Panel", "value": "Yes", "included": true },
+            { "name": "Contact Form", "value": "Submission to 5 emails", "included": true }
+          ],
+          "metrics": { "margin": "84–89%", "hours": "35–45 hrs" }
+        }
+      ],
+      "targetCustomers": [
+        "Coaches & Consultants", "Professional Services",
+        "Medical & Wellness", "Event & Wedding Planners",
+        "Real Estate Agents", "Agencies & Startups",
+        "NGOs & Non-Profits", "Restaurants & Cafes", "Artists & Creators"
+      ],
+      "metrics": { "profitMargin": "75–89%", "internalHours": "16–45 hrs" }
+    },
+    {
+      "id": "webapps",
+      "title": "Web Apps",
+      "icon": "Code",
+      "description": "Custom web applications and SaaS platforms",
+      "plans": [
+        {
+          "name": "MVP / Basic Web App",
+          "price": { "inr": "₹90,000 – ₹1,40,000", "usd": "$1,600 – $2,200" },
+          "timeline": "4–6 Weeks",
+          "popular": false,
+          "color": "from-cyan-500 to-blue-500",
+          "features": [
+            { "name": "Modules", "value": "2–3 Core Modules", "included": true },
+            { "name": "Technology", "value": "MERN / Django Basic", "included": true },
+            { "name": "CMS", "value": "Optional (Basic Config)", "included": true },
+            { "name": "Admin Panel", "value": "Limited Analytics", "included": true },
+            { "name": "Authentication", "value": "Email / Google Login", "included": true },
+            { "name": "API Integration", "value": "REST Only", "included": true },
+            { "name": "Database", "value": "MongoDB / PostgreSQL", "included": true },
+            { "name": "Deployment", "value": "Shared Hosting / Basic Cloud", "included": true }
+          ],
+          "metrics": { "margin": "51–73%", "hours": "45–60 hrs" }
+        },
+        {
+          "name": "Standard Web App",
+          "price": { "inr": "₹1,80,000 – ₹2,80,000", "usd": "$2,800 – $4,200" },
+          "timeline": "8–10 Weeks",
+          "popular": true,
+          "color": "from-indigo-500 to-purple-500",
+          "features": [
+            { "name": "Modules", "value": "5–7 Functional Modules", "included": true },
+            { "name": "Technology", "value": "React + Node / Django + DB", "included": true },
+            { "name": "CMS", "value": "Yes (Partial Control)", "included": true },
+            { "name": "Admin Panel", "value": "Moderate Data Controls", "included": true },
+            { "name": "Authentication", "value": "Multi-role Auth (User / Admin)", "included": true },
+            { "name": "API Integration", "value": "REST + 3rd-party APIs", "included": true },
+            { "name": "Database", "value": "MongoDB / PostgreSQL / MySQL", "included": true },
+            { "name": "Deployment", "value": "AWS EC2 / DigitalOcean", "included": true }
+          ],
+          "metrics": { "margin": "52–69%", "hours": "90–120 hrs" }
+        },
+        {
+          "name": "Enterprise Web App",
+          "price": { "inr": "₹3,50,000 – ₹5,50,000", "usd": "$5,500 – $8,500" },
+          "timeline": "12–16 Weeks",
+          "popular": false,
+          "color": "from-purple-500 to-pink-500",
+          "features": [
+            { "name": "Modules", "value": "10+ Modules + Integrations", "included": true },
+            { "name": "Technology", "value": "Next.js + FastAPI / Microservices", "included": true },
+            { "name": "CMS", "value": "Full Admin + Role-Based Access", "included": true },
+            { "name": "Admin Panel", "value": "Advanced Custom Dashboard + API Controls", "included": true },
+            { "name": "Authentication", "value": "OAuth2 / SSO Integration", "included": true },
+            { "name": "API Integration", "value": "REST + GraphQL + WebSocket", "included": true },
+            { "name": "Database", "value": "Distributed DB (Cassandra / DynamoDB)", "included": true },
+            { "name": "Deployment", "value": "Kubernetes / Serverless + CI/CD", "included": true }
+          ],
+          "metrics": { "margin": "51–69%", "hours": "180–220 hrs" }
+        }
+      ],
+      "targetCustomers": [
+        "Early-stage Startups", "SaaS Product Ideas",
+        "Marketplace Platforms", "Operations Tools",
+        "FinTech / Loan Apps", "Healthcare Tech",
+        "EduTech Platforms", "Enterprise Applications", "Agencies (Resellers)"
+      ],
+      "metrics": { "profitMargin": "51–73%", "internalHours": "45–220 hrs" }
+    }
+  ]
+}

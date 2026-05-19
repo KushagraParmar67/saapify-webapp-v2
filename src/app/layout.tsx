@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { PageLoader } from "@/components/ui/page-loader";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#0a192f] text-white">
         <Providers>
+          <PageLoader />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
