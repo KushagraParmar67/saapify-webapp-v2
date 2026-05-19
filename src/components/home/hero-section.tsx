@@ -25,38 +25,39 @@ export function HeroSection() {
     <>
       <Loader isVisible={isLoading} />
 
-      <DottedSurface>
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto px-6">
-          <div className="text-center">
-            <h1
-              className="font-bold tracking-tight text-white"
-              style={{
-                fontSize: 'clamp(3.5rem, 10vw, 8rem)',
-                lineHeight: 1.05,
-                animation: heroVisible
-                  ? 'fadeInUp 0.9s ease-out both'
-                  : 'none',
-                opacity: heroVisible ? undefined : 0,
-              }}
-            >
-              Saa<span className="text-[#1e40af]">P</span>ify
-            </h1>
+      {/* Fixed Three.js background — no children, sits behind everything */}
+      <DottedSurface />
 
-            <p
-              className="mt-6 text-slate-400 font-light tracking-wide"
-              style={{
-                fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
-                animation: heroVisible
-                  ? 'fadeInUp 0.9s ease-out 0.25s both'
-                  : 'none',
-                opacity: heroVisible ? undefined : 0,
-              }}
-            >
-              Structured Services &mdash; Predictable Outcome
-            </p>
-          </div>
+      {/* Hero section: takes real space in document flow */}
+      <section
+        className="relative flex items-center justify-center w-full"
+        style={{ minHeight: '100dvh' }}
+      >
+        <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 sm:px-6 pt-16 pb-8 text-center pointer-events-auto">
+          <h1
+            className="font-bold tracking-tight text-white w-full"
+            style={{
+              fontSize: 'clamp(2.5rem, 12vw, 8rem)',
+              lineHeight: 1.05,
+              animation: heroVisible ? 'fadeInUp 0.9s ease-out both' : 'none',
+              opacity: heroVisible ? undefined : 0,
+            }}
+          >
+            Saa<span className="text-[#1e40af]">P</span>ify
+          </h1>
+
+          <p
+            className="mt-4 sm:mt-6 text-slate-400 font-light tracking-wide max-w-xs sm:max-w-md md:max-w-lg"
+            style={{
+              fontSize: 'clamp(0.875rem, 2.5vw, 1.375rem)',
+              animation: heroVisible ? 'fadeInUp 0.9s ease-out 0.25s both' : 'none',
+              opacity: heroVisible ? undefined : 0,
+            }}
+          >
+            Structured Services &mdash; Predictable Outcome
+          </p>
         </div>
-      </DottedSurface>
+      </section>
     </>
   );
 }
