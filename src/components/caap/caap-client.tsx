@@ -2,12 +2,13 @@
 
 import { memo } from "react";
 import Link from "next/link";
+import { InfinityLoopSection } from "@/components/infinity-loop";
 import { motion } from "framer-motion";
 import {
   Layers, Package, Puzzle, CreditCard, RefreshCw,
   Boxes, Zap, TrendingUp, LayoutDashboard, Bot,
   ArrowUpRight, CheckCircle2, Clock, DollarSign,
-  ChevronRight, Users, ShoppingBag,
+  ChevronRight, Users, ShoppingBag, IndianRupeeIcon
 } from "lucide-react";
 
 // ─── Animation variants ───────────────────────────────────────────────────────
@@ -30,12 +31,12 @@ const SERVICES = [
     title: "Custom SaaPify Features",
     desc: "Bespoke functionality built directly into your theme — unique features your competitors don't have.",
   },
-  {
-    icon: Package,
-    color: "blue",
-    title: "Advanced Product Pages",
-    desc: "Rich product experiences: custom bundles, variant selectors, 3D previews, and dynamic pricing.",
-  },
+  // {
+  //   icon: Package,
+  //   color: "blue",
+  //   title: "Advanced Product Pages",
+  //   desc: "Rich product experiences: custom bundles, variant selectors, 3D previews, and dynamic pricing.",
+  // },
   {
     icon: Puzzle,
     color: "purple",
@@ -59,12 +60,6 @@ const SERVICES = [
     color: "orange",
     title: "Inventory & Order Automation",
     desc: "Automate stock sync, fulfilment routing, reorder triggers, and warehouse integrations.",
-  },
-  {
-    icon: Zap,
-    color: "yellow",
-    title: "Performance Optimization",
-    desc: "Core Web Vitals, lazy loading, script audits, and CDN tuning for sub-2s load times.",
   },
   {
     icon: TrendingUp,
@@ -152,7 +147,7 @@ const CASE_STUDIES = [
     timeline: "5 weeks",
     metrics: [
       { label: "Repeat Purchases", value: "+28%", icon: TrendingUp, color: "emerald" },
-      { label: "Avg. Order Value", value: "+18%", icon: DollarSign, color: "cyan" },
+      { label: "Avg. Order Value", value: "+18%", icon: IndianRupeeIcon, color: "cyan" },
       { label: "Subscription Retention", value: "Better", icon: RefreshCw, color: "purple" },
       { label: "Operational Efficiency", value: "Improved", icon: Zap, color: "yellow" },
     ],
@@ -180,7 +175,7 @@ const HeroSection = memo(() => (
           <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
             as a Product
           </span>
-          <span className="text-gray-500 text-2xl sm:text-3xl font-medium ml-3">(CAAP)</span>
+          <span className="text-gray-500 text-2xl sm:text-3xl font-medium ml-3">(CaaP)</span>
         </motion.h1>
 
         <motion.p variants={fadeUp} className="mt-5 text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -256,11 +251,13 @@ const ServicesSection = memo(() => (
 ServicesSection.displayName = "ServicesSection";
 
 const HowItWorksSection = memo(() => (
-  <section className="py-24 px-4 sm:px-6 bg-[#0a192f]">
-    <div className="max-w-5xl mx-auto">
+  <section className="py-28 px-4 sm:px-6 bg-[#0a192f] overflow-hidden">
+    <div className="max-w-6xl mx-auto">
+
+      {/* Header */}
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="text-center mb-14"
+        className="text-center mb-20"
       >
         <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-700 text-gray-400 text-xs tracking-wider uppercase mb-4">
           <Zap className="w-3 h-3" />
@@ -274,50 +271,141 @@ const HowItWorksSection = memo(() => (
         </motion.p>
       </motion.div>
 
-      {/* Desktop: horizontal timeline */}
-      <motion.div
-        initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="hidden md:grid grid-cols-4 gap-0 relative"
-      >
-        {/* Connecting line */}
-        <div className="absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-cyan-500/40 via-blue-500/40 to-purple-500/40" />
+      {/* ── Desktop ── */}
+      <div className="hidden md:block">
 
-        {STEPS.map((step, i) => (
-          <motion.div key={step.num} variants={fadeUp} className="relative flex flex-col items-center text-center px-4">
-            <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center mb-5">
-              <span className="text-cyan-400 font-bold text-lg">{step.num}</span>
-            </div>
-            <h3 className="text-white font-semibold text-sm mb-2">{step.title}</h3>
-            <p className="text-gray-500 text-xs leading-relaxed">{step.desc}</p>
-            {i < STEPS.length - 1 && (
-              <ChevronRight className="absolute top-5 -right-3 w-5 h-5 text-cyan-500/40" />
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
+        {/* Node row with animated connector */}
+        <div className="relative flex items-center justify-between px-10">
+          {/* Track — static background line */}
+          <div className="absolute inset-x-10 top-1/2 -translate-y-1/2 h-px bg-gray-800/80" />
 
-      {/* Mobile: vertical timeline */}
-      <motion.div
-        initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="md:hidden flex flex-col gap-0"
-      >
+          {/* Animated fill line */}
+          <motion.div
+            className="absolute left-10 top-1/2 -translate-y-1/2 h-[2px] rounded-full"
+            style={{
+              background: "linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6)",
+              boxShadow: "0 0 12px rgba(6,182,212,0.5)",
+            }}
+            initial={{ width: 0 }}
+            whileInView={{ width: "calc(100% - 5rem)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          />
+
+          {/* Nodes */}
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 260, damping: 18, delay: i * 0.18 + 0.3 }}
+              className="relative z-10 flex-shrink-0"
+            >
+              {/* Outer glow ring — gradient border trick */}
+              <div
+                className="w-14 h-14 rounded-full p-[2px]"
+                style={{ background: "linear-gradient(135deg, #06b6d4, #3b82f6)" }}
+              >
+                <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
+                  <span className="text-cyan-400 font-bold text-sm tracking-wide">{step.num}</span>
+                </div>
+              </div>
+              {/* Pulse ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full border border-cyan-400/40"
+                animate={{ scale: [1, 1.55], opacity: [0, 1.5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.35, ease: "easeInOut" }}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Step cards below nodes */}
+        <div className="grid grid-cols-4 gap-5 mt-10">
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: i * 0.12 + 0.55, ease: "easeOut" }}
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-2xl border border-gray-800/60 bg-gray-900/40 p-5 hover:border-cyan-500/30 transition-all duration-300"
+            >
+              {/* Watermark number */}
+              <div className="absolute -right-3 -bottom-5 font-black select-none leading-none text-white/[0.03] pointer-events-none"
+                style={{ fontSize: "6rem" }}>
+                {step.num}
+              </div>
+              {/* Hover gradient overlay */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/[0.06] to-blue-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-cyan-500/60 to-blue-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+              <div className="relative">
+                <p className="text-[10px] font-mono text-cyan-500/70 tracking-widest uppercase mb-2">
+                  Step {step.num}
+                </p>
+                <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-cyan-100 transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{step.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Mobile: vertical timeline ── */}
+      <div className="md:hidden flex flex-col">
         {STEPS.map((step, i) => (
-          <motion.div key={step.num} variants={fadeUp} className="flex gap-4">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
-                <span className="text-cyan-400 font-bold text-sm">{step.num}</span>
+          <motion.div
+            key={step.num}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
+            className="flex gap-5"
+          >
+            {/* Left rail */}
+            <div className="flex flex-col items-center flex-shrink-0">
+              <div
+                className="w-12 h-12 rounded-full p-[2px] flex-shrink-0"
+                style={{ background: "linear-gradient(135deg, #06b6d4, #3b82f6)" }}
+              >
+                <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
+                  <span className="text-cyan-400 font-bold text-xs">{step.num}</span>
+                </div>
               </div>
               {i < STEPS.length - 1 && (
-                <div className="w-px flex-1 my-2 bg-gradient-to-b from-cyan-500/30 to-transparent min-h-[2rem]" />
+                <motion.div
+                  className="w-[2px] flex-1 my-2 rounded-full"
+                  style={{ background: "linear-gradient(to bottom, #06b6d4, transparent)", minHeight: "2.5rem" }}
+                  initial={{ scaleY: 0, originY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.12 + 0.3 }}
+                />
               )}
             </div>
-            <div className="pb-8">
+
+            {/* Card */}
+            <div className="relative overflow-hidden rounded-2xl border border-gray-800/60 bg-gray-900/40 p-4 mb-4 flex-1">
+              <div className="absolute -right-2 -bottom-4 font-black select-none leading-none text-white/[0.04] pointer-events-none"
+                style={{ fontSize: "4.5rem" }}>
+                {step.num}
+              </div>
+              <p className="text-[10px] font-mono text-cyan-500/70 tracking-widest uppercase mb-1">
+                Step {step.num}
+              </p>
               <h3 className="text-white font-semibold text-sm mb-1">{step.title}</h3>
               <p className="text-gray-500 text-xs leading-relaxed">{step.desc}</p>
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
+
     </div>
   </section>
 ));
@@ -364,7 +452,7 @@ const CaseStudiesSection = memo(() => (
                   </div>
                   <div className="flex items-center gap-3 text-xs text-gray-500">
                     <span className="flex items-center gap-1">
-                      <DollarSign className="w-3 h-3 text-emerald-400" />
+                      {/* <DollarSign className="w-3 h-3 text-emerald-400" /> */}
                       <span className="text-emerald-400 font-semibold">{cs.cost}</span>
                     </span>
                     <span className="flex items-center gap-1">
@@ -460,6 +548,7 @@ export function CaapClient() {
   return (
     <div className="min-h-screen bg-[#0a192f]">
       <HeroSection />
+      <InfinityLoopSection />
       <ServicesSection />
       <HowItWorksSection />
       <CaseStudiesSection />

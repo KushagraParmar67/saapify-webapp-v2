@@ -8,7 +8,7 @@ import { Menu, X, ArrowUpRight, Zap } from "lucide-react";
 const NAV = [
   { label: "Services", href: "/services" },
   { label: "WaaP", href: "/waap" },
-  { label: "CAAP", href: "/caap" },
+  { label: "CaaP", href: "/caap" },
   { label: "AI Suite", href: "/ai" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
