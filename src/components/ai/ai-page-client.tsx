@@ -195,12 +195,12 @@ const AIHero = memo(() => {
                 transition={{ delay: 0.2 }}
                 className="flex items-center gap-2 mb-8"
               >
-                <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                <div className="w-8 h-8  flex items-center justify-center">
+                  {/* <Sparkles className="w-4 h-4 text-cyan-400" /> */}
                 </div>
-                <span className="text-cyan-400 text-sm tracking-wider font-medium">
+                {/* <span className="text-cyan-400 text-sm tracking-wider font-medium">
                   SaaPify AI Suite
-                </span>
+                </span> */}
               </motion.div>
 
               <motion.div

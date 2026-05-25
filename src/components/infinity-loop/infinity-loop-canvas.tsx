@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { memo, useRef, useEffect, useState, useCallback } from "react";
 import {
   motion,
   useMotionValue,
@@ -20,7 +20,6 @@ import {
   NODE_DEFINITIONS,
   LOOP_DURATION,
   ACTIVATION_RADIUS,
-  ENERGY_WAVE_FRACTION,
   getProximityWeight,
 } from "./infinity-path";
 import { ServiceNode } from "./service-node";
@@ -41,7 +40,7 @@ function getLabelPlacement(
   return "below";
 }
 
-// ─── NodeAnimator — isolates hooks per node, avoids hooks-in-loop ─────────────
+// ─── NodeAnimator — isolates hooks per node ───────────────────────────────────
 
 interface NodeAnimatorProps {
   node: NodeDefinition;
@@ -87,7 +86,7 @@ const NodeAnimator = memo(function NodeAnimator({
 
 NodeAnimator.displayName = "NodeAnimator";
 
-// ─── SVG Defs (static, memoised) ─────────────────────────────────────────────
+// ─── SVG Defs ─────────────────────────────────────────────────────────────────
 
 const SvgDefs = memo(function SvgDefs() {
   return (
@@ -100,14 +99,13 @@ const SvgDefs = memo(function SvgDefs() {
         <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
         <feComposite in="blur" in2="SourceGraphic" operator="over" />
       </filter>
-      <linearGradient id="il-wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.9" />
-        <stop offset="50%" stopColor="#60a5fa" stopOpacity="1" />
-        <stop offset="100%" stopColor="#c084fc" stopOpacity="0.9" />
-      </linearGradient>
       <radialGradient id="il-particle-gradient" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
         <stop offset="40%" stopColor="#22d3ee" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient id="il-center-radial" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.25" />
         <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
       </radialGradient>
     </defs>
@@ -116,32 +114,121 @@ const SvgDefs = memo(function SvgDefs() {
 
 SvgDefs.displayName = "SvgDefs";
 
+// ─── EchoCircle — own component so useTransform runs at top level ─────────────
+
+interface EchoCircleProps {
+  pathD: string;
+  progress: MotionValue<number>;
+  offset: number;
+  r: number;
+  opacity: number;
+  strong: boolean;
+}
+
+const EchoCircle = memo(function EchoCircle({
+  pathD,
+  progress,
+  offset,
+  r,
+  opacity,
+  strong,
+}: EchoCircleProps) {
+  const shifted = useTransform(progress, (p) => {
+    let v = p - offset;
+    if (v < 0) v += 1;
+    return v;
+  });
+  const pct = useTransform(shifted, [0, 1], ["0%", "100%"]);
+
+  return (
+    <motion.circle
+      r={r}
+      fill="#22d3ee"
+      opacity={opacity}
+      style={
+        {
+          offsetPath: `path("${pathD}")`,
+          offsetDistance: pct,
+          offsetRotate: "0deg",
+          filter: strong ? "url(#il-glow-strong)" : "url(#il-glow-soft)",
+          willChange: "transform",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any
+      }
+    />
+  );
+});
+
+EchoCircle.displayName = "EchoCircle";
+
+// ─── CenterPulse — expanding ring when particle crosses the neck ──────────────
+
+interface CenterPulseProps {
+  progress: MotionValue<number>;
+  cx: number;
+  cy: number;
+}
+
+const CenterPulse = memo(function CenterPulse({ progress, cx, cy }: CenterPulseProps) {
+  const proximity = useTransform(progress, (p) => {
+    const dist = Math.min(
+      Math.abs(p - 0.5),
+      Math.abs(p - 0.5 + 1),
+      Math.abs(p - 0.5 - 1)
+    );
+    return dist < 0.04 ? 1 - dist / 0.04 : 0;
+  });
+  const sprung = useSpring(proximity, { stiffness: 200, damping: 15 });
+  const ringOpacity = useTransform(sprung, [0, 1], [0, 0.55]);
+
+  return (
+    <motion.circle
+      cx={cx}
+      cy={cy}
+      r={50}
+      fill="none"
+      stroke="#22d3ee"
+      strokeWidth={2}
+      style={
+        {
+          scale: sprung,
+          opacity: ringOpacity,
+          transformOrigin: `${cx}px ${cy}px`,
+          pointerEvents: "none",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any
+      }
+    />
+  );
+});
+
+CenterPulse.displayName = "CenterPulse";
+
+// ─── Echo trail config ────────────────────────────────────────────────────────
+
+const ECHOES = [
+  { offset: 0.012, r: 4.5, opacity: 0.7,  strong: true  },
+  { offset: 0.025, r: 4.0, opacity: 0.55, strong: true  },
+  { offset: 0.038, r: 3.5, opacity: 0.4,  strong: false },
+  { offset: 0.051, r: 3.0, opacity: 0.28, strong: false },
+  { offset: 0.064, r: 2.5, opacity: 0.18, strong: false },
+  { offset: 0.077, r: 2.0, opacity: 0.10, strong: false },
+];
+
 // ─── Main canvas ──────────────────────────────────────────────────────────────
 
 const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<AnimationPlaybackControls | null>(null);
 
-  // Node pixel positions — state so render updates after mount measurement
   const [desktopPositions, setDesktopPositions] = useState<NodePosition[]>([]);
   const [mobilePositions, setMobilePositions] = useState<NodePosition[]>([]);
 
-  // Total path lengths for dasharray calculation
-  const [desktopTotal, setDesktopTotal] = useState(2400);
-  const [mobileTotal, setMobileTotal] = useState(2800);
-
-  // Root progress 0→1
   const progress = useMotionValue(0);
 
-  // Particle offset-distance
   const particleOffsetDesktop = useTransform(progress, [0, 1], ["0%", "100%"]);
   const particleOffsetMobile = useTransform(progress, [0, 1], ["0%", "100%"]);
 
-  // Energy wave stroke-dashoffset (negative = travels forward along path)
-  const energyOffsetDesktop = useMotionValue(0);
-  const energyOffsetMobile = useMotionValue(0);
-
-  // Mouse parallax
   const rawMouseX = useMotionValue(0);
   const rawMouseY = useMotionValue(0);
   const springX = useSpring(rawMouseX, { stiffness: 60, damping: 20 });
@@ -149,58 +236,35 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
 
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
-  // Measure path lengths and node positions using a detached SVG element.
-  // This avoids getTotalLength() returning 0 when the parent SVG has display:none
-  // applied by a responsive Tailwind class at the time the effect fires.
+  // Measure node positions via detached SVG (avoids getTotalLength() = 0 on hidden elements)
   useEffect(() => {
-    const measurePathStr = (
+    const measure = (
       pathD: string,
-      progressKey: "desktopProgress" | "mobileProgress"
-    ): { positions: NodePosition[]; total: number } => {
+      key: "desktopProgress" | "mobileProgress"
+    ): NodePosition[] => {
       const ns = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(ns, "svg");
       const path = document.createElementNS(ns, "path") as SVGPathElement;
       path.setAttribute("d", pathD);
       svg.appendChild(path);
-      // Must be in the document for Chrome to compute length
-      svg.style.position = "absolute";
-      svg.style.visibility = "hidden";
-      svg.style.pointerEvents = "none";
+      svg.style.cssText = "position:absolute;visibility:hidden;pointer-events:none";
       document.body.appendChild(svg);
-
       const total = path.getTotalLength();
       const positions = NODE_DEFINITIONS.map((node) => {
-        const pt = path.getPointAtLength(node[progressKey] * total);
+        const pt = path.getPointAtLength(node[key] * total);
         return { x: pt.x, y: pt.y };
       });
-
       document.body.removeChild(svg);
-      return { positions, total };
+      return total > 0 ? positions : [];
     };
 
-    const d = measurePathStr(DESKTOP_PATH_D, "desktopProgress");
-    const m = measurePathStr(MOBILE_PATH_D, "mobileProgress");
-
-    if (d.total > 0) {
-      setDesktopTotal(d.total);
-      setDesktopPositions(d.positions);
-    }
-    if (m.total > 0) {
-      setMobileTotal(m.total);
-      setMobilePositions(m.positions);
-    }
+    const d = measure(DESKTOP_PATH_D, "desktopProgress");
+    const m = measure(MOBILE_PATH_D, "mobileProgress");
+    if (d.length) setDesktopPositions(d);
+    if (m.length) setMobilePositions(m);
   }, []);
 
-  // Drive energy wave dashoffset from progress
-  useEffect(() => {
-    const unsub = progress.on("change", (p) => {
-      energyOffsetDesktop.set(-p * desktopTotal);
-      energyOffsetMobile.set(-p * mobileTotal);
-    });
-    return unsub;
-  }, [progress, energyOffsetDesktop, energyOffsetMobile, desktopTotal, mobileTotal]);
-
-  // Start / stop loop on in-view change
+  // Start / stop animation based on visibility
   useEffect(() => {
     const prefersReduced =
       typeof window !== "undefined" &&
@@ -238,21 +302,8 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
   }, [rawMouseX, rawMouseY]);
 
   const handleNodeClick = useCallback((id: string) => {
-    // Stub — connect to drawer/navigation in a future iteration
     void id;
   }, []);
-
-  // Dasharray values
-  const desktopWaveLen = useMemo(() => desktopTotal * ENERGY_WAVE_FRACTION, [desktopTotal]);
-  const desktopGapLen = useMemo(
-    () => desktopTotal * (1 - ENERGY_WAVE_FRACTION),
-    [desktopTotal]
-  );
-  const mobileWaveLen = useMemo(() => mobileTotal * ENERGY_WAVE_FRACTION, [mobileTotal]);
-  const mobileGapLen = useMemo(
-    () => mobileTotal * (1 - ENERGY_WAVE_FRACTION),
-    [mobileTotal]
-  );
 
   return (
     <div
@@ -262,6 +313,7 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
       onMouseLeave={handleMouseLeave}
     >
       <motion.div style={{ x: springX, y: springY }} className="relative w-full">
+
         {/* ── Desktop SVG ──────────────────────────────────────────────────── */}
         <svg
           className="hidden md:block w-full"
@@ -272,7 +324,15 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
         >
           <SvgDefs />
 
-          {/* Layer 1: Base wire — breathing */}
+          {/* Ambient radial glow at center neck */}
+          <circle
+            cx={500} cy={250} r={140}
+            fill="url(#il-center-radial)"
+            opacity={0.5}
+            style={{ pointerEvents: "none" }}
+          />
+
+          {/* Breathing base wire */}
           <motion.path
             d={DESKTOP_PATH_D}
             fill="none"
@@ -282,34 +342,41 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
             animate={{ opacity: [0.12, 0.3, 0.12] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
-          <path d={DESKTOP_PATH_D} fill="none" stroke="#22d3ee" strokeWidth={1} opacity={0.1} />
+          <path d={DESKTOP_PATH_D} fill="none" stroke="#22d3ee" strokeWidth={1} opacity={0.08} />
 
-          {/* Layer 2: Energy wave */}
-          <motion.path
-            d={DESKTOP_PATH_D}
-            fill="none"
-            stroke="url(#il-wave-gradient)"
-            strokeWidth={3}
-            strokeDasharray={`${desktopWaveLen} ${desktopGapLen}`}
-            style={{ strokeDashoffset: energyOffsetDesktop }}
-            filter="url(#il-glow-soft)"
-            opacity={0.85}
-          />
+          {/* Center crossing pulse ring */}
+          <CenterPulse progress={progress} cx={500} cy={250} />
 
-          {/* Layer 3: Particle head */}
+          {/* Fading echo trail */}
+          {ECHOES.map((e, i) => (
+            <EchoCircle
+              key={i}
+              pathD={DESKTOP_PATH_D}
+              progress={progress}
+              offset={e.offset}
+              r={e.r}
+              opacity={e.opacity}
+              strong={e.strong}
+            />
+          ))}
+
+          {/* Main particle head */}
           <motion.circle
             r={5}
             fill="url(#il-particle-gradient)"
             filter="url(#il-glow-strong)"
-            style={{
-              offsetPath: `path("${DESKTOP_PATH_D}")`,
-              offsetDistance: particleOffsetDesktop,
-              offsetRotate: "0deg",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} as any}
+            style={
+              {
+                offsetPath: `path("${DESKTOP_PATH_D}")`,
+                offsetDistance: particleOffsetDesktop,
+                offsetRotate: "0deg",
+                willChange: "transform",
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              } as any
+            }
           />
 
-          {/* Layer 4: Nodes */}
+          {/* Service nodes */}
           {NODE_DEFINITIONS.map((node, i) => (
             <NodeAnimator
               key={node.id}
@@ -334,7 +401,15 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
         >
           <SvgDefs />
 
-          {/* Base wire */}
+          {/* Ambient radial glow at center neck */}
+          <circle
+            cx={250} cy={350} r={100}
+            fill="url(#il-center-radial)"
+            opacity={0.5}
+            style={{ pointerEvents: "none" }}
+          />
+
+          {/* Breathing base wire */}
           <motion.path
             d={MOBILE_PATH_D}
             fill="none"
@@ -344,31 +419,38 @@ const InfinityLoopCanvas = memo(function InfinityLoopCanvas() {
             animate={{ opacity: [0.12, 0.3, 0.12] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
-          <path d={MOBILE_PATH_D} fill="none" stroke="#22d3ee" strokeWidth={1} opacity={0.1} />
+          <path d={MOBILE_PATH_D} fill="none" stroke="#22d3ee" strokeWidth={1} opacity={0.08} />
 
-          {/* Energy wave */}
-          <motion.path
-            d={MOBILE_PATH_D}
-            fill="none"
-            stroke="url(#il-wave-gradient)"
-            strokeWidth={3}
-            strokeDasharray={`${mobileWaveLen} ${mobileGapLen}`}
-            style={{ strokeDashoffset: energyOffsetMobile }}
-            filter="url(#il-glow-soft)"
-            opacity={0.85}
-          />
+          {/* Center crossing pulse ring */}
+          <CenterPulse progress={progress} cx={250} cy={350} />
 
-          {/* Particle */}
+          {/* Fading echo trail */}
+          {ECHOES.map((e, i) => (
+            <EchoCircle
+              key={i}
+              pathD={MOBILE_PATH_D}
+              progress={progress}
+              offset={e.offset}
+              r={e.r}
+              opacity={e.opacity}
+              strong={e.strong}
+            />
+          ))}
+
+          {/* Main particle head */}
           <motion.circle
             r={5}
             fill="url(#il-particle-gradient)"
             filter="url(#il-glow-strong)"
-            style={{
-              offsetPath: `path("${MOBILE_PATH_D}")`,
-              offsetDistance: particleOffsetMobile,
-              offsetRotate: "0deg",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} as any}
+            style={
+              {
+                offsetPath: `path("${MOBILE_PATH_D}")`,
+                offsetDistance: particleOffsetMobile,
+                offsetRotate: "0deg",
+                willChange: "transform",
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              } as any
+            }
           />
 
           {/* Nodes — no labels on mobile */}
