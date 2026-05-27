@@ -3,7 +3,6 @@
 import { memo } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 
 const InfinityLoopCanvas = dynamic(
   () =>
@@ -28,12 +27,25 @@ const stagger = {
 
 const InfinityLoopSection = memo(function InfinityLoopSection() {
   return (
-    <section className="relative py-28 px-4 sm:px-6 bg-[#0a192f] overflow-hidden">
-      {/* Ambient background glows */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.03] to-transparent pointer-events-none" />
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute right-1/4 top-1/3 w-[300px] h-[300px] bg-purple-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute left-1/4 bottom-1/3 w-[300px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 80% 60% at 50% 45%, #121b3a 0%, #07091c 55%, #02030a 100%)",
+        padding: "clamp(40px, 8vh, 96px) 16px",
+      }}
+    >
+      {/* Ambient color washes */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: [
+            "radial-gradient(circle at 18% 78%, rgba(93,168,255,0.18), transparent 38%)",
+            "radial-gradient(circle at 82% 22%, rgba(255,125,200,0.10), transparent 36%)",
+            "radial-gradient(circle at 50% 50%, rgba(125,241,255,0.06), transparent 55%)",
+          ].join(", "),
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Section header */}
@@ -42,32 +54,67 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.div
             variants={fadeUp}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-cyan-400 text-xs tracking-wider uppercase mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6"
+            style={{
+              borderColor: "rgba(125,241,255,0.30)",
+              background: "rgba(125,241,255,0.07)",
+              color: "#7df1ff",
+              fontSize: "11px",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+            }}
           >
-            <Sparkles className="w-3 h-3" />
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "#7df1ff",
+                boxShadow: "0 0 8px #7df1ff",
+                flexShrink: 0,
+              }}
+            />
             Connected Ecosystem
           </motion.div>
 
           <motion.h2
             variants={fadeUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight"
+            className="font-bold leading-tight"
+            style={{
+              fontSize: "clamp(28px, 4vw, 48px)",
+              color: "rgba(235,245,255,0.98)",
+            }}
           >
             Everything works{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span
+              style={{
+                background:
+                  "linear-gradient(90deg, #7df1ff 0%, #5da8ff 50%, #ff7dc8 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               together
             </span>
           </motion.h2>
 
           <motion.p
             variants={fadeUp}
-            className="mt-4 text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
+            className="mt-4 max-w-lg mx-auto leading-relaxed"
+            style={{
+              fontSize: "clamp(14px, 1.3vw, 17px)",
+              color: "rgba(210,225,255,0.55)",
+              fontWeight: 300,
+              letterSpacing: "0.02em",
+            }}
           >
-            Every service feeds the next. Strategy informs product. Product shapes media.
-            Media drives organic growth. A continuous loop — not a checklist.
+            Every service feeds the next. Strategy informs product. Product shapes
+            media. Media drives organic growth. A continuous loop — not a checklist.
           </motion.p>
         </motion.div>
 
@@ -81,36 +128,41 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
           <InfinityLoopCanvas />
         </motion.div>
 
-        {/* Node legend — mobile only (labels are hidden on the SVG for mobile) */}
+        {/* Tagline divider */}
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
           variants={stagger}
-          className="mt-10 flex flex-wrap justify-center gap-3 md:hidden"
+          className="mt-10 flex flex-col items-center gap-4"
         >
-          {[
-            { label: "Strategy", color: "#22d3ee" },
-            { label: "Consulting", color: "#60a5fa" },
-            { label: "Product", color: "#c084fc" },
-            { label: "Media", color: "#22d3ee" },
-            { label: "Marketing", color: "#60a5fa" },
-            { label: "Creative", color: "#c084fc" },
-            { label: "Organic", color: "#22d3ee" },
-          ].map(({ label, color }) => (
-            <motion.span
-              key={label}
-              variants={fadeUp}
-              className="px-3 py-1 rounded-full text-xs font-medium border"
-              style={{
-                borderColor: `${color}40`,
-                backgroundColor: `${color}10`,
-                color,
-              }}
-            >
-              {label}
-            </motion.span>
-          ))}
+          <motion.div
+            variants={fadeUp}
+            style={{
+              width: 80,
+              height: 1,
+              background:
+                "linear-gradient(90deg, transparent, rgba(125,241,255,0.6), transparent)",
+            }}
+          />
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: "clamp(13px, 1.2vw, 17px)",
+              fontWeight: 300,
+              letterSpacing: "0.30em",
+              textTransform: "uppercase",
+              color: "rgba(235,245,255,0.85)",
+              textShadow: "0 0 24px rgba(125,241,255,0.35)",
+            }}
+          >
+            AI{" "}
+            <span style={{ color: "rgba(255,255,255,0.45)", margin: "0 0.4em" }}>
+              —
+            </span>
+            Every Service,{" "}
+            <span style={{ color: "#7df1ff", fontWeight: 500 }}>AI-Infused</span>
+          </motion.p>
         </motion.div>
       </div>
     </section>

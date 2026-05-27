@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI — Every Service, AI-Infused</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #7df1ff;
+    --blue: #5da8ff;
+    --pink: #ff7dc8;
+    --text-dim: rgba(210, 225, 255, 0.32);
+    --text-bright: rgba(235, 245, 255, 0.98);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: var(--text-bright);
+    overflow: hidden;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #121b3a 0%, #07091c 55%, #02030a 100%),
+      #02030a;
+    position: relative;
+  }
+  /* Ambient color washes */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 18% 78%, rgba(93, 168, 255, 0.18), transparent 38%),
+      radial-gradient(circle at 82% 22%, rgba(255, 125, 200, 0.10), transparent 36%),
+      radial-gradient(circle at 50% 50%, rgba(125, 241, 255, 0.06), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Grain / subtle noise via SVG overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .scene {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vh, 56px);
+    z-index: 2;
+  }
+  .stage {
+    width: min(94vw, 1180px);
+    aspect-ratio: 16 / 9;
+    max-height: 72vh;
+    position: relative;
+  }
+  svg.infinity {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  .label {
+    fill: var(--text-dim);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-anchor: middle;
+    pointer-events: none;
+    transition: fill 320ms ease, font-size 320ms ease, letter-spacing 320ms ease, opacity 320ms ease;
+  }
+  .label.active {
+    fill: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0.32em;
+    animation: labelPulse 1.2s ease-out;
+  }
+  @keyframes labelPulse {
+    0%   { filter: drop-shadow(0 0 18px var(--label-glow, rgba(125, 241, 255, 0.95))); }
+    100% { filter: drop-shadow(0 0 6px  var(--label-glow, rgba(125, 241, 255, 0.55))); }
+  }
+
+  .tagline-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    animation: taglineFade 5s ease-in-out infinite;
+  }
+  .tagline-divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(125,241,255,0.6), transparent);
+  }
+  .tagline {
+    font-size: clamp(15px, 1.45vw, 20px);
+    font-weight: 300;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: rgba(235, 245, 255, 0.9);
+    text-shadow: 0 0 24px rgba(125, 241, 255, 0.35);
+  }
+  .tagline .accent {
+    color: var(--cyan);
+    font-weight: 500;
+  }
+  .tagline .em {
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0.4em;
+  }
+  @keyframes taglineFade {
+    0%, 100% { opacity: 0.78; }
+    50%      { opacity: 1; }
+  }
+
+  .robot {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: float 3.6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50%      { transform: translateY(-5px) rotate(0.5deg); }
+  }
+  .robot-eye { animation: blink 5s infinite; transform-box: fill-box; transform-origin: center; }
+  .robot-eye.right { animation-delay: 0.05s; }
+  @keyframes blink {
+    0%, 92%, 96%, 100% { transform: scaleY(1); }
+    94%                { transform: scaleY(0.1); }
+  }
+
+  /* Top-left brand mark, tiny */
+  .brand {
+    position: fixed;
+    top: 28px; left: 36px;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(235, 245, 255, 0.6);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-dot {
+    width: 7px; height: 7px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+    animation: brandPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes brandPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.2); }
+  }
+
+  /* Bottom corner meta */
+  .meta {
+    position: fixed;
+    bottom: 28px;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(210, 225, 255, 0.35);
+    z-index: 3;
+  }
+  .meta.left  { left: 36px; }
+  .meta.right { right: 36px; }
+
+  @media (max-width: 720px) {
+    .brand, .meta { display: none; }
+    .label { font-size: 10px; letter-spacing: 0.2em; }
+    .label.active { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <span class="brand-dot"></span>
+  <span>NEXUS&nbsp;AI</span>
+</div>
+
+<div class="scene">
+  <div class="stage">
+    <svg class="infinity" viewBox="-500 -260 1000 520" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="2.5" />
+        </filter>
+        <filter id="medGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+        <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="14" />
+        </filter>
+        <filter id="hugeGlow" x="-150%" y="-150%" width="400%" height="400%">
+          <feGaussianBlur stdDeviation="26" />
+        </filter>
+
+        <radialGradient id="robotBody" cx="35%" cy="30%">
+          <stop offset="0%"  stop-color="#ffffff" />
+          <stop offset="60%" stop-color="#dbe4f7" />
+          <stop offset="100%" stop-color="#a6b4d0" />
+        </radialGradient>
+        <radialGradient id="robotVisor" cx="50%" cy="40%">
+          <stop offset="0%"  stop-color="#1b2440" />
+          <stop offset="100%" stop-color="#05070f" />
+        </radialGradient>
+
+        <!-- Faint base track gradient -->
+        <linearGradient id="trackGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0"   stop-color="rgba(125,241,255,0.20)"/>
+          <stop offset="0.5" stop-color="rgba(140,180,255,0.20)"/>
+          <stop offset="1"   stop-color="rgba(255,150,210,0.20)"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Outer ambient bloom along the infinity -->
+      <path d="M 0 0 C -130 -170, -360 -170, -360 0 C -360 170, -130 170, 0 0 C 130 -170, 360 -170, 360 0 C 360 170, 130 170, 0 0 Z"
+            stroke="rgba(125, 241, 255, 0.10)" stroke-width="22" fill="none" filter="url(#bigGlow)" />
+
+      <!-- Mid glow layer -->
+      <path d="M 0 0 C -130 -170, -360 -170, -360 0 C -360 170, -130 170, 0 0 C 130 -170, 360 -170, 360 0 C 360 170, 130 170, 0 0 Z"
+            stroke="rgba(160, 220, 255, 0.18)" stroke-width="6" fill="none" filter="url(#medGlow)" />
+
+      <!-- Crisp base track (the rail) -->
+      <path id="infinity"
+            d="M 0 0 C -130 -170, -360 -170, -360 0 C -360 170, -130 170, 0 0 C 130 -170, 360 -170, 360 0 C 360 170, 130 170, 0 0 Z"
+            stroke="url(#trackGrad)" stroke-width="1.5" fill="none" />
+
+      <!-- Dynamic energy trail + leading particles (populated by JS) -->
+      <g id="trail"></g>
+
+      <!-- Labels (populated by JS) -->
+      <g id="labels"></g>
+
+      <!-- Robot at the crossover, slightly above -->
+      <g class="robot" transform="translate(0, -6)">
+        <!-- soft cyan ground glow -->
+        <ellipse cx="0" cy="44" rx="34" ry="5" fill="#7df1ff" opacity="0.35" filter="url(#bigGlow)"/>
+        <ellipse cx="0" cy="44" rx="18" ry="2.5" fill="#ffffff" opacity="0.5" filter="url(#medGlow)"/>
+
+        <!-- antenna -->
+        <line x1="0" y1="-28" x2="0" y2="-42" stroke="#7df1ff" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="0" cy="-44" r="3.2" fill="#7df1ff" filter="url(#medGlow)"/>
+        <circle cx="0" cy="-44" r="1.5" fill="#ffffff"/>
+
+        <!-- head -->
+        <rect x="-24" y="-28" width="48" height="40" rx="13"
+              fill="url(#robotBody)" stroke="rgba(125,241,255,0.55)" stroke-width="0.8"/>
+        <!-- subtle highlight on head -->
+        <rect x="-19" y="-25" width="22" height="4" rx="2" fill="#ffffff" opacity="0.55"/>
+
+        <!-- visor -->
+        <rect x="-17" y="-20" width="34" height="20" rx="7" fill="url(#robotVisor)"
+              stroke="rgba(125,241,255,0.3)" stroke-width="0.5"/>
+        <!-- visor reflection -->
+        <rect x="-15" y="-18.5" width="14" height="2" rx="1" fill="#7df1ff" opacity="0.25"/>
+
+        <!-- eyes -->
+        <g>
+          <circle class="robot-eye left"  cx="-7" cy="-10" r="2.4" fill="#7df1ff" filter="url(#softGlow)"/>
+          <circle class="robot-eye right" cx="7"  cy="-10" r="2.4" fill="#7df1ff" filter="url(#softGlow)"/>
+          <circle cx="-7" cy="-10" r="1.1" fill="#ffffff"/>
+          <circle cx="7"  cy="-10" r="1.1" fill="#ffffff"/>
+        </g>
+
+        <!-- mouth indicator -->
+        <rect x="-5" y="-4.5" width="10" height="1.2" rx="0.6" fill="#7df1ff" opacity="0.7"/>
+
+        <!-- neck connector -->
+        <rect x="-6" y="12" width="12" height="3" fill="rgba(140,160,200,0.7)"/>
+
+        <!-- body -->
+        <rect x="-20" y="14" width="40" height="22" rx="8"
+              fill="url(#robotBody)" stroke="rgba(125,241,255,0.55)" stroke-width="0.8"/>
+        <!-- chest gem -->
+        <circle cx="0" cy="25" r="3.5" fill="#7df1ff" filter="url(#medGlow)"/>
+        <circle cx="0" cy="25" r="1.6" fill="#ffffff"/>
+        <!-- side vents -->
+        <rect x="-15" y="22" width="3" height="6" rx="1" fill="rgba(50,70,120,0.5)"/>
+        <rect x="12"  y="22" width="3" height="6" rx="1" fill="rgba(50,70,120,0.5)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="tagline-wrap">
+    <div class="tagline-divider"></div>
+    <div class="tagline">
+      AI <span class="em">—</span> Every Service, <span class="accent">AI-Infused</span>
+    </div>
+  </div>
+</div>
+
+<div class="meta left">v.01 · INFINITE FLOW</div>
+<div class="meta right">© 2026 · NEXUS AI</div>
+
+<script>
+(() => {
+  const path    = document.getElementById('infinity');
+  const trailG  = document.getElementById('trail');
+  const labelsG = document.getElementById('labels');
+  const SVGNS   = 'http://www.w3.org/2000/svg';
+  const len     = path.getTotalLength();
+
+  // --- Helpers ------------------------------------------------------------
+  function pointAt(t) {
+    return path.getPointAtLength(((t % 1) + 1) % 1 * len);
+  }
+  function outwardOffset(t, dist) {
+    const p  = pointAt(t);
+    const p2 = pointAt(t + 0.001);
+    const dx = p2.x - p.x, dy = p2.y - p.y;
+    const m  = Math.hypot(dx, dy) || 1;
+    let nx = -dy / m, ny = dx / m;
+    if (nx * p.x + ny * p.y < 0) { nx = -nx; ny = -ny; }
+    return { x: p.x + nx * dist, y: p.y + ny * dist };
+  }
+
+  // Color shifts at every 2nd service crossing.
+  // Service order (clockwise from start):
+  //   STRATEGY(0.135) → CONSULTING(0.255) → PRODUCT(0.378) → [MEDIA center]
+  //   → MARKETING(0.622) → CREATIVE(0.745) → ORGANIC(0.865)
+  // Boundaries every 2nd label: CONSULTING, ~MEDIA, CREATIVE, STRATEGY (wrap)
+  const COLOR_BOUNDARIES = [
+    { t: 0.135, c: [125, 241, 255] },   // cyan — entering Strategy region
+    { t: 0.378, c: [120, 170, 255] },   // electric blue — entering Product/Media region
+    { t: 0.622, c: [255, 140, 210] },   // pink/magenta — entering Marketing region
+    { t: 0.865, c: [180, 150, 255] },   // violet — entering Organic region
+  ];
+  const TRANSITION_WIN = 0.05; // fraction of loop over which color blends
+
+  function lerpColor(a, b, f) {
+    return [a[0] + (b[0]-a[0]) * f, a[1] + (b[1]-a[1]) * f, a[2] + (b[2]-a[2]) * f].map(x => x | 0);
+  }
+  // Active color for the snake at parameter t.
+  function snakeColor(t) {
+    t = ((t % 1) + 1) % 1;
+    const BS = COLOR_BOUNDARIES;
+    // Find boundary we most recently crossed (the "current" phase color = that boundary's c)
+    let curIdx = -1;
+    for (let i = 0; i < BS.length; i++) {
+      if (t >= BS[i].t) curIdx = i;
+    }
+    if (curIdx === -1) curIdx = BS.length - 1; // before first boundary → previous wrap
+    const cur = BS[curIdx].c;
+
+    // Next boundary ahead — if we're inside the transition window leading up to it, blend
+    const nextIdx = (curIdx + 1) % BS.length;
+    const next = BS[nextIdx];
+    // Compute forward distance to next boundary along the loop (with wrap)
+    let dToNext = next.t - t;
+    if (dToNext < 0) dToNext += 1;
+    if (dToNext < TRANSITION_WIN) {
+      const f = 1 - dToNext / TRANSITION_WIN; // 0 at start of window, 1 right at boundary
+      return lerpColor(cur, next.c, f);
+    }
+    return cur.slice();
+  }
+  const rgb = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+  const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+
+  // --- Labels -------------------------------------------------------------
+  // 7 services placed around the loop. Media sits at top center between lobes.
+  const labelData = [
+    { name: 'STRATEGY',   t: 0.135, offset: 30, anchorMidT: 0.135 },
+    { name: 'CONSULTING', t: 0.255, offset: 34, anchorMidT: 0.255 },
+    { name: 'PRODUCT',    t: 0.378, offset: 30, anchorMidT: 0.378 },
+    { name: 'MEDIA',      fixed: { x: 0, y: -218 }, anchorMidT: 0.0 },
+    { name: 'MARKETING',  t: 0.622, offset: 30, anchorMidT: 0.622 },
+    { name: 'CREATIVE',   t: 0.745, offset: 34, anchorMidT: 0.745 },
+    { name: 'ORGANIC',    t: 0.865, offset: 30, anchorMidT: 0.865 },
+  ];
+
+  labelData.forEach(l => {
+    const el = document.createElementNS(SVGNS, 'text');
+    el.setAttribute('class', 'label');
+    el.setAttribute('dominant-baseline', 'middle');
+    el.textContent = l.name;
+    const pos = l.fixed ? l.fixed : outwardOffset(l.t, l.offset);
+    el.setAttribute('x', pos.x);
+    el.setAttribute('y', pos.y);
+    labelsG.appendChild(el);
+    l.el = el;
+  });
+
+  // --- Snake energy stroke -----------------------------------------------
+  // Stack of path copies with progressively shorter stroke-dashes, all
+  // ending at the same "head" position. The longest+blurriest is the trailing
+  // glow; the shortest+sharpest is the bright head. Together they form a
+  // tapered comet that slides smoothly around the loop.
+  const PATH_D = path.getAttribute('d');
+  const snakeLayers = [
+    { dashFrac: 0.30, width: 26,  blur: 'hugeGlow', alpha: 0.30 },
+    { dashFrac: 0.26, width: 14,  blur: 'bigGlow',  alpha: 0.55 },
+    { dashFrac: 0.20, width: 7,   blur: 'medGlow',  alpha: 0.85 },
+    { dashFrac: 0.12, width: 3.4, blur: 'softGlow', alpha: 1.00 },
+    { dashFrac: 0.05, width: 1.6, blur: null,       alpha: 1.00 },
+  ];
+  snakeLayers.forEach(L => {
+    const dash = L.dashFrac * len;
+    const p = document.createElementNS(SVGNS, 'path');
+    p.setAttribute('d', PATH_D);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke-width', L.width);
+    p.setAttribute('stroke-linecap', 'round');
+    p.setAttribute('stroke-linejoin', 'round');
+    // pattern length = len so the dash tiles exactly once around the closed path
+    p.setAttribute('stroke-dasharray', `${dash} ${len - dash}`);
+    p.setAttribute('opacity', L.alpha);
+    if (L.blur) p.setAttribute('filter', `url(#${L.blur})`);
+    trailG.appendChild(p);
+    L.el = p;
+    L.dashLen = dash;
+  });
+
+  // Bright bloom dot riding at the head
+  const headOuter = document.createElementNS(SVGNS, 'circle');
+  headOuter.setAttribute('r', 9);
+  headOuter.setAttribute('filter', 'url(#hugeGlow)');
+  trailG.appendChild(headOuter);
+  const headMid = document.createElementNS(SVGNS, 'circle');
+  headMid.setAttribute('r', 4);
+  headMid.setAttribute('filter', 'url(#medGlow)');
+  trailG.appendChild(headMid);
+  const headCore = document.createElementNS(SVGNS, 'circle');
+  headCore.setAttribute('r', 1.8);
+  headCore.setAttribute('fill', '#ffffff');
+  trailG.appendChild(headCore);
+
+  // --- Animation loop -----------------------------------------------------
+  const PERIOD = 9500;
+  function frame(now) {
+    const t = (now / PERIOD) % 1;
+    const headPos = t * len;
+    const col = snakeColor(t);
+    const stroke = rgb(col);
+
+    // Slide each snake layer: its dash ENDS at the head position.
+    // dashoffset = dashLen - headPos puts the dash so it terminates at headPos.
+    for (const L of snakeLayers) {
+      L.el.setAttribute('stroke-dashoffset', (L.dashLen - headPos).toFixed(2));
+      L.el.setAttribute('stroke', stroke);
+    }
+
+    // Head bloom
+    const p = pointAt(t);
+    const cx = p.x.toFixed(2), cy = p.y.toFixed(2);
+    headOuter.setAttribute('cx', cx); headOuter.setAttribute('cy', cy);
+    headOuter.setAttribute('fill', stroke);
+    headMid.setAttribute('cx', cx);   headMid.setAttribute('cy', cy);
+    headMid.setAttribute('fill', '#ffffff');
+    headCore.setAttribute('cx', cx);  headCore.setAttribute('cy', cy);
+
+    // Label activation: highlight when head is near label's anchor t
+    labelData.forEach(l => {
+      const at = l.anchorMidT;
+      let d = Math.abs(t - at);
+      d = Math.min(d, 1 - d);
+      const active = d < 0.055;
+      if (active) {
+        l.el.style.setProperty('--label-glow', rgba(col, 0.95));
+      }
+      if (active && !l.el.classList.contains('active')) {
+        l.el.classList.add('active');
+      } else if (!active && l.el.classList.contains('active')) {
+        l.el.classList.remove('active');
+      }
+    });
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
