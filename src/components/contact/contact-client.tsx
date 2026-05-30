@@ -99,8 +99,8 @@ export function ContactClient() {
                   </div>
                   <span className="text-white text-sm font-medium">Email us</span>
                 </div>
-                <a href="mailto:hello@saapify.in" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">
-                  hello@saapify.in
+                <a href="mailto:connect@saapify.in" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">
+                  connect@saapify.in
                 </a>
               </motion.div>
 

@@ -510,5 +510,174 @@ body {
   }
   html {
     @apply font-sans;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+  h1 {
+    font-size: var(--ty-h1, clamp(1.875rem, 4.5vw, 3rem));
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: var(--ty-h2, clamp(1.5rem, 3.5vw, 2.25rem));
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    font-size: var(--ty-h3, clamp(1.25rem, 2.5vw, 1.875rem));
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  h4 {
+    font-size: var(--ty-h4, clamp(1rem, 1.8vw, 1.5rem));
+    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  p {
+    line-height: 1.7;
+  }
+}
+
+/* ─── Typography Design Tokens ─────────────────────────────────────────────── */
+
+:root {
+  /* Fluid type scale — single source of truth */
+  --ty-hero-title:  clamp(2.5rem, 8vw, 5rem);
+  --ty-hero-sub:    clamp(1.0625rem, 2vw, 1.375rem);
+  --ty-h1:          clamp(1.875rem, 4.5vw, 3rem);
+  --ty-h2:          clamp(1.5rem, 3.5vw, 2.25rem);
+  --ty-h3:          clamp(1.25rem, 2.5vw, 1.875rem);
+  --ty-h4:          clamp(1rem, 1.8vw, 1.5rem);
+  --ty-body-lg:     1.125rem;
+  --ty-body:        1rem;
+  --ty-body-sm:     0.875rem;
+  --ty-caption:     0.75rem;
+  --ty-btn:         0.9375rem;
+  --ty-input:       1rem;
+  --ty-nav:         0.6875rem;
+  --ty-footer:      0.875rem;
+
+  /* Line heights */
+  --ty-lh-hero:     1.05;
+  --ty-lh-display:  1.15;
+  --ty-lh-heading:  1.25;
+  --ty-lh-sub:      1.35;
+  --ty-lh-body:     1.7;
+  --ty-lh-caption:  1.5;
+
+  /* Letter spacings */
+  --ty-ls-hero:     -0.025em;
+  --ty-ls-heading:  -0.02em;
+  --ty-ls-sub:      -0.015em;
+  --ty-ls-body:     0em;
+  --ty-ls-ui:       0.005em;
+  --ty-ls-nav:      0.18em;
+
+  /* Font weights */
+  --ty-fw-regular:   400;
+  --ty-fw-medium:    500;
+  --ty-fw-semibold:  600;
+  --ty-fw-bold:      700;
+  --ty-fw-extrabold: 800;
+}
+
+/* ─── Semantic Typography Classes ───────────────────────────────────────────── */
+
+@layer components {
+  /* Hero */
+  .type-hero-title {
+    font-size: var(--ty-hero-title);
+    line-height: var(--ty-lh-hero);
+    font-weight: var(--ty-fw-extrabold);
+    letter-spacing: var(--ty-ls-hero);
+  }
+  .type-hero-sub {
+    font-size: var(--ty-hero-sub);
+    line-height: 1.6;
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: -0.01em;
+  }
+  /* Headings */
+  .type-h1 {
+    font-size: var(--ty-h1);
+    line-height: var(--ty-lh-display);
+    font-weight: var(--ty-fw-bold);
+    letter-spacing: var(--ty-ls-heading);
+  }
+  .type-h2 {
+    font-size: var(--ty-h2);
+    line-height: var(--ty-lh-heading);
+    font-weight: var(--ty-fw-bold);
+    letter-spacing: var(--ty-ls-heading);
+  }
+  .type-h3 {
+    font-size: var(--ty-h3);
+    line-height: var(--ty-lh-heading);
+    font-weight: var(--ty-fw-semibold);
+    letter-spacing: var(--ty-ls-sub);
+  }
+  .type-h4 {
+    font-size: var(--ty-h4);
+    line-height: var(--ty-lh-sub);
+    font-weight: var(--ty-fw-semibold);
+    letter-spacing: var(--ty-ls-sub);
+  }
+  /* Body */
+  .type-body-lg {
+    font-size: var(--ty-body-lg);
+    line-height: var(--ty-lh-body);
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: var(--ty-ls-body);
+  }
+  .type-body {
+    font-size: var(--ty-body);
+    line-height: var(--ty-lh-body);
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: var(--ty-ls-body);
+  }
+  .type-body-sm {
+    font-size: var(--ty-body-sm);
+    line-height: 1.6;
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: var(--ty-ls-body);
+  }
+  /* UI */
+  .type-caption {
+    font-size: var(--ty-caption);
+    line-height: var(--ty-lh-caption);
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: 0.01em;
+  }
+  .type-btn {
+    font-size: var(--ty-btn);
+    line-height: 1;
+    font-weight: var(--ty-fw-medium);
+    letter-spacing: var(--ty-ls-ui);
+  }
+  .type-input {
+    font-size: var(--ty-input);
+    line-height: 1.5;
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: var(--ty-ls-body);
+  }
+  .type-nav {
+    font-size: var(--ty-nav);
+    line-height: 1;
+    font-weight: var(--ty-fw-medium);
+    letter-spacing: var(--ty-ls-nav);
+    text-transform: uppercase;
+  }
+  .type-footer {
+    font-size: var(--ty-footer);
+    line-height: 1.6;
+    font-weight: var(--ty-fw-regular);
+    letter-spacing: var(--ty-ls-body);
   }
 }

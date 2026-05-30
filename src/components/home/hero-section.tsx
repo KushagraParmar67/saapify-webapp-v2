@@ -32,10 +32,9 @@ export function HeroSection() {
       >
         <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 sm:px-6 pt-16 pb-8 text-center pointer-events-auto">
           <h1
-            className="font-bold tracking-tight text-white w-full"
+            className="type-hero-title text-white w-full"
             style={{
-              fontSize: 'clamp(2.5rem, 12vw, 8rem)',
-              lineHeight: 1.05,
+              fontSize: 'clamp(2.5rem, 10vw, 7rem)',
               animation: heroVisible ? 'fadeInUp 0.9s ease-out both' : 'none',
               opacity: heroVisible ? undefined : 0,
             }}
@@ -44,7 +43,7 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="mt-4 sm:mt-6 text-slate-400 font-light leading-relaxed text-center text-sm sm:text-base md:text-lg max-w-[90vw] break-words"
+            className="mt-4 sm:mt-6 text-slate-400 type-hero-sub text-center max-w-[72ch]"
             style={{
               animation: heroVisible ? 'fadeInUp 0.9s ease-out 0.25s both' : 'none',
               opacity: heroVisible ? undefined : 0,
