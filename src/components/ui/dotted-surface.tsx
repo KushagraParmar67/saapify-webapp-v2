@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/components/providers';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 

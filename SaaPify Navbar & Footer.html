@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SaaPify — Navbar &amp; Footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-0:#04060d; --bg-1:#070b15; --bg-2:#0a0f1c; --bg-3:#0e1424;
+  --surface:rgba(255,255,255,.035); --surface-2:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.14);
+  --text:#eaf1fb; --text-dim:#8b97ad; --text-faint:#57637a;
+  --accent:#22d3ee; --accent-2:#38bdf8; --accent-deep:#0891b2;
+  --accent-soft:rgba(34,211,238,.12); --accent-glow:rgba(34,211,238,.45);
+  --radius:12px; --radius-lg:18px; --radius-pill:999px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:"Space Grotesk",system-ui,sans-serif;
+  --font-ui:"Manrope",system-ui,-apple-system,sans-serif;
+  --maxw:1240px;
+}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-ui);color:var(--text);background:var(--bg-0)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--accent-glow);color:#02121a}
+svg{display:block}
+.grad-text{background:linear-gradient(135deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- logo ---- */
+.logo{display:inline-flex;align-items:center;gap:11px;user-select:none;flex:0 0 auto}
+.logo-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(150deg,#4ec5e8 0%,#22d3ee 45%,#0e7da3 100%);
+  box-shadow:0 6px 20px -6px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.4);color:#03222c}
+.logo-mark svg{width:18px;height:18px}
+.logo-word{font-family:var(--font-display);font-weight:700;font-size:21px;letter-spacing:-.02em;color:#fff}
+
+/* ============================================================
+   UNIQUE NAVBAR — floating glass "island" w/ magnetic indicator
+   ============================================================ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;
+  padding:18px 22px;pointer-events:none}
+.nav-bar{pointer-events:auto;position:relative;width:100%;max-width:1180px;height:66px;
+  display:flex;align-items:center;gap:18px;padding:0 12px 0 22px;border-radius:var(--radius-pill);
+  background:rgba(8,12,22,.66);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid var(--border);
+  box-shadow:0 22px 60px -28px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.07),inset 0 -1px 0 rgba(0,0,0,.3);
+  transition:max-width .5s var(--ease),height .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease)}
+/* animated gradient sheen along the rim */
+.nav-bar::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+  background:linear-gradient(110deg,transparent 20%,rgba(34,211,238,.55) 48%,rgba(56,189,248,.2) 52%,transparent 80%);
+  background-size:240% 100%;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  opacity:.55;animation:sheen 7s linear infinite;pointer-events:none}
+@keyframes sheen{0%{background-position:200% 0}100%{background-position:-60% 0}}
+.nav-bar.scrolled{max-width:980px;height:58px;background:rgba(8,12,22,.84);
+  box-shadow:0 16px 50px -22px rgba(0,0,0,.95),0 0 0 1px rgba(34,211,238,.12),inset 0 1px 0 rgba(255,255,255,.07)}
+
+/* nav links + magnetic sliding indicator */
+.nav-links{position:relative;display:flex;align-items:center;gap:2px;margin:0 auto;list-style:none;padding:0}
+.nav-indicator{position:absolute;top:50%;left:0;width:0;height:40px;transform:translateY(-50%);
+  border-radius:var(--radius-pill);background:linear-gradient(180deg,rgba(34,211,238,.2),rgba(34,211,238,.05));
+  border:1px solid rgba(34,211,238,.3);box-shadow:0 0 22px -6px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.12);
+  opacity:0;pointer-events:none;transition:left .34s var(--ease),width .34s var(--ease),opacity .25s var(--ease)}
+.nav-link{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;
+  border-radius:var(--radius-pill);font-size:14px;font-weight:600;letter-spacing:-.005em;color:var(--text-dim);
+  background:transparent;border:none;transition:color .25s var(--ease)}
+.nav-link:hover{color:#fff}
+.nav-link .caret{width:13px;height:13px;opacity:.7;transition:transform .3s var(--ease)}
+.has-mega:hover .caret{transform:rotate(180deg)}
+.nav-link .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow);
+  opacity:0;transform:scale(.4);transition:all .3s var(--ease)}
+.nav-link:hover .dot,.has-mega:hover .dot{opacity:1;transform:scale(1)}
+
+.nav-divider{width:1px;height:26px;background:var(--border-strong);flex:0 0 auto}
+.nav-actions{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:600;font-size:13.5px;
+  letter-spacing:-.005em;border-radius:var(--radius-pill);border:1px solid transparent;transition:all .22s var(--ease);white-space:nowrap}
+.btn svg{width:15px;height:15px}
+.btn-ghost{padding:9px 16px;color:var(--text);background:transparent}
+.btn-ghost:hover{color:#fff;background:var(--surface-2)}
+.btn-primary{padding:10px 18px;color:#02151c;background:linear-gradient(180deg,#5fd9f0,var(--accent));
+  box-shadow:0 8px 24px -8px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px -8px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-primary .arr{transition:transform .22s var(--ease)}
+.btn-primary:hover .arr{transform:translate(2px,-2px)}
+.burger{display:none;width:42px;height:42px;border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--border);color:var(--text);align-items:center;justify-content:center}
+.burger:hover{background:var(--surface-2)}
+.burger svg{width:20px;height:20px}
+
+/* ---- mega menu ---- */
+.has-mega{position:relative;display:flex}
+.mega-wrap{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s var(--ease),visibility .24s,transform .24s var(--ease)}
+.has-mega:hover .mega-wrap{opacity:1;visibility:visible;pointer-events:auto}
+.mega-wrap::before{content:"";position:absolute;top:-18px;left:0;right:0;height:18px}
+.mega{width:760px;max-width:88vw;background:linear-gradient(180deg,rgba(14,20,36,.98),rgba(8,12,22,.98));
+  border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  box-shadow:0 44px 100px -34px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.05);
+  -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);padding:16px;
+  display:grid;grid-template-columns:1fr 1fr .9fr;gap:8px;transform:translateY(-8px) scale(.99);transition:transform .24s var(--ease)}
+.has-mega:hover .mega{transform:translateY(0) scale(1)}
+.mega-item{display:flex;gap:13px;padding:13px;border-radius:var(--radius);border:1px solid transparent;transition:all .2s var(--ease)}
+.mega-item:hover{background:var(--surface);border-color:var(--border)}
+.mega-ico{flex:0 0 auto;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(160deg,rgba(34,211,238,.16),rgba(34,211,238,.04));border:1px solid rgba(34,211,238,.18);
+  color:var(--accent);transition:all .2s var(--ease)}
+.mega-ico svg{width:19px;height:19px}
+.mega-item:hover .mega-ico{background:linear-gradient(160deg,rgba(34,211,238,.28),rgba(34,211,238,.08));box-shadow:0 6px 18px -8px var(--accent-glow)}
+.mega-item h4{margin:0 0 3px;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.mega-item p{margin:0;font-size:12.5px;line-height:1.45;color:var(--text-dim)}
+.mega-feature{grid-column:3;grid-row:1/span 3;border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;
+  background:radial-gradient(120px 120px at 80% 0%,rgba(34,211,238,.18),transparent 70%),linear-gradient(180deg,rgba(34,211,238,.08),rgba(8,12,22,.4));
+  border:1px solid rgba(34,211,238,.2)}
+.mega-feature .tag{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);padding:4px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);border:1px solid rgba(34,211,238,.25)}
+.mega-feature h4{margin:14px 0 6px;font-size:17px;font-family:var(--font-display);letter-spacing:-.02em}
+.mega-feature p{margin:0 0 16px;font-size:12.5px;line-height:1.5;color:var(--text-dim)}
+.mega-feature .lnk{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--accent)}
+.mega-feature .lnk svg{width:14px;height:14px;transition:transform .2s var(--ease)}
+.mega-feature:hover .lnk svg{transform:translate(2px,-2px)}
+
+/* ============ MOBILE DRAWER ============ */
+.scrim{position:fixed;inset:0;z-index:110;background:rgba(2,5,12,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.scrim.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;z-index:120;height:100%;width:min(360px,88vw);
+  background:linear-gradient(180deg,var(--bg-3),var(--bg-1));border-left:1px solid var(--border-strong);
+  box-shadow:-30px 0 80px -30px rgba(0,0,0,.9);transform:translateX(102%);transition:transform .4s var(--ease);
+  display:flex;flex-direction:column;padding:18px}
+.drawer.show{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.drawer-close{width:40px;height:40px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--text);display:grid;place-items:center}
+.drawer-close:hover{background:var(--surface-2)}
+.drawer-close svg{width:18px;height:18px}
+.drawer-nav{display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1;margin:0 -6px;padding:0 6px}
+.d-link{display:flex;align-items:center;justify-content:space-between;padding:14px 12px;border-radius:var(--radius);
+  font-size:16px;font-weight:600;color:var(--text);background:transparent;border:none;text-align:left;width:100%;transition:background .2s var(--ease)}
+.d-link:hover{background:var(--surface)}
+.d-link .chev{width:18px;height:18px;color:var(--text-faint);transition:transform .25s var(--ease)}
+.d-link.open .chev{transform:rotate(90deg);color:var(--accent)}
+.d-sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.d-sub.open{grid-template-rows:1fr}
+.d-sub-inner{overflow:hidden}
+.d-sub a{display:flex;align-items:center;gap:11px;padding:11px 12px 11px 16px;margin-left:12px;
+  border-left:1px solid var(--border);font-size:14.5px;color:var(--text-dim)}
+.d-sub a:hover{color:var(--text)}
+.d-sub a svg{width:16px;height:16px;color:var(--accent);opacity:.8}
+.drawer-cta{display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--border);margin-top:12px}
+.drawer-cta .btn{width:100%;padding:14px;font-size:15px}
+
+/* ============ PAGE BODY (neutral placeholder) ============ */
+.body-fill{min-height:78vh;padding-top:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  background:radial-gradient(900px 420px at 50% 0%,rgba(34,211,238,.06),transparent 62%),var(--bg-0)}
+.body-fill .grid{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:54px 54px;-webkit-mask-image:radial-gradient(800px 420px at 50% 20%,#000,transparent 75%);mask-image:radial-gradient(800px 420px at 50% 20%,#000,transparent 75%)}
+.body-fill span{position:relative;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--bg-1);position:relative}
+.footer::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(700px 320px at 8% 0%,rgba(34,211,238,.06),transparent 60%)}
+.cta-band{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.cta-card{position:relative;margin-top:-48px;border-radius:var(--radius-lg);padding:38px 44px;display:flex;align-items:center;
+  justify-content:space-between;gap:30px;flex-wrap:wrap;overflow:hidden;
+  background:radial-gradient(500px 280px at 88% -40%,rgba(34,211,238,.28),transparent 60%),linear-gradient(120deg,var(--bg-3),var(--bg-2));
+  border:1px solid var(--border-strong);box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.cta-card .grid-bg{position:absolute;inset:0;opacity:.4;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:34px 34px;-webkit-mask-image:radial-gradient(600px 300px at 80% 0%,#000,transparent 70%);
+  mask-image:radial-gradient(600px 300px at 80% 0%,#000,transparent 70%)}
+.cta-card .txt{position:relative}
+.cta-card h3{margin:0 0 8px;font-family:var(--font-display);font-size:26px;letter-spacing:-.02em;color:#fff}
+.cta-card p{margin:0;font-size:14.5px;color:var(--text-dim);max-width:440px;line-height:1.5}
+.cta-card .acts{position:relative;display:flex;gap:12px;flex-wrap:wrap}
+.cta-card .btn{padding:13px 24px;font-size:14.5px}
+
+.footer-main{position:relative;max-width:var(--maxw);margin:0 auto;padding:64px 26px 40px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+.f-brand{max-width:320px}
+.f-brand .tagline{margin:20px 0 24px;font-size:14px;line-height:1.6;color:var(--text-dim)}
+.f-status{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--text-dim);
+  padding:7px 13px;border-radius:var(--radius-pill);background:var(--surface);border:1px solid var(--border)}
+.f-status .live{width:8px;height:8px;border-radius:50%;background:#34d399;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 7px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.f-socials{display:flex;gap:10px;margin-top:20px}
+.f-soc{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--surface);
+  border:1px solid var(--border);color:var(--text-dim);transition:all .22s var(--ease)}
+.f-soc:hover{color:var(--accent);border-color:rgba(34,211,238,.4);background:var(--accent-soft);transform:translateY(-2px)}
+.f-soc svg{width:17px;height:17px}
+.f-col h5{margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)}
+.f-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
+.f-col a{position:relative;font-size:14.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:7px;
+  transition:color .2s var(--ease);width:fit-content}
+.f-col a::before{content:"";width:0;height:1px;background:var(--accent);transition:width .25s var(--ease);opacity:0}
+.f-col a:hover{color:var(--text)}
+.f-col a:hover::before{width:14px;opacity:1}
+.f-contact .row{display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--text-dim);margin-bottom:15px}
+.f-contact .row svg{width:17px;height:17px;color:var(--accent);opacity:.85;flex:0 0 auto}
+.f-contact a.row:hover{color:var(--text)}
+.f-contact .btn{margin-top:6px;padding:11px 20px;align-self:flex-start}
+.footer-bottom{position:relative;border-top:1px solid var(--border)}
+.footer-bottom-inner{max-width:var(--maxw);margin:0 auto;padding:24px 26px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer-bottom .copy{font-size:13px;color:var(--text-faint)}
+.footer-bottom .legal{display:flex;align-items:center;gap:22px}
+.footer-bottom .legal a{font-size:13px;color:var(--text-dim);transition:color .2s var(--ease)}
+.footer-bottom .legal a:hover{color:var(--text)}
+.footer-bottom .sep{width:1px;height:14px;background:var(--border)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:920px){
+  .nav-links,.nav-divider,.nav-actions .btn-ghost,.nav-actions .btn-primary{display:none}
+  .burger{display:inline-flex}
+  .nav-bar{height:60px;padding:0 10px 0 18px}
+  .footer-main{grid-template-columns:1fr 1fr;gap:36px 28px}
+  .f-brand{grid-column:1/-1;max-width:none}
+}
+@media (max-width:560px){
+  .nav{padding:14px 14px}
+  .footer-main{grid-template-columns:1fr;gap:32px;padding:56px 22px 36px}
+  .cta-card{padding:28px 24px;margin-top:-40px}
+  .cta-card h3{font-size:21px}
+  .cta-card .acts{width:100%}
+  .cta-card .acts .btn{flex:1}
+  .footer-bottom-inner{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media (prefers-reduced-motion:reduce){.nav-bar::before{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ UNIQUE NAVBAR ============ -->
+<nav class="nav" data-screen-label="Navbar">
+  <div class="nav-bar" id="navBar">
+    <a href="#" class="logo" aria-label="SaaPify home">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></span>
+      <span class="logo-word">Saa<span class="grad-text">P</span>ify</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <span class="nav-indicator" id="navIndicator"></span>
+      <li class="has-mega">
+        <button class="nav-link" data-ind aria-haspopup="true"><span class="dot"></span>Services <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="mega-wrap">
+          <div class="mega" role="menu">
+            <a class="mega-item" href="#" role="menuitem">
+              <span class="mega-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span>
+              <span><h4>Custom Software Development</h4><p>Bespoke platforms engineered to scale.</p></span>
+            </a>
+            <a class="mega-item" href="#" role="menuitem">
+              <span class="mega-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/><circle cx="12" cy="12" r="2.4"/></svg></span>
+              <span><h4>AI Solutions &amp; Automation</h4><p>Agents &amp; pipelines that do the work.</p></span>
+            </a>
+            <a class="mega-item" href="#" role="menuitem">
+              <span class="mega-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+              <span><h4>WaaP — Website as a Product</h4><p>Your site, run as a living product.</p></span>
+            </a>
+            <a class="mega-item" href="#" role="menuitem">
+              <span class="mega-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v15M15 21V11h3a2 2 0 0 1 2 2v8M2 21h20M8 8h3M8 12h3M8 16h3"/></svg></span>
+              <span><h4>CaaP — Company as a Product</h4><p>Operations productized end to end.</p></span>
+            </a>
+            <div class="mega-feature">
+              <span class="tag">Featured</span>
+              <h4>AI Suite Products</h4>
+              <p>Ready-to-deploy intelligence tools — search, agents, and analytics on one platform.</p>
+              <a href="#" class="lnk">Explore the Suite <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a class="nav-link" data-ind href="#"><span class="dot"></span>WaaP</a></li>
+      <li><a class="nav-link" data-ind href="#"><span class="dot"></span>CaaP</a></li>
+      <li><a class="nav-link" data-ind href="#"><span class="dot"></span>AI Suite</a></li>
+      <li><a class="nav-link" data-ind href="#"><span class="dot"></span>About</a></li>
+      <li><a class="nav-link" data-ind href="#"><span class="dot"></span>Blog</a></li>
+    </ul>
+
+    <div class="nav-divider"></div>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="#">Contact</a>
+      <a class="btn btn-primary" href="#">Get Started <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <button class="burger" id="burger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- neutral placeholder area -->
+<main class="body-fill"><div class="grid"></div><span>Page content</span></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="cta-band">
+    <div class="cta-card">
+      <div class="grid-bg"></div>
+      <div class="txt">
+        <h3>Ready to ship what lasts?</h3>
+        <p>Book a discovery call and get a fixed-scope plan for your software and AI roadmap.</p>
+      </div>
+      <div class="acts">
+        <a class="btn btn-primary" href="#">Schedule a call <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="btn btn-ghost" href="#" style="border:1px solid var(--border-strong)">Explore services</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-main">
+    <div class="f-brand">
+      <a href="#" class="logo">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></span>
+        <span class="logo-word">Saa<span class="grad-text">P</span>ify</span>
+      </a>
+      <p class="tagline">Structured services. Predictable outcomes. Software and AI solutions built to last — not just to ship.</p>
+      <span class="f-status"><span class="live"></span> All systems operational</span>
+      <div class="f-socials">
+        <a class="f-soc" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a>
+        <a class="f-soc" href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L8 21H5l7.4-8.5L4.5 3H11l4.5 5.5L17.5 3Zm-1.1 16h1.7L8.1 4.8H6.3L16.4 19Z"/></svg></a>
+        <a class="f-soc" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 22 11 22 14.3V21h-4v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21h-4z"/></svg></a>
+        <a class="f-soc" href="mailto:connect@saapify.in" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="f-col">
+      <h5>Solutions</h5>
+      <ul>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">WaaP</a></li>
+        <li><a href="#">CaaP</a></li>
+        <li><a href="#">AI Suite</a></li>
+      </ul>
+    </div>
+
+    <div class="f-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="f-col f-contact">
+      <h5>Contact</h5>
+      <a class="row" href="mailto:connect@saapify.in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg> connect@saapify.in</a>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> India · Remote-first</div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg> SOC 2 Type II</div>
+      <a class="btn btn-primary" href="#">Get in touch <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="copy">© 2026 SaaPify Technologies. All rights reserved.</span>
+      <div class="legal">
+        <a href="#">Privacy Policy</a>
+        <span class="sep"></span>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <a href="#" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></span>
+      <span class="logo-word">Saa<span class="grad-text">P</span>ify</span>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav class="drawer-nav">
+    <button class="d-link" id="dSvc" aria-expanded="false">Services <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+    <div class="d-sub" id="dSub"><div class="d-sub-inner">
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>Custom Software Development</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="2.4"/></svg>AI Solutions &amp; Automation</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>WaaP — Website as a Product</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v15M15 21V11h3a2 2 0 0 1 2 2v8M2 21h20"/></svg>CaaP — Company as a Product</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg>AI Suite Products</a>
+    </div></div>
+    <a class="d-link" href="#">WaaP</a>
+    <a class="d-link" href="#">CaaP</a>
+    <a class="d-link" href="#">AI Suite</a>
+    <a class="d-link" href="#">About</a>
+    <a class="d-link" href="#">Blog</a>
+  </nav>
+  <div class="drawer-cta">
+    <a class="btn btn-ghost" href="#" style="border:1px solid var(--border-strong)">Contact</a>
+    <a class="btn btn-primary" href="#">Get Started <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+  </div>
+</aside>
+
+<script>
+(function(){
+  // magnetic sliding indicator
+  var links = document.getElementById('navLinks');
+  var ind = document.getElementById('navIndicator');
+  var items = links.querySelectorAll('[data-ind]');
+  function moveTo(el){
+    var l = el.offsetLeft, w = el.offsetWidth;
+    ind.style.left = l + 'px'; ind.style.width = w + 'px'; ind.style.opacity = '1';
+  }
+  items.forEach(function(el){ el.addEventListener('mouseenter', function(){ moveTo(el); }); });
+  links.addEventListener('mouseleave', function(){ ind.style.opacity = '0'; });
+
+  // scroll-tighten nav
+  var navBar = document.getElementById('navBar');
+  window.addEventListener('scroll', function(){ navBar.classList.toggle('scrolled', window.scrollY > 24); }, {passive:true});
+
+  // mobile drawer
+  var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
+  function openDrawer(){ drawer.classList.add('show'); scrim.classList.add('show'); drawer.setAttribute('aria-hidden','false'); }
+  function closeDrawer(){ drawer.classList.remove('show'); scrim.classList.remove('show'); drawer.setAttribute('aria-hidden','true'); }
+  document.getElementById('burger').addEventListener('click', openDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  scrim.addEventListener('click', closeDrawer);
+
+  // drawer services accordion
+  var dSvc = document.getElementById('dSvc'), dSub = document.getElementById('dSub');
+  dSvc.addEventListener('click', function(){
+    var open = dSub.classList.toggle('open');
+    dSvc.classList.toggle('open', open);
+    dSvc.setAttribute('aria-expanded', open);
+  });
+})();
+</script>
+</body>
+</html>

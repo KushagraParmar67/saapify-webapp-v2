@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Manrope } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -8,6 +8,12 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700"],
+});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -35,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", spaceGrotesk.variable, "font-sans", inter.variable)}
+      className={cn("h-full", "antialiased", spaceGrotesk.variable, manrope.variable, "font-sans", inter.variable)}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-[#0a192f] text-white">
