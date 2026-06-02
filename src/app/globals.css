@@ -9,6 +9,10 @@
   --color-navy-800: #112240;
   --color-navy-700: #133286;
   --color-navy-600: #1e40af;
+  --color-brand: #6E8CFB;
+  --color-brand-mid: #636CCB;
+  --color-brand-deep: #50589C;
+  --color-brand-dark: #3C467B;
   --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
@@ -16,6 +20,19 @@ body {
   background-color: #0a192f;
   color: #ffffff;
   font-family: var(--font-sans);
+}
+
+/* ─── Brand palette ─────────────────────────────────────────────────────── */
+:root {
+  --brand-1: #3C467B;
+  --brand-2: #50589C;
+  --brand-3: #636CCB;
+  --brand-4: #6E8CFB;
+  --brand-rgb: 110,140,251;        /* #6E8CFB */
+  --brand-gradient: linear-gradient(135deg, #3C467B, #50589C, #636CCB, #6E8CFB);
+  --brand-gradient-btn: linear-gradient(180deg, #636CCB, #6E8CFB);
+  --brand-glow: rgba(110,140,251,.45);
+  --brand-soft: rgba(110,140,251,.12);
 }
 
 /* ─── Navbar sheen + footer status pulse ───────────────────────────────── */
@@ -35,9 +52,9 @@ body {
   transition: color .22s cubic-bezier(.22,1,.36,1), border-color .22s cubic-bezier(.22,1,.36,1), background .22s cubic-bezier(.22,1,.36,1), transform .22s cubic-bezier(.22,1,.36,1);
 }
 .f-soc:hover {
-  color: #22d3ee;
-  border-color: rgba(34,211,238,.4);
-  background: rgba(34,211,238,.12);
+  color: #6E8CFB;
+  border-color: rgba(110,140,251,.4);
+  background: rgba(110,140,251,.12);
   transform: translateY(-2px);
 }
 .nav-sheen {
@@ -45,7 +62,7 @@ body {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(110deg, transparent 20%, rgba(34,211,238,.55) 48%, rgba(56,189,248,.2) 52%, transparent 80%);
+  background: linear-gradient(110deg, transparent 20%, rgba(110,140,251,.55) 48%, rgba(99,108,203,.2) 52%, transparent 80%);
   background-size: 240% 100%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;

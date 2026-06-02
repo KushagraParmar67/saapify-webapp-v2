@@ -27,10 +27,10 @@ export function Spinner({ size = 'md' }: SpinnerProps) {
   const s = SIZE[size];
   return (
     <div
-      className={`${s.outer} animate-spin flex items-center justify-center rounded-full border-4 border-transparent border-t-cyan-400`}
+      className={`${s.outer} animate-spin flex items-center justify-center rounded-full border-4 border-transparent border-t-[#6E8CFB]`}
     >
       <div
-        className={`${s.inner} animate-spin flex items-center justify-center rounded-full border-4 border-transparent border-t-blue-500`}
+        className={`${s.inner} animate-spin flex items-center justify-center rounded-full border-4 border-transparent border-t-[#636CCB]`}
         style={{ animationDirection: 'reverse', animationDuration: '0.6s' }}
       />
     </div>
@@ -56,7 +56,7 @@ interface LoaderProps {
 export function Loader({ isVisible, text = 'Getting things ready…' }: LoaderProps) {
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a192f] transition-opacity duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[500] flex flex-col items-center justify-center bg-[#0a192f] transition-opacity duration-700 ease-in-out ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
@@ -66,7 +66,7 @@ export function Loader({ isVisible, text = 'Getting things ready…' }: LoaderPr
           className="text-4xl sm:text-5xl font-bold tracking-tight text-white"
           style={{ animation: 'fadeInUp 0.6s ease-out both' }}
         >
-          Saa<span className="text-cyan-400">P</span>ify
+          Saa<span className="text-[#6E8CFB]">P</span>ify
         </h1>
 
         {/* Concentric spinner */}

@@ -82,7 +82,7 @@ const SERVICES = [
 ];
 
 const COLOR_MAP: Record<string, { bg: string; text: string; border: string }> = {
-  cyan:    { bg: "bg-cyan-500/10",    text: "text-cyan-400",    border: "border-cyan-500/20" },
+  cyan:    { bg: "bg-cyan-500/10",    text: "text-[#6E8CFB]",    border: "border-cyan-500/20" },
   blue:    { bg: "bg-blue-500/10",    text: "text-blue-400",    border: "border-blue-500/20" },
   purple:  { bg: "bg-purple-500/10",  text: "text-purple-400",  border: "border-purple-500/20" },
   indigo:  { bg: "bg-indigo-500/10",  text: "text-indigo-400",  border: "border-indigo-500/20" },
@@ -165,7 +165,7 @@ const HeroSection = memo(() => (
       <motion.div
         initial="hidden" animate="show" variants={stagger}
       >
-        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-cyan-400 text-xs tracking-wider uppercase mb-6">
+        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-6">
           <ShoppingBag className="w-3 h-3" />
           SaaPify Customization
         </motion.div>
@@ -283,7 +283,7 @@ const HowItWorksSection = memo(() => (
           <motion.div
             className="absolute left-10 top-1/2 -translate-y-1/2 h-[2px] rounded-full"
             style={{
-              background: "linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6)",
+              background: "linear-gradient(90deg, #636CCB, #50589C, #3C467B)",
               boxShadow: "0 0 12px rgba(6,182,212,0.5)",
             }}
             initial={{ width: 0 }}
@@ -305,10 +305,10 @@ const HowItWorksSection = memo(() => (
               {/* Outer glow ring — gradient border trick */}
               <div
                 className="w-14 h-14 rounded-full p-[2px]"
-                style={{ background: "linear-gradient(135deg, #06b6d4, #3b82f6)" }}
+                style={{ background: "linear-gradient(135deg, #636CCB, #50589C)" }}
               >
                 <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
-                  <span className="text-cyan-400 font-bold text-sm tracking-wide">{step.num}</span>
+                  <span className="text-[#6E8CFB] font-bold text-sm tracking-wide">{step.num}</span>
                 </div>
               </div>
               {/* Pulse ring */}
@@ -372,16 +372,16 @@ const HowItWorksSection = memo(() => (
             <div className="flex flex-col items-center flex-shrink-0">
               <div
                 className="w-12 h-12 rounded-full p-[2px] flex-shrink-0"
-                style={{ background: "linear-gradient(135deg, #06b6d4, #3b82f6)" }}
+                style={{ background: "linear-gradient(135deg, #636CCB, #50589C)" }}
               >
                 <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
-                  <span className="text-cyan-400 font-bold text-xs">{step.num}</span>
+                  <span className="text-[#6E8CFB] font-bold text-xs">{step.num}</span>
                 </div>
               </div>
               {i < STEPS.length - 1 && (
                 <motion.div
                   className="w-[2px] flex-1 my-2 rounded-full"
-                  style={{ background: "linear-gradient(to bottom, #06b6d4, transparent)", minHeight: "2.5rem" }}
+                  style={{ background: "linear-gradient(to bottom, #636CCB, transparent)", minHeight: "2.5rem" }}
                   initial={{ scaleY: 0, originY: 0 }}
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
@@ -508,7 +508,7 @@ const CTASection = memo(() => (
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
       >
-        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-cyan-400 text-xs tracking-wider uppercase mb-6">
+        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-6">
           <Zap className="w-3 h-3" />
           Let&apos;s build it
         </motion.div>

@@ -40,9 +40,9 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            "radial-gradient(circle at 18% 78%, rgba(93,168,255,0.18), transparent 38%)",
-            "radial-gradient(circle at 82% 22%, rgba(255,125,200,0.10), transparent 36%)",
-            "radial-gradient(circle at 50% 50%, rgba(125,241,255,0.06), transparent 55%)",
+            "radial-gradient(circle at 18% 78%, rgba(110,140,251,0.18), transparent 38%)",
+            "radial-gradient(circle at 82% 22%, rgba(80,88,156,0.12), transparent 36%)",
+            "radial-gradient(circle at 50% 50%, rgba(110,140,251,0.06), transparent 55%)",
           ].join(", "),
         }}
       />
@@ -60,9 +60,9 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
             variants={fadeUp}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6"
             style={{
-              borderColor: "rgba(125,241,255,0.30)",
-              background: "rgba(125,241,255,0.07)",
-              color: "#7df1ff",
+              borderColor: "rgba(110,140,251,0.30)",
+              background: "rgba(110,140,251,0.07)",
+              color: "#6E8CFB",
               fontSize: "11px",
               letterSpacing: "0.28em",
               textTransform: "uppercase",
@@ -73,8 +73,8 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
                 width: 6,
                 height: 6,
                 borderRadius: "50%",
-                background: "#7df1ff",
-                boxShadow: "0 0 8px #7df1ff",
+                background: "#6E8CFB",
+                boxShadow: "0 0 8px #6E8CFB",
                 flexShrink: 0,
               }}
             />
@@ -93,7 +93,7 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
             <span
               style={{
                 background:
-                  "linear-gradient(90deg, #7df1ff 0%, #5da8ff 50%, #ff7dc8 100%)",
+                  "linear-gradient(90deg, #6E8CFB 0%, #636CCB 50%, #50589C 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -142,7 +142,7 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
               width: 80,
               height: 1,
               background:
-                "linear-gradient(90deg, transparent, rgba(125,241,255,0.6), transparent)",
+                "linear-gradient(90deg, transparent, rgba(110,140,251,0.6), transparent)",
             }}
           />
           <motion.p
@@ -153,7 +153,7 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
               letterSpacing: "0.30em",
               textTransform: "uppercase",
               color: "rgba(235,245,255,0.85)",
-              textShadow: "0 0 24px rgba(125,241,255,0.35)",
+              textShadow: "0 0 24px rgba(110,140,251,0.35)",
             }}
           >
             AI{" "}
@@ -161,7 +161,7 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
               —
             </span>
             Every Service,{" "}
-            <span style={{ color: "#7df1ff", fontWeight: 500 }}>AI-Infused</span>
+            <span style={{ color: "#6E8CFB", fontWeight: 500 }}>AI-Infused</span>
           </motion.p>
         </motion.div>
       </div>

@@ -60,7 +60,7 @@ const SERVICES = [
     title: "Web Applications",
     desc: "Full-stack web apps from MVP to enterprise scale, built for performance and long-term maintainability.",
     tags: ["React", "Next.js", "Node.js"],
-    color: "#22d3ee",
+    color: "#6E8CFB",
   },
   {
     icon: Smartphone,
@@ -110,7 +110,7 @@ const ServicesSection = memo(() => (
         className="mb-16"
       >
         <motion.div variants={fadeUp} className="flex items-center gap-2 mb-4">
-          <Zap className="w-4 h-4 text-cyan-400" />
+          <Zap className="w-4 h-4 text-[#6E8CFB]" />
           <span className="text-gray-500 text-sm tracking-[0.22em] uppercase">What we build</span>
         </motion.div>
         <motion.h2
@@ -218,7 +218,7 @@ const WhySection = memo(() => (
           <motion.div variants={fadeUp} className="mt-8">
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 text-cyan-400 text-sm font-medium hover:gap-2.5 transition-all"
+              className="inline-flex items-center gap-1.5 text-[#6E8CFB] text-sm font-medium hover:gap-2.5 transition-all"
             >
               How we work <ChevronRight className="w-4 h-4" />
             </Link>
@@ -265,8 +265,8 @@ const AI_STATS = [
 
 const AIBanner = memo(() => (
   <section className="relative py-28 px-6 bg-[#010007] overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.04] via-transparent to-purple-500/[0.04] pointer-events-none" />
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-cyan-500/[0.04] rounded-full blur-[130px] pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-br from-[#636CCB]/[0.04] via-transparent to-purple-500/[0.04] pointer-events-none" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#636CCB]/[0.04] rounded-full blur-[130px] pointer-events-none" />
 
     <div className="relative max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -279,13 +279,13 @@ const AIBanner = memo(() => (
           variants={stagger}
         >
           <motion.div variants={fadeUp} className="flex items-center gap-2 mb-6">
-            <Brain className="w-4 h-4 text-cyan-400" />
-            <span className="text-cyan-400 text-sm tracking-[0.22em] uppercase">AI Suite</span>
+            <Brain className="w-4 h-4 text-[#6E8CFB]" />
+            <span className="text-[#6E8CFB] text-sm tracking-[0.22em] uppercase">AI Suite</span>
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05]">
             AI isn&apos;t a feature.
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6E8CFB] to-purple-400 bg-clip-text text-transparent">
               It&apos;s the new foundation.
             </span>
           </motion.h2>
@@ -295,7 +295,7 @@ const AIBanner = memo(() => (
           <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-8">
             <Link
               href="/ai"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white font-semibold hover:from-[#3C467B] hover:to-[#50589C] transition-all"
             >
               Explore AI Suite <ArrowUpRight className="w-4 h-4" />
             </Link>
@@ -365,7 +365,7 @@ const ProcessSection = memo(() => (
         className="text-center mb-20"
       >
         <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-4">
-          <Workflow className="w-4 h-4 text-cyan-400" />
+          <Workflow className="w-4 h-4 text-[#6E8CFB]" />
           <span className="text-gray-500 text-sm tracking-[0.22em] uppercase">How we deliver</span>
         </motion.div>
         <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white">
@@ -396,7 +396,7 @@ const ProcessSection = memo(() => (
               <div className="w-20 h-20 rounded-full border border-gray-800 bg-[#030810] flex items-center justify-center">
                 <Icon className="w-7 h-7 text-gray-400" />
               </div>
-              <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-cyan-500 text-black text-[10px] font-bold flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#636CCB] text-white text-[10px] font-bold flex items-center justify-center">
                 {i + 1}
               </span>
             </div>
@@ -419,7 +419,7 @@ const TESTIMONIALS = [
     role: "CTO",
     company: "NovaPay",
     initial: "RS",
-    color: "#22d3ee",
+    color: "#6E8CFB",
   },
   {
     quote: "Their AI automation reduced our manual ops overhead by 60%. ROI was positive within the first quarter of deployment.",
@@ -508,7 +508,7 @@ TestimonialsSection.displayName = "TestimonialsSection";
 const CTASection = memo(() => (
   <section className="relative py-36 px-6 bg-[#030810] overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.025] to-transparent pointer-events-none" />
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/[0.05] rounded-full blur-[120px] pointer-events-none" />
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#636CCB]/[0.05] rounded-full blur-[120px] pointer-events-none" />
 
     <div className="relative max-w-3xl mx-auto text-center">
       <motion.div
@@ -519,7 +519,7 @@ const CTASection = memo(() => (
       >
         <motion.div
           variants={fadeUp}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-cyan-400 text-xs tracking-wider uppercase mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#636CCB]/30 bg-[#636CCB]/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-8"
         >
           <Zap className="w-3 h-3" />
           Ready when you are
@@ -528,7 +528,7 @@ const CTASection = memo(() => (
         <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-white leading-[1.05]">
           Build something
           <br />
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#6E8CFB] via-blue-400 to-purple-400 bg-clip-text text-transparent">
             predictably great.
           </span>
         </motion.h2>

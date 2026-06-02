@@ -76,10 +76,10 @@ export function ContactClient() {
             initial="hidden" animate="show" variants={stagger}
             className="text-center mb-14"
           >
-            <motion.p variants={fadeUp} className="text-cyan-400 text-xs tracking-widest uppercase mb-3">Get in touch</motion.p>
+            <motion.p variants={fadeUp} className="text-[#6E8CFB] text-xs tracking-widest uppercase mb-3">Get in touch</motion.p>
             <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
               Let&apos;s Build Something{" "}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Together</span>
+              <span className="bg-gradient-to-r from-[#6E8CFB] to-[#636CCB] bg-clip-text text-transparent">Together</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-4 text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
               Tell us what you&apos;re building. We&apos;ll tell you exactly how we&apos;d deliver it, what it will cost, and when you&apos;ll have it.
@@ -94,12 +94,12 @@ export function ContactClient() {
             >
               <motion.div variants={fadeUp} className="p-5 rounded-2xl border border-gray-800/60 bg-gray-900/30">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                    <Mail className="w-4 h-4 text-cyan-400" />
+                  <div className="w-9 h-9 rounded-lg bg-[#636CCB]/10 border border-[#636CCB]/20 flex items-center justify-center">
+                    <Mail className="w-4 h-4 text-[#6E8CFB]" />
                   </div>
                   <span className="text-white text-sm font-medium">Email us</span>
                 </div>
-                <a href="mailto:connect@saapify.in" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">
+                <a href="mailto:connect@saapify.in" className="text-gray-400 text-sm hover:text-[#6E8CFB] transition-colors">
                   connect@saapify.in
                 </a>
               </motion.div>
@@ -149,7 +149,7 @@ export function ContactClient() {
                       <input
                         id={nameId} type="text" name="name" value={form.name}
                         onChange={handleChange} placeholder="Jane Smith"
-                        className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 transition-all text-sm ${
+                        className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm ${
                           errors.name ? "border-red-500/60" : "border-gray-700"
                         }`}
                       />
@@ -162,7 +162,7 @@ export function ContactClient() {
                       <input
                         id={emailId} type="email" name="email" value={form.email}
                         onChange={handleChange} placeholder="jane@company.com"
-                        className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 transition-all text-sm ${
+                        className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm ${
                           errors.email ? "border-red-500/60" : "border-gray-700"
                         }`}
                       />
@@ -180,7 +180,7 @@ export function ContactClient() {
                       <input
                         id={phoneId} type="tel" name="phone" value={form.phone}
                         onChange={handleChange} placeholder="Enter your phone number"
-                        className={`w-full pl-10 pr-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 transition-all text-sm ${
+                        className={`w-full pl-10 pr-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm ${
                           errors.phone ? "border-red-500/60" : "border-gray-700"
                         }`}
                       />
@@ -197,7 +197,7 @@ export function ContactClient() {
                       id={messageId} name="message" rows={5} value={form.message}
                       onChange={handleChange}
                       placeholder="Tell us about your project — what you're building, your timeline, and any specific requirements..."
-                      className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 transition-all resize-none text-sm ${
+                      className={`w-full px-4 py-3 rounded-xl bg-gray-800/50 border text-white placeholder:text-gray-600 focus:outline-none focus:border-[#636CCB]/50 transition-all resize-none text-sm ${
                         errors.message ? "border-red-500/60" : "border-gray-700"
                       }`}
                     />
@@ -206,7 +206,7 @@ export function ContactClient() {
 
                   <button
                     type="submit" disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold flex items-center justify-center gap-2 hover:from-cyan-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white font-semibold flex items-center justify-center gap-2 hover:from-[#3C467B] hover:to-[#50589C] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <><div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Sending...</>

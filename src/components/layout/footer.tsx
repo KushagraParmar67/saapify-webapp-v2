@@ -3,13 +3,6 @@ import { ArrowUpRight, Mail, MapPin, ShieldCheck } from "lucide-react";
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 
-function BoltIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
-      <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z" />
-    </svg>
-  );
-}
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-[17px] h-[17px]">
@@ -70,7 +63,7 @@ export function Footer() {
       {/* Ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(700px 320px at 8% 0%,rgba(34,211,238,.06),transparent 60%)" }}
+        style={{ background: "radial-gradient(700px 320px at 8% 0%,rgba(110,140,251,.06),transparent 60%)" }}
         aria-hidden
       />
 
@@ -79,7 +72,7 @@ export function Footer() {
         <div
           className="relative -mt-12 rounded-[18px] p-[38px_44px] flex items-center justify-between gap-[30px] flex-wrap overflow-hidden"
           style={{
-            background: "radial-gradient(500px 280px at 88% -40%,rgba(34,211,238,.28),transparent 60%),linear-gradient(120deg,#0e1424,#0a0f1c)",
+            background: "radial-gradient(500px 280px at 88% -40%,rgba(110,140,251,.28),transparent 60%),linear-gradient(120deg,#0e1424,#0a0f1c)",
             border: "1px solid rgba(255,255,255,.14)",
             boxShadow: "0 40px 90px -40px rgba(0,0,0,.9)",
           }}
@@ -111,10 +104,10 @@ export function Footer() {
           <div className="relative flex gap-3 flex-wrap">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-[7px] font-semibold text-[14.5px] rounded-full px-[24px] py-[13px] text-[#02151c] hover:-translate-y-px transition-transform duration-220"
+              className="inline-flex items-center gap-[7px] font-semibold text-[14.5px] rounded-full px-[24px] py-[13px] text-[#02101c] hover:-translate-y-px transition-transform duration-220"
               style={{
-                background: "linear-gradient(180deg,#5fd9f0,#22d3ee)",
-                boxShadow: "0 8px 24px -8px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.5)",
+                background: "linear-gradient(180deg,#636CCB,#6E8CFB)",
+                boxShadow: "0 8px 24px -8px rgba(110,140,251,.45),inset 0 1px 0 rgba(255,255,255,.5)",
                 border: "1px solid transparent",
               }}
             >
@@ -136,17 +129,16 @@ export function Footer() {
         {/* Brand column */}
         <div className="footer-brand-col" style={{ maxWidth: 320 }}>
           <Link href="/" className="inline-flex items-center gap-[11px] mb-5">
-            <span
-              className="w-[34px] h-[34px] rounded-[10px] grid place-items-center text-[#03222c] flex-shrink-0"
-              style={{
-                background: "linear-gradient(150deg,#4ec5e8 0%,#22d3ee 45%,#0e7da3 100%)",
-                boxShadow: "0 6px 20px -6px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.4)",
-              }}
-            >
-              <BoltIcon />
-            </span>
+            <img
+              src="/favicon.svg"
+              alt="SaaPify logo"
+              width={34}
+              height={34}
+              className="flex-shrink-0"
+              style={{ filter: "drop-shadow(0 4px 12px rgba(110,140,251,.35))" }}
+            />
             <span className="font-bold text-[21px] tracking-[-0.02em] text-white" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-              Saa<span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">P</span>ify
+              Saa<span className="bg-gradient-to-r from-[#6E8CFB] to-[#8BA8FC] bg-clip-text text-transparent">P</span>ify
             </span>
           </Link>
 
@@ -233,12 +225,12 @@ export function Footer() {
             className="flex items-center gap-[11px] text-[14.5px] mb-[15px] transition-colors duration-200 hover:text-[#eaf1fb]"
             style={{ color: "#8b97ad" }}
           >
-            <span className="text-cyan-400 opacity-85 flex-shrink-0"><MailIcon /></span>
+            <span className="text-[#6E8CFB] opacity-85 flex-shrink-0"><MailIcon /></span>
             connect@saapify.in
           </a>
 
           <div className="flex items-center gap-[11px] text-[14.5px] mb-[15px]" style={{ color: "#8b97ad" }}>
-            <span className="text-cyan-400 opacity-85 flex-shrink-0">
+            <span className="text-[#6E8CFB] opacity-85 flex-shrink-0">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px]">
                 <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" /><circle cx="12" cy="10" r="2.5" />
               </svg>
@@ -247,7 +239,7 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-[11px] text-[14.5px] mb-[15px]" style={{ color: "#8b97ad" }}>
-            <span className="text-cyan-400 opacity-85 flex-shrink-0">
+            <span className="text-[#6E8CFB] opacity-85 flex-shrink-0">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px]">
                 <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z" /><path d="m9 12 2 2 4-4" />
               </svg>
@@ -257,10 +249,10 @@ export function Footer() {
 
           <Link
             href="/contact"
-            className="mt-[6px] self-start inline-flex items-center gap-[7px] font-semibold text-[13.5px] rounded-full px-[20px] py-[11px] text-[#02151c] hover:-translate-y-px transition-transform duration-220"
+            className="mt-[6px] self-start inline-flex items-center gap-[7px] font-semibold text-[13.5px] rounded-full px-[20px] py-[11px] text-[#02101c] hover:-translate-y-px transition-transform duration-220"
             style={{
-              background: "linear-gradient(180deg,#5fd9f0,#22d3ee)",
-              boxShadow: "0 8px 24px -8px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.5)",
+              background: "linear-gradient(180deg,#636CCB,#6E8CFB)",
+              boxShadow: "0 8px 24px -8px rgba(110,140,251,.45),inset 0 1px 0 rgba(255,255,255,.5)",
               border: "1px solid transparent",
             }}
           >

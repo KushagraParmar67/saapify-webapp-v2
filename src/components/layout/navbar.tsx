@@ -8,13 +8,6 @@ import { ArrowUpRight } from "lucide-react";
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 
-function BoltIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
-      <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z" />
-    </svg>
-  );
-}
 function CodeIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="w-[19px] h-[19px]">
@@ -127,10 +120,10 @@ function MegaMenu() {
           className="flex gap-[13px] p-[13px] rounded-xl border border-transparent hover:border-white/8 hover:bg-white/[0.035] transition-all duration-200 group"
         >
           <span
-            className="flex-shrink-0 w-[38px] h-[38px] rounded-[10px] grid place-items-center text-cyan-400 transition-all duration-200 group-hover:shadow-[0_6px_18px_-8px_rgba(34,211,238,0.45)]"
+            className="flex-shrink-0 w-[38px] h-[38px] rounded-[10px] grid place-items-center text-[#6E8CFB] transition-all duration-200 group-hover:shadow-[0_6px_18px_-8px_rgba(110,140,251,0.45)]"
             style={{
-              background: "linear-gradient(160deg,rgba(34,211,238,.16),rgba(34,211,238,.04))",
-              border: "1px solid rgba(34,211,238,.18)",
+              background: "linear-gradient(160deg,rgba(110,140,251,.16),rgba(110,140,251,.04))",
+              border: "1px solid rgba(110,140,251,.18)",
             }}
           >
             {item.icon}
@@ -146,13 +139,13 @@ function MegaMenu() {
       <div
         className="col-start-3 row-start-1 row-end-3 rounded-xl p-[18px] flex flex-col"
         style={{
-          background: "radial-gradient(120px 120px at 80% 0%,rgba(34,211,238,.18),transparent 70%),linear-gradient(180deg,rgba(34,211,238,.08),rgba(8,12,22,.4))",
-          border: "1px solid rgba(34,211,238,.2)",
+          background: "radial-gradient(120px 120px at 80% 0%,rgba(110,140,251,.18),transparent 70%),linear-gradient(180deg,rgba(110,140,251,.08),rgba(8,12,22,.4))",
+          border: "1px solid rgba(110,140,251,.2)",
         }}
       >
         <span
-          className="self-start text-[10.5px] font-bold tracking-[.14em] uppercase text-cyan-400 px-[10px] py-[4px] rounded-full"
-          style={{ background: "rgba(34,211,238,.12)", border: "1px solid rgba(34,211,238,.25)" }}
+          className="self-start text-[10.5px] font-bold tracking-[.14em] uppercase text-[#6E8CFB] px-[10px] py-[4px] rounded-full"
+          style={{ background: "rgba(110,140,251,.12)", border: "1px solid rgba(110,140,251,.25)" }}
         >
           Featured
         </span>
@@ -162,7 +155,7 @@ function MegaMenu() {
         <p className="m-0 mb-4 text-[12.5px] leading-[1.5] text-[#8b97ad]">
           Ready-to-deploy intelligence tools — search, agents, and analytics on one platform.
         </p>
-        <Link href="/ai" className="mt-auto inline-flex items-center gap-[6px] text-[13px] font-bold text-cyan-400 group">
+        <Link href="/ai" className="mt-auto inline-flex items-center gap-[6px] text-[13px] font-bold text-[#6E8CFB] group">
           Explore the Suite <ExternalArrow />
         </Link>
       </div>
@@ -215,17 +208,16 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
         {/* Header */}
         <div className="flex items-center justify-between mb-[18px]">
           <Link href="/" onClick={onClose} className="inline-flex items-center gap-[11px]">
-            <span
-              className="w-[34px] h-[34px] rounded-[10px] grid place-items-center text-[#03222c]"
-              style={{
-                background: "linear-gradient(150deg,#4ec5e8 0%,#22d3ee 45%,#0e7da3 100%)",
-                boxShadow: "0 6px 20px -6px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.4)",
-              }}
-            >
-              <BoltIcon />
-            </span>
+            <img
+              src="/favicon.svg"
+              alt="SaaPify logo"
+              width={34}
+              height={34}
+              className="flex-shrink-0"
+              style={{ filter: "drop-shadow(0 4px 12px rgba(110,140,251,.35))" }}
+            />
             <span className="font-bold text-[21px] tracking-[-0.02em] text-white" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-              Saa<span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">P</span>ify
+              Saa<span className="bg-gradient-to-r from-[#6E8CFB] to-[#8BA8FC] bg-clip-text text-transparent">P</span>ify
             </span>
           </Link>
           <button
@@ -247,7 +239,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
             aria-expanded={servicesOpen}
           >
             Services
-            <span className={`transition-transform duration-250 ${servicesOpen ? "rotate-90 text-cyan-400" : "text-[#57637a]"}`}>
+            <span className={`transition-transform duration-250 ${servicesOpen ? "rotate-90 text-[#6E8CFB]" : "text-[#57637a]"}`}>
               <ChevRightIcon />
             </span>
           </button>
@@ -265,7 +257,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
                   onClick={onClose}
                   className="flex items-center gap-[11px] px-[12px] py-[11px] text-[14.5px] text-[#8b97ad] hover:text-[#eaf1fb] transition-colors"
                 >
-                  <span className="text-cyan-400 opacity-80">{item.icon}</span>
+                  <span className="text-[#6E8CFB] opacity-80">{item.icon}</span>
                   {item.title}
                 </Link>
               ))}
@@ -278,7 +270,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
               href={href}
               onClick={onClose}
               className="flex items-center justify-between px-[12px] py-[14px] rounded-xl text-[16px] font-semibold hover:bg-white/[0.035] transition-colors"
-              style={{ color: pathname === href ? "#22d3ee" : "#eaf1fb" }}
+              style={{ color: pathname === href ? "#6E8CFB" : "#eaf1fb" }}
             >
               {label}
             </Link>
@@ -298,10 +290,10 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
           <Link
             href="/contact"
             onClick={onClose}
-            className="flex items-center justify-center gap-[7px] w-full py-[14px] rounded-full text-[15px] font-semibold text-[#02151c]"
+            className="flex items-center justify-center gap-[7px] w-full py-[14px] rounded-full text-[15px] font-semibold text-[#02101c]"
             style={{
-              background: "linear-gradient(180deg,#5fd9f0,#22d3ee)",
-              boxShadow: "0 8px 24px -8px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.5)",
+              background: "linear-gradient(180deg,#636CCB,#6E8CFB)",
+              boxShadow: "0 8px 24px -8px rgba(110,140,251,.45),inset 0 1px 0 rgba(255,255,255,.5)",
             }}
           >
             Get Started <ArrowUpRight className="w-4 h-4" />
@@ -365,7 +357,7 @@ export function Navbar() {
             WebkitBackdropFilter: "blur(22px) saturate(160%)",
             border: "1px solid rgba(255,255,255,.08)",
             boxShadow: scrolled
-              ? "0 16px 50px -22px rgba(0,0,0,.95),0 0 0 1px rgba(34,211,238,.12),inset 0 1px 0 rgba(255,255,255,.07)"
+              ? "0 16px 50px -22px rgba(0,0,0,.95),0 0 0 1px rgba(110,140,251,.12),inset 0 1px 0 rgba(255,255,255,.07)"
               : "0 22px 60px -28px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.07),inset 0 -1px 0 rgba(0,0,0,.3)",
             pointerEvents: "auto",
             transitionProperty: "max-width,height,background,box-shadow",
@@ -377,17 +369,16 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="inline-flex items-center gap-[11px] flex-shrink-0" style={{ userSelect: "none" }}>
-            <span
-              className="w-[34px] h-[34px] rounded-[10px] grid place-items-center text-[#03222c] flex-shrink-0"
-              style={{
-                background: "linear-gradient(150deg,#4ec5e8 0%,#22d3ee 45%,#0e7da3 100%)",
-                boxShadow: "0 6px 20px -6px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.4)",
-              }}
-            >
-              <BoltIcon />
-            </span>
+            <img
+              src="/favicon.svg"
+              alt="SaaPify logo"
+              width={34}
+              height={34}
+              className="flex-shrink-0"
+              style={{ filter: "drop-shadow(0 4px 12px rgba(110,140,251,.35))" }}
+            />
             <span className="font-bold text-[21px] tracking-[-0.02em] text-white" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-              Saa<span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">P</span>ify
+              Saa<span className="bg-gradient-to-r from-[#6E8CFB] to-[#8BA8FC] bg-clip-text text-transparent">P</span>ify
             </span>
           </Link>
 
@@ -405,9 +396,9 @@ export function Navbar() {
                 width: indicatorStyle.width,
                 height: 40,
                 opacity: indicatorStyle.opacity,
-                background: "linear-gradient(180deg,rgba(34,211,238,.2),rgba(34,211,238,.05))",
-                border: "1px solid rgba(34,211,238,.3)",
-                boxShadow: "0 0 22px -6px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.12)",
+                background: "linear-gradient(180deg,rgba(110,140,251,.2),rgba(110,140,251,.05))",
+                border: "1px solid rgba(110,140,251,.3)",
+                boxShadow: "0 0 22px -6px rgba(110,140,251,.45),inset 0 1px 0 rgba(255,255,255,.12)",
                 transitionProperty: "left,width,opacity",
                 transitionTimingFunction: "cubic-bezier(.22,1,.36,1)",
               }}
@@ -425,9 +416,9 @@ export function Navbar() {
                 aria-expanded={servicesHovered}
               >
                 <span
-                  className="w-[5px] h-[5px] rounded-full bg-cyan-400 flex-shrink-0 transition-all duration-300"
+                  className="w-[5px] h-[5px] rounded-full bg-[#6E8CFB] flex-shrink-0 transition-all duration-300"
                   style={{
-                    boxShadow: "0 0 8px rgba(34,211,238,.45)",
+                    boxShadow: "0 0 8px rgba(110,140,251,.45)",
                     opacity: servicesHovered ? 1 : 0,
                     transform: servicesHovered ? "scale(1)" : "scale(.4)",
                   }}
@@ -458,8 +449,8 @@ export function Navbar() {
                   onMouseEnter={(e) => moveIndicator(e.currentTarget)}
                 >
                   <span
-                    className={`w-[5px] h-[5px] rounded-full bg-cyan-400 flex-shrink-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 ${pathname === href ? "opacity-100 scale-100" : "opacity-0 scale-[0.4]"}`}
-                    style={{ boxShadow: "0 0 8px rgba(34,211,238,.45)" }}
+                    className={`w-[5px] h-[5px] rounded-full bg-[#6E8CFB] flex-shrink-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 ${pathname === href ? "opacity-100 scale-100" : "opacity-0 scale-[0.4]"}`}
+                    style={{ boxShadow: "0 0 8px rgba(110,140,251,.45)" }}
                   />
                   {label}
                 </Link>
@@ -481,10 +472,10 @@ export function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-[7px] font-semibold text-[13.5px] tracking-[-0.005em] rounded-full px-[18px] py-[10px] text-[#02151c] whitespace-nowrap hover:-translate-y-px transition-all duration-220"
+              className="inline-flex items-center justify-center gap-[7px] font-semibold text-[13.5px] tracking-[-0.005em] rounded-full px-[18px] py-[10px] text-[#02101c] whitespace-nowrap hover:-translate-y-px transition-all duration-220"
               style={{
-                background: "linear-gradient(180deg,#5fd9f0,#22d3ee)",
-                boxShadow: "0 8px 24px -8px rgba(34,211,238,.45),inset 0 1px 0 rgba(255,255,255,.5)",
+                background: "linear-gradient(180deg,#636CCB,#6E8CFB)",
+                boxShadow: "0 8px 24px -8px rgba(110,140,251,.45),inset 0 1px 0 rgba(255,255,255,.5)",
                 border: "1px solid transparent",
               }}
             >

@@ -181,7 +181,7 @@ const AIHero = memo(() => {
         <NeuralCanvas />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-[#010007]/90 via-transparent to-[#010007]/90 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#636CCB]/[0.04] rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div style={{ opacity, y }} className="relative z-10 min-h-screen flex items-center">
@@ -196,9 +196,9 @@ const AIHero = memo(() => {
                 className="flex items-center gap-2 mb-8"
               >
                 <div className="w-8 h-8  flex items-center justify-center">
-                  {/* <Sparkles className="w-4 h-4 text-cyan-400" /> */}
+                  {/* <Sparkles className="w-4 h-4 text-[#6E8CFB]" /> */}
                 </div>
-                {/* <span className="text-cyan-400 text-sm tracking-wider font-medium">
+                {/* <span className="text-[#6E8CFB] text-sm tracking-wider font-medium">
                   SaaPify AI Suite
                 </span> */}
               </motion.div>
@@ -210,7 +210,7 @@ const AIHero = memo(() => {
               >
                 <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tight">
                   <span className="block text-white">AI is</span>
-                  <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-[#6E8CFB] via-[#636CCB] to-[#50589C] bg-clip-text text-transparent">
                     Already
                   </span>
                   <span className="block text-white">Here</span>
@@ -282,17 +282,17 @@ const AIHero = memo(() => {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 rounded-full border border-cyan-500/20"
+                  className="absolute inset-0 rounded-full border border-[#636CCB]/20"
                 />
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-4 rounded-full border border-cyan-500/15"
+                  className="absolute inset-4 rounded-full border border-[#636CCB]/15"
                 />
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-10 rounded-full border border-cyan-500/10"
+                  className="absolute inset-10 rounded-full border border-[#636CCB]/10"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
@@ -304,9 +304,9 @@ const AIHero = memo(() => {
                       ],
                     }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/30 flex items-center justify-center"
+                    className="w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-[#636CCB]/10 to-purple-500/10 border border-[#636CCB]/30 flex items-center justify-center"
                   >
-                    <Brain className="w-20 h-20 lg:w-24 lg:h-24 text-cyan-400" />
+                    <Brain className="w-20 h-20 lg:w-24 lg:h-24 text-[#6E8CFB]" />
                   </motion.div>
                 </div>
                 {[0, 72, 144, 216, 288].map((angle) => (
@@ -318,7 +318,7 @@ const AIHero = memo(() => {
                     style={{ transform: `rotate(${angle}deg)` }}
                   >
                     <div
-                      className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cyan-400"
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#6E8CFB]"
                       style={{ boxShadow: "0 0 15px rgba(34, 211, 238, 0.8)" }}
                     />
                   </motion.div>
@@ -359,7 +359,7 @@ const AIPower = memo(() => {
         bigText: "< 50ms",
         subText: "Real-time latency",
         detail: "Process millions of data points in the time it takes to blink.",
-        color: "#22d3ee",
+        color: "#6E8CFB",
       },
       {
         label: "MODEL ACCURACY",
@@ -406,7 +406,7 @@ const AIPower = memo(() => {
           className="mb-16"
         >
           <div className="flex items-center gap-3">
-            <Zap className="w-5 h-5 text-cyan-400" />
+            <Zap className="w-5 h-5 text-[#6E8CFB]" />
             <span className="text-gray-500 text-sm tracking-[0.2em] uppercase">Raw Power</span>
           </div>
         </motion.div>
@@ -421,7 +421,7 @@ const AIPower = memo(() => {
             This is what{" "}
             <span className="text-gray-500 line-through decoration-gray-700">possible</span>
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6E8CFB] to-[#636CCB] bg-clip-text text-transparent">
               already happening
             </span>{" "}
             looks like.
@@ -464,7 +464,7 @@ const AIPower = memo(() => {
             <div className="grid grid-cols-4 gap-4 pb-3 border-b border-gray-800">
               <div className="text-gray-500 text-xs tracking-wider">TASK</div>
               <div className="text-gray-500 text-xs tracking-wider text-center">MANUAL</div>
-              <div className="text-cyan-400 text-xs tracking-wider text-center">WITH AI</div>
+              <div className="text-[#6E8CFB] text-xs tracking-wider text-center">WITH AI</div>
               <div className="text-gray-500 text-xs tracking-wider text-right">FASTER BY</div>
             </div>
             {comparisons.map((row, i) => (
@@ -478,7 +478,7 @@ const AIPower = memo(() => {
               >
                 <div className="text-white text-sm">{row.task}</div>
                 <div className="text-gray-500 text-sm text-center">{row.manual}</div>
-                <div className="text-cyan-400 text-sm text-center font-medium">{row.ai}</div>
+                <div className="text-[#6E8CFB] text-sm text-center font-medium">{row.ai}</div>
                 <div className="text-emerald-400 text-sm text-right font-medium">{row.imp}</div>
               </motion.div>
             ))}
@@ -492,6 +492,8 @@ AIPower.displayName = "AIPower";
 
 // ─── Approach ─────────────────────────────────────────────────────────────────
 
+const EASE = "cubic-bezier(0.22, 0.61, 0.36, 1)";
+
 const AIApproach = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -499,11 +501,12 @@ const AIApproach = memo(() => {
     offset: ["start start", "end end"],
   });
 
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [fillPct, setFillPct] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    // 0–0.2: intro, then equal quarters for steps 0–3
-    setActiveIndex(Math.max(-1, Math.min(3, Math.floor((v - 0.2) / 0.2))));
+    setActiveIndex(Math.max(0, Math.min(3, Math.floor(v * 4))));
+    setFillPct(Math.min(v * 100, 100));
   });
 
   const steps = useMemo(
@@ -511,25 +514,25 @@ const AIApproach = memo(() => {
       {
         num: "01",
         title: "Audit & Discover",
-        desc: "We map your operations, find AI-fit workflows, and prioritize high-impact areas.",
+        desc: "Map operations, find AI-fit workflows, and prioritize the highest-impact areas to move on first.",
         items: ["Process mapping", "Data readiness check", "Opportunity scoring"],
       },
       {
         num: "02",
         title: "Build & Train",
-        desc: "Custom models trained on your data, tested against your success metrics.",
+        desc: "Custom models trained on your data and tested against the success metrics that matter to your team.",
         items: ["Model selection", "Custom training", "Accuracy validation"],
       },
       {
         num: "03",
         title: "Integrate & Deploy",
-        desc: "Seamless integration into your existing stack with zero downtime.",
+        desc: "Seamless integration into your existing stack with zero downtime, embedded where your people already work.",
         items: ["API integration", "Workflow embedding", "User training"],
       },
       {
         num: "04",
         title: "Monitor & Scale",
-        desc: "Continuous performance tracking with automated retraining loops.",
+        desc: "Continuous performance tracking with automated retraining loops, so the system improves as you grow.",
         items: ["Real-time monitoring", "Auto-retraining", "Scaling on demand"],
       },
     ],
@@ -551,124 +554,380 @@ const AIApproach = memo(() => {
     <>
       {/* Sticky scroll container — 500 vh gives ~100 vh per step */}
       <div ref={containerRef} style={{ height: "500vh" }} className="relative">
-        <div className="sticky top-0 h-screen bg-[#020110] flex items-center overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-              {/* Left — heading + step nav */}
+        <div
+          className="sticky top-0 h-screen flex items-center overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(110% 70% at 90% -5%, rgba(110,140,251,0.12), transparent 55%), #020110",
+          }}
+        >
+          <div
+            className="w-full mx-auto px-6 lg:px-16"
+            style={{ maxWidth: 1180 }}
+          >
+            <div
+              className="grid items-center"
+              style={{
+                gridTemplateColumns: "1fr 1.05fr",
+                gap: "clamp(40px, 7vw, 104px)",
+              }}
+            >
+              {/* ── Left: heading + step list ── */}
               <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <Workflow className="w-5 h-5 text-cyan-400" />
-                  <span className="text-gray-500 text-sm tracking-[0.2em] uppercase">Our Approach</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
-                  How we bring
-                  <br />
-                  <span className="text-cyan-400">AI into your</span>
-                  <br />
-                  operations.
-                </h2>
-                <p className="text-gray-500 mt-6 max-w-md leading-relaxed">
-                  A proven 4-step methodology that transforms your business without disrupting
-                  what&apos;s already working.
+                <p
+                  className="flex items-center mb-5 uppercase"
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono), ui-monospace, monospace",
+                    fontSize: "0.76rem",
+                    letterSpacing: "0.2em",
+                    color: "#636CCB",
+                    gap: 12,
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 28,
+                      height: 2,
+                      background: "#636CCB",
+                      borderRadius: 2,
+                      flexShrink: 0,
+                    }}
+                  />
+                  Our engagement
                 </p>
 
-                {/* Step list — highlights active, checks completed */}
-                <div className="flex flex-col gap-4 mt-10">
-                  {steps.map((step, i) => (
-                    <motion.div
-                      key={step.num}
-                      animate={{ opacity: i === activeIndex ? 1 : i < activeIndex ? 0.45 : 0.18 }}
-                      transition={{ duration: 0.4 }}
-                      className="flex items-center gap-4"
-                    >
-                      <motion.span
-                        animate={{
-                          color: i < activeIndex ? "#22d3ee" : i === activeIndex ? "#22d3ee" : "#374151",
+                <h2
+                  style={{
+                    fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
+                    fontSize: "clamp(1.9rem, 3.4vw, 3rem)",
+                    fontWeight: 600,
+                    lineHeight: 1.04,
+                    letterSpacing: "-0.03em",
+                    color: "#ffffff",
+                    margin: "0 0 44px",
+                    maxWidth: "15ch",
+                    textWrap: "balance" as React.CSSProperties["textWrap"],
+                  }}
+                >
+                  How we bring{" "}
+                  <em
+                    style={{
+                      fontStyle: "normal",
+                      background: "linear-gradient(100deg, #636CCB, #6E8CFB)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    AI
+                  </em>{" "}
+                  into your operations
+                </h2>
+
+                {/* Step list with vertical rail */}
+                <ol className="list-none m-0 p-0" style={{ position: "relative" }}>
+                  {/* Rail track */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: 17,
+                      top: 18,
+                      bottom: 18,
+                      width: 2,
+                      background: "#1a1f35",
+                      borderRadius: 2,
+                    }}
+                  />
+                  {/* Rail fill */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: 17,
+                      top: 18,
+                      width: 2,
+                      height: `${fillPct}%`,
+                      maxHeight: "calc(100% - 36px)",
+                      background: "linear-gradient(#636CCB, #6E8CFB)",
+                      borderRadius: 2,
+                      transition: `height 0.45s ${EASE}`,
+                    }}
+                  />
+
+                  {steps.map((step, i) => {
+                    const isDone = i < activeIndex;
+                    const isActive = i === activeIndex;
+                    return (
+                      <li
+                        key={step.num}
+                        style={{
+                          position: "relative",
+                          display: "grid",
+                          gridTemplateColumns: "36px 1fr",
+                          gap: 18,
+                          alignItems: "center",
+                          padding: "12px 0",
                         }}
-                        transition={{ duration: 0.3 }}
-                        className="text-xl font-bold w-10 tabular-nums"
                       >
-                        {i < activeIndex ? "✓" : step.num}
-                      </motion.span>
-                      <motion.span
-                        animate={{ color: i === activeIndex ? "#ffffff" : "#6b7280" }}
-                        transition={{ duration: 0.3 }}
-                        className="text-sm font-medium"
+                        {/* Square marker */}
+                        <span
+                          style={{
+                            position: "relative",
+                            zIndex: 2,
+                            width: 36,
+                            height: 36,
+                            borderRadius: 11,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontFamily:
+                              "var(--font-jetbrains-mono), ui-monospace, monospace",
+                            fontSize: "0.78rem",
+                            fontWeight: 600,
+                            transition: `all 0.4s ${EASE}`,
+                            ...(isDone
+                              ? {
+                                  background: "#50589C",
+                                  border: "2px solid #50589C",
+                                  color: "#fff",
+                                }
+                              : isActive
+                              ? {
+                                  background:
+                                    "linear-gradient(135deg, #636CCB, #6E8CFB)",
+                                  border: "2px solid transparent",
+                                  color: "#fff",
+                                  boxShadow:
+                                    "0 8px 22px -6px rgba(110,140,251,0.30)",
+                                }
+                              : {
+                                  background: "#0d1020",
+                                  border: "2px solid #1a1f35",
+                                  color: "#374151",
+                                }),
+                          }}
+                        >
+                          {isDone ? (
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="#fff"
+                              strokeWidth="3"
+                            >
+                              <polyline points="4,12 10,18 20,6" />
+                            </svg>
+                          ) : (
+                            <span>{step.num}</span>
+                          )}
+                        </span>
+
+                        {/* Kicker + title */}
+                        <span
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 3,
+                            transition: `transform 0.4s ${EASE}`,
+                            transform: isActive ? "translateX(3px)" : "none",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily:
+                                "var(--font-jetbrains-mono), ui-monospace, monospace",
+                              fontSize: "0.7rem",
+                              letterSpacing: "0.12em",
+                              textTransform: "uppercase",
+                              color: isActive
+                                ? "#6E8CFB"
+                                : isDone
+                                ? "#4b5563"
+                                : "#374151",
+                              transition: `color 0.4s ${EASE}`,
+                            }}
+                          >
+                            Step {step.num}
+                          </span>
+                          <span
+                            style={{
+                              fontSize: "1.1rem",
+                              fontWeight: isActive ? 600 : 500,
+                              letterSpacing: "-0.015em",
+                              color: isActive
+                                ? "#ffffff"
+                                : isDone
+                                ? "#6b7280"
+                                : "#374151",
+                              transition: `color 0.4s ${EASE}`,
+                            }}
+                          >
+                            {step.title}
+                          </span>
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              {/* ── Right: animated card stage ── */}
+              <div style={{ position: "relative", display: "grid", minHeight: 440 }}>
+                {/* Ghost number */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    right: "-1%",
+                    transform: "translateY(-54%)",
+                    fontFamily:
+                      "var(--font-jetbrains-mono), ui-monospace, monospace",
+                    fontWeight: 600,
+                    fontSize: "clamp(11rem, 24vw, 22rem)",
+                    lineHeight: 0.8,
+                    color: "transparent",
+                    WebkitTextStroke: "1.5px rgba(60,70,123,0.10)",
+                    pointerEvents: "none",
+                    zIndex: 0,
+                    userSelect: "none",
+                  }}
+                >
+                  {steps[activeIndex].num}
+                </div>
+
+                {/* One card per step — CSS crossfade */}
+                {steps.map((step, i) => {
+                  const isActive = i === activeIndex;
+                  return (
+                    <article
+                      key={step.num}
+                      style={{
+                        gridArea: "1 / 1",
+                        position: "relative",
+                        zIndex: 1,
+                        background:
+                          "linear-gradient(150deg, #50589C 0%, #3C467B 100%)",
+                        borderRadius: 24,
+                        padding: "clamp(30px, 3.4vw, 48px)",
+                        overflow: "hidden",
+                        boxShadow: "0 30px 70px -28px rgba(60,70,123,0.55)",
+                        opacity: isActive ? 1 : 0,
+                        transform: isActive
+                          ? "translateY(0) scale(1)"
+                          : "translateY(28px) scale(0.99)",
+                        filter: isActive ? "blur(0)" : "blur(6px)",
+                        pointerEvents: isActive ? "auto" : "none",
+                        transition: `opacity 0.6s ${EASE}, transform 0.75s ${EASE}, filter 0.6s ${EASE}`,
+                      }}
+                    >
+                      {/* Glossy radial accent */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "-40%",
+                          right: "-10%",
+                          width: "70%",
+                          height: "80%",
+                          background:
+                            "radial-gradient(circle, rgba(110,140,251,0.45), transparent 70%)",
+                          pointerEvents: "none",
+                        }}
+                      />
+
+                      <div
+                        style={{
+                          position: "relative",
+                          display: "flex",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                          marginBottom: 26,
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily:
+                              "var(--font-jetbrains-mono), ui-monospace, monospace",
+                            fontSize: "clamp(2.6rem, 4.6vw, 3.6rem)",
+                            fontWeight: 600,
+                            lineHeight: 1,
+                            letterSpacing: "-0.02em",
+                            color: "#fff",
+                          }}
+                        >
+                          {step.num}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily:
+                              "var(--font-jetbrains-mono), ui-monospace, monospace",
+                            fontSize: "0.76rem",
+                            letterSpacing: "0.1em",
+                            color: "rgba(255,255,255,0.55)",
+                          }}
+                        >
+                          STEP {step.num} / 04
+                        </span>
+                      </div>
+
+                      <h3
+                        style={{
+                          position: "relative",
+                          fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)",
+                          fontWeight: 600,
+                          letterSpacing: "-0.03em",
+                          lineHeight: 1.1,
+                          color: "#fff",
+                          margin: "0 0 16px",
+                        }}
                       >
                         {step.title}
-                      </motion.span>
-                      {i === activeIndex && (
-                        <motion.div
-                          layoutId="stepLine"
-                          className="h-px flex-1 bg-gradient-to-r from-cyan-500 to-transparent"
-                        />
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+                      </h3>
 
-              {/* Right — animated step card */}
-              <div className="relative h-[420px]">
-                <AnimatePresence mode="wait">
-                  {activeIndex >= 0 ? (
-                    <motion.div
-                      key={activeIndex}
-                      initial={{ opacity: 0, y: 70, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: -70, filter: "blur(6px)" }}
-                      transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-                      className="absolute inset-0 flex flex-col justify-center"
-                    >
-                      {/* Large ghost number */}
-                      <div className="absolute -top-6 -left-4 text-[11rem] font-bold leading-none select-none text-white/[0.025] pointer-events-none">
-                        {steps[activeIndex].num}
-                      </div>
-
-                      <div className="relative z-10 p-8 rounded-2xl border border-gray-800/60 bg-gradient-to-br from-white/[0.03] to-transparent">
-                        <div className="flex items-baseline gap-3 mb-6">
-                          <span className="text-5xl font-bold text-cyan-400">
-                            {steps[activeIndex].num}
-                          </span>
-                          <span className="text-xs tracking-widest text-gray-600 uppercase">
-                            of 04
-                          </span>
-                        </div>
-                        <h3 className="text-3xl font-bold text-white mb-4">
-                          {steps[activeIndex].title}
-                        </h3>
-                        <p className="text-gray-400 leading-relaxed mb-6">
-                          {steps[activeIndex].desc}
-                        </p>
-                        <div className="flex flex-wrap gap-3">
-                          {steps[activeIndex].items.map((item) => (
-                            <span
-                              key={item}
-                              className="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm"
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="idle"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      <p className="text-gray-700 text-sm tracking-[0.25em] uppercase">
-                        Scroll to explore
+                      <p
+                        style={{
+                          position: "relative",
+                          color: "rgba(255,255,255,0.78)",
+                          fontSize: "clamp(1rem, 1.3vw, 1.12rem)",
+                          lineHeight: 1.55,
+                          margin: "0 0 30px",
+                          maxWidth: "42ch",
+                        }}
+                      >
+                        {step.desc}
                       </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
 
+                      <div
+                        style={{
+                          position: "relative",
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 10,
+                        }}
+                      >
+                        {step.items.map((tag) => (
+                          <span
+                            key={tag}
+                            style={{
+                              fontFamily:
+                                "var(--font-jetbrains-mono), ui-monospace, monospace",
+                              fontSize: "0.76rem",
+                              color: "rgba(255,255,255,0.92)",
+                              padding: "8px 14px",
+                              border: "1px solid rgba(255,255,255,0.22)",
+                              borderRadius: 100,
+                              background: "rgba(255,255,255,0.08)",
+                              whiteSpace: "nowrap",
+                              backdropFilter: "blur(4px)",
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -777,7 +1036,7 @@ const ExpandableScreenDemo = ({ onClose }: { onClose: () => void }) => {
         <div className="space-y-6">
           <div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
-              Schedule a <span className="text-cyan-400">Discovery Call</span>
+              Schedule a <span className="text-[#6E8CFB]">Discovery Call</span>
             </h2>
             <p className="text-gray-400 mt-3 leading-relaxed">
               Let&apos;s discuss your business challenges and how AI can solve them.
@@ -802,7 +1061,7 @@ const ExpandableScreenDemo = ({ onClose }: { onClose: () => void }) => {
           </div>
           <div className="pt-6 mt-6 border-t border-gray-800">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#636CCB] to-[#50589C] flex items-center justify-center text-white font-bold text-lg">
                 AJ
               </div>
               <div>
@@ -823,13 +1082,13 @@ const ExpandableScreenDemo = ({ onClose }: { onClose: () => void }) => {
           <div>
             <label htmlFor={nameId} className="block text-[10px] font-mono text-gray-400 mb-2 tracking-[0.5px] uppercase">Full Name *</label>
             <input type="text" id={nameId} name="name" value={formData.name} onChange={handleChange} required
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm"
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm"
               placeholder="John Doe" />
           </div>
           <div>
             <label htmlFor={emailId} className="block text-[10px] font-mono text-gray-400 mb-2 tracking-[0.5px] uppercase">Email *</label>
             <input type="email" id={emailId} name="email" value={formData.email} onChange={handleChange} required
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm"
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm"
               placeholder="john@company.com" />
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -837,12 +1096,12 @@ const ExpandableScreenDemo = ({ onClose }: { onClose: () => void }) => {
               <label htmlFor={useCaseId} className="block text-[10px] font-mono text-gray-400 mb-2 tracking-[0.5px] uppercase">Use Case</label>
               <input type="text" id={useCaseId} name="useCase" value={formData.useCase} onChange={handleChange}
                 placeholder="e.g., Customer support automation"
-                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm" />
+                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm" />
             </div>
             <div className="sm:w-36 w-full">
               <label htmlFor={companySizeId} className="block text-[10px] font-mono text-gray-400 mb-2 tracking-[0.5px] uppercase">Team Size</label>
               <select id={companySizeId} name="teamSize" value={formData.teamSize} onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-cyan-500/50 transition-all text-sm appearance-none cursor-pointer">
+                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm appearance-none cursor-pointer">
                 <option value="">Select</option>
                 <option value="1-10">1–10</option>
                 <option value="11-50">11–50</option>
@@ -856,10 +1115,10 @@ const ExpandableScreenDemo = ({ onClose }: { onClose: () => void }) => {
             <label htmlFor={messageId} className="block text-[10px] font-mono text-gray-400 mb-2 tracking-[0.5px] uppercase">What challenges are you facing?</label>
             <textarea id={messageId} name="message" rows={3} value={formData.message} onChange={handleChange}
               placeholder="Tell us about your business challenges and goals..."
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all resize-none text-sm" />
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all resize-none text-sm" />
           </div>
           <button type="submit" disabled={isSubmitting}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold flex items-center justify-center gap-2 hover:from-cyan-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white font-semibold flex items-center justify-center gap-2 hover:from-[#3C467B] hover:to-[#50589C] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
             {isSubmitting ? (
               <>
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -998,7 +1257,7 @@ const AIServices = memo(() => {
           viewport={{ once: true }}
           className="flex items-center gap-3 mb-8"
         >
-          <Sparkles className="w-5 h-5 text-cyan-400" />
+          <Sparkles className="w-5 h-5 text-[#6E8CFB]" />
           <span className="text-gray-500 text-sm tracking-[0.2em] uppercase">Capabilities</span>
         </motion.div>
 
@@ -1009,7 +1268,7 @@ const AIServices = memo(() => {
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-16 max-w-3xl"
         >
           AI services built for{" "}
-          <span className="text-cyan-400">real business</span> outcomes.
+          <span className="text-[#6E8CFB]">real business</span> outcomes.
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-min">
@@ -1028,8 +1287,8 @@ const AIServices = memo(() => {
                   background: "linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%)",
                 }}
               >
-                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-cyan-400" />
+                <div className="w-10 h-10 rounded-lg bg-[#636CCB]/10 border border-[#636CCB]/20 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-[#6E8CFB]" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">{tile.title}</h3>
                 <p className="text-gray-500 text-sm mb-4 leading-relaxed">{tile.desc}</p>
@@ -1055,7 +1314,7 @@ const AIServices = memo(() => {
           className="mt-20 flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl border border-gray-800"
           style={{
             background:
-              "linear-gradient(135deg, rgba(34,211,238,0.03) 0%, rgba(168,85,247,0.03) 100%)",
+              "linear-gradient(135deg, rgba(110,140,251,0.03) 0%, rgba(99,108,203,0.03) 100%)",
           }}
         >
           <div className="flex-1">

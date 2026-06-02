@@ -114,7 +114,7 @@ const ScheduleForm = memo(({ onClose }: { onClose: () => void }) => {
       {/* Left */}
       <div className="flex-1 w-full">
         <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
-          Schedule a <span className="text-cyan-400">Discovery Call</span>
+          Schedule a <span className="text-[#6E8CFB]">Discovery Call</span>
         </h2>
         <p className="text-gray-400 mt-3 leading-relaxed text-sm">
           Let&apos;s find the right package for your project.
@@ -145,25 +145,25 @@ const ScheduleForm = memo(({ onClose }: { onClose: () => void }) => {
             <label htmlFor={nameId} className="block text-[10px] font-mono text-gray-400 mb-1.5 tracking-widest uppercase">Full Name *</label>
             <input type="text" id={nameId} name="name" value={formData.name} onChange={handleChange} required
               placeholder="Jane Smith"
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm" />
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm" />
           </div>
           <div>
             <label htmlFor={emailId} className="block text-[10px] font-mono text-gray-400 mb-1.5 tracking-widest uppercase">Email *</label>
             <input type="email" id={emailId} name="email" value={formData.email} onChange={handleChange} required
               placeholder="jane@company.com"
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm" />
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm" />
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1">
               <label htmlFor={useCaseId} className="block text-[10px] font-mono text-gray-400 mb-1.5 tracking-widest uppercase">Project Type</label>
               <input type="text" id={useCaseId} name="useCase" value={formData.useCase} onChange={handleChange}
                 placeholder="e.g., Portfolio, E-Commerce"
-                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm" />
+                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm" />
             </div>
             <div className="sm:w-32 w-full">
               <label htmlFor={sizeId} className="block text-[10px] font-mono text-gray-400 mb-1.5 tracking-widest uppercase">Team Size</label>
               <select id={sizeId} name="teamSize" value={formData.teamSize} onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-cyan-500/50 transition-all text-sm appearance-none cursor-pointer">
+                className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-[#636CCB]/50 transition-all text-sm appearance-none cursor-pointer">
                 <option value="">Select</option>
                 <option value="1-10">1–10</option>
                 <option value="11-50">11–50</option>
@@ -176,10 +176,10 @@ const ScheduleForm = memo(({ onClose }: { onClose: () => void }) => {
             <label htmlFor={messageId} className="block text-[10px] font-mono text-gray-400 mb-1.5 tracking-widest uppercase">Tell us about your project</label>
             <textarea id={messageId} name="message" rows={3} value={formData.message} onChange={handleChange}
               placeholder="Goals, timeline, any specific requirements..."
-              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all resize-none text-sm" />
+              className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#636CCB]/50 transition-all resize-none text-sm" />
           </div>
           <button type="submit" disabled={isSubmitting}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold flex items-center justify-center gap-2 hover:from-cyan-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white font-semibold flex items-center justify-center gap-2 hover:from-[#3C467B] hover:to-[#50589C] transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm">
             {isSubmitting ? (
               <><div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Submitting...</>
             ) : (
@@ -235,12 +235,12 @@ const PlanCard = memo(({ plan, index }: { plan: Plan; index: number }) => (
     transition={{ delay: index * 0.08 }}
     whileHover={{ y: -4 }}
     className={`relative rounded-2xl overflow-hidden flex flex-col ${
-      plan.popular ? "ring-2 ring-cyan-400/50 shadow-lg shadow-cyan-500/10" : ""
+      plan.popular ? "ring-2 ring-[#6E8CFB]/50 shadow-lg shadow-[#636CCB]/10" : ""
     }`}
   >
     {plan.popular && (
       <div className="absolute top-0 right-0 z-10">
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg tracking-wider">
+        <div className="bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg tracking-wider">
           MOST POPULAR
         </div>
       </div>
@@ -280,8 +280,8 @@ const PlanCard = memo(({ plan, index }: { plan: Plan; index: number }) => (
         whileTap={{ scale: 0.98 }}
         className={`w-full mt-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
           plan.popular
-            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
-            : "bg-gray-800 border border-gray-700 text-gray-300 hover:border-cyan-500/50"
+            ? "bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white"
+            : "bg-gray-800 border border-gray-700 text-gray-300 hover:border-[#636CCB]/50"
         }`}
       >
         Get Started
@@ -320,7 +320,7 @@ export function WaapClient() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
           >
             Website{" "}
-            <span className="text-cyan-400">as a Product</span>
+            <span className="text-[#6E8CFB]">as a Product</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -345,7 +345,7 @@ export function WaapClient() {
                   onClick={() => setCurrency(c)}
                   className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all ${
                     currency === c
-                      ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
+                      ? "bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -369,10 +369,10 @@ export function WaapClient() {
                 key={tab.id}
                 onClick={() => setActiveTab(idx)}
                 className={`relative flex-1 h-12 md:h-14 flex items-center justify-center gap-1.5 rounded-xl transition-all whitespace-nowrap px-2 ${
-                  active ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20" : "hover:bg-white/[0.04]"
+                  active ? "bg-gradient-to-r from-[#636CCB]/20 to-[#6E8CFB]/20" : "hover:bg-white/[0.04]"
                 }`}
               >
-                <Icon className={`w-4 h-4 flex-shrink-0 ${active ? "text-cyan-400" : "text-gray-500"}`} />
+                <Icon className={`w-4 h-4 flex-shrink-0 ${active ? "text-[#6E8CFB]" : "text-gray-500"}`} />
                 <span className={`text-xs sm:text-sm font-medium hidden sm:block ${active ? "text-white" : "text-gray-400"}`}>
                   {tab.title}
                 </span>
@@ -416,12 +416,12 @@ export function WaapClient() {
                   </span>
                   <span className="text-gray-500">
                     Internal Hours:{" "}
-                    <span className="text-cyan-400 font-medium">{current.metrics.internalHours}</span>
+                    <span className="text-[#6E8CFB] font-medium">{current.metrics.internalHours}</span>
                   </span>
                 </div>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs transition-colors"
+                  className="flex items-center gap-1 text-[#6E8CFB] hover:text-cyan-300 text-xs transition-colors"
                 >
                   <Sparkles className="w-3 h-3" />
                   Need custom? Contact us
@@ -450,7 +450,7 @@ export function WaapClient() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-semibold text-sm"
+            className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white rounded-xl font-semibold text-sm"
           >
             Schedule Free Consultation
             <Rocket className="w-4 h-4" />
