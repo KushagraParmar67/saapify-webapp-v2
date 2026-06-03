@@ -100,14 +100,14 @@ const SERVICES = [
 ];
 
 const ServicesSection = memo(() => (
-  <section className="py-28 px-6 bg-[#030810]">
+  <section className="py-14 px-6 bg-[#030810]">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={stagger}
-        className="mb-16"
+        className="mb-10"
       >
         <motion.div variants={fadeUp} className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-[#6E8CFB]" />
@@ -191,7 +191,7 @@ const WHY_ITEMS = [
 ];
 
 const WhySection = memo(() => (
-  <section className="py-28 px-6 bg-[#0a192f]">
+  <section className="py-14 px-6 bg-[#0a192f]">
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -231,7 +231,7 @@ const WhySection = memo(() => (
           whileInView="show"
           viewport={{ once: true }}
           variants={stagger}
-          className="grid grid-cols-2 gap-4"
+          className="grid grid-cols-2 gap-3 sm:gap-4"
         >
           {WHY_ITEMS.map(({ icon: Icon, title, desc }) => (
             <motion.div
@@ -264,7 +264,7 @@ const AI_STATS = [
 ];
 
 const AIBanner = memo(() => (
-  <section className="relative py-28 px-6 bg-[#010007] overflow-hidden">
+  <section className="relative py-14 px-6 bg-[#010007] overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-[#636CCB]/[0.04] via-transparent to-purple-500/[0.04] pointer-events-none" />
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#636CCB]/[0.04] rounded-full blur-[130px] pointer-events-none" />
 
@@ -355,14 +355,14 @@ const STEPS = [
 ];
 
 const ProcessSection = memo(() => (
-  <section className="py-28 px-6 bg-[#030810]">
+  <section className="py-14 px-6 bg-[#030810]">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         variants={stagger}
-        className="text-center mb-20"
+        className="text-center mb-12"
       >
         <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-4">
           <Workflow className="w-4 h-4 text-[#6E8CFB]" />
@@ -382,8 +382,8 @@ const ProcessSection = memo(() => (
         variants={stagger}
         className="relative grid md:grid-cols-3 gap-6"
       >
-        {/* Connecting line */}
-        <div className="hidden md:block absolute top-10 left-[22%] right-[22%] h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+        {/* Connecting line — top-[72px] = py-8 (32px) + half of w-20 circle (40px) */}
+        <div className="hidden md:block absolute top-[72px] left-[22%] right-[22%] h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
 
         {STEPS.map(({ icon: Icon, title, desc }, i) => (
           <motion.div
@@ -440,14 +440,14 @@ const TESTIMONIALS = [
 ];
 
 const TestimonialsSection = memo(() => (
-  <section className="py-28 px-6 bg-[#0a192f]">
+  <section className="py-14 px-6 bg-[#0a192f]">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         variants={stagger}
-        className="text-center mb-16"
+        className="text-center mb-10"
       >
         <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-4">
           <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -506,7 +506,7 @@ TestimonialsSection.displayName = "TestimonialsSection";
 // ─── 7. CTA ───────────────────────────────────────────────────────────────────
 
 const CTASection = memo(() => (
-  <section className="relative py-36 px-6 bg-[#030810] overflow-hidden">
+  <section className="relative py-20 px-6 bg-[#030810] overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.025] to-transparent pointer-events-none" />
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#636CCB]/[0.05] rounded-full blur-[120px] pointer-events-none" />
 

@@ -237,9 +237,9 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     ellipse at top,
-    rgba(0, 132, 255, 0.8) 0%,
-    rgba(0, 70, 180, 0.5) 18%,
-    rgba(0, 20, 60, 0.12) 40%,
+    rgba(110, 140, 251, 0.8) 0%,
+    rgba(99, 108, 203, 0.5) 18%,
+    rgba(60, 70, 123, 0.12) 40%,
     transparent 60%
   );
   z-index: 2;
@@ -252,8 +252,8 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     ellipse at 50% 12%,
-    rgba(0, 140, 220, 0.3) 0%,
-    rgba(0, 100, 200, 0.1) 35%,
+    rgba(110, 140, 251, 0.3) 0%,
+    rgba(99, 108, 203, 0.1) 35%,
     transparent 65%
   );
   filter: blur(18px);
@@ -304,7 +304,7 @@ body {
   text-align: center;
   z-index: 5;
   animation: animTitle 6s ease var(--animation-iteration);
-  text-shadow: 0 0 40px rgba(0, 140, 220, 0.3);
+  text-shadow: 0 0 40px rgba(110, 140, 251, 0.3);
   width: 100%;
 }
 
@@ -323,6 +323,19 @@ body {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+}
+
+@media (max-width: 640px) {
+  #subtitle {
+    white-space: normal;
+    flex-wrap: wrap;
+    width: 88vw;
+    font-size: clamp(0.55rem, 2.6vw, 0.7rem);
+    letter-spacing: 0.18em;
+    gap: 0.2rem 0.4rem;
+    top: calc(45% + clamp(2.8rem, 10vw, 4rem));
+    line-height: 1.8;
+  }
 }
 
 .subtitle-part-1,

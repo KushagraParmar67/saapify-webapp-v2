@@ -80,7 +80,7 @@ const SERVICES_ITEMS = [
   { icon: <CodeIcon />, title: "Custom Software Development", desc: "Bespoke platforms engineered to scale.", href: "/services" },
   { icon: <AiIcon />, title: "AI Solutions & Automation", desc: "Agents & pipelines that do the work.", href: "/ai" },
   { icon: <GlobeIcon />, title: "WaaP — Website as a Product", desc: "Your site, run as a living product.", href: "/waap" },
-  { icon: <BuildingIcon />, title: "CaaP — Company as a Product", desc: "Operations productized end to end.", href: "/caap" },
+  { icon: <BuildingIcon />, title: "CaaP — Customization as a Product", desc: "Operations productized end to end.", href: "/caap" },
 ];
 
 const NAV_MAIN = [
@@ -444,7 +444,7 @@ export function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className="group relative z-[1] inline-flex items-center gap-[7px] px-[16px] py-[9px] rounded-full text-[14px] font-semibold tracking-[-0.005em] transition-colors duration-250"
+                  className="group relative z-[1] inline-flex items-center gap-[7px] px-[16px] py-[9px] rounded-full text-[14px] font-semibold tracking-[-0.005em] transition-colors duration-250 whitespace-nowrap"
                   style={{ color: pathname === href ? "#fff" : "#8b97ad" }}
                   onMouseEnter={(e) => moveIndicator(e.currentTarget)}
                 >

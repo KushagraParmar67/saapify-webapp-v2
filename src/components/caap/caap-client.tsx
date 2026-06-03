@@ -157,7 +157,7 @@ const CASE_STUDIES = [
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
 const HeroSection = memo(() => (
-  <section className="relative pt-32 pb-20 px-4 sm:px-6 overflow-hidden">
+  <section className="relative pt-20 pb-12 px-4 sm:px-6 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.04] via-transparent to-transparent pointer-events-none" />
     <div className="absolute left-1/2 top-24 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/[0.06] rounded-full blur-[100px] pointer-events-none" />
 
@@ -205,11 +205,11 @@ const HeroSection = memo(() => (
 HeroSection.displayName = "HeroSection";
 
 const ServicesSection = memo(() => (
-  <section className="py-24 px-4 sm:px-6 bg-[#030810]">
+  <section className="py-12 px-4 sm:px-6 bg-[#030810]">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="text-center mb-14"
+        className="text-center mb-8"
       >
         <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-700 text-gray-400 text-xs tracking-wider uppercase mb-4">
           <Puzzle className="w-3 h-3" />
@@ -251,13 +251,13 @@ const ServicesSection = memo(() => (
 ServicesSection.displayName = "ServicesSection";
 
 const HowItWorksSection = memo(() => (
-  <section className="py-28 px-4 sm:px-6 bg-[#0a192f] overflow-hidden">
+  <section className="py-14 px-4 sm:px-6 bg-[#0a192f] overflow-hidden">
     <div className="max-w-6xl mx-auto">
 
       {/* Header */}
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="text-center mb-20"
+        className="text-center mb-10"
       >
         <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-700 text-gray-400 text-xs tracking-wider uppercase mb-4">
           <Zap className="w-3 h-3" />
@@ -412,11 +412,11 @@ const HowItWorksSection = memo(() => (
 HowItWorksSection.displayName = "HowItWorksSection";
 
 const CaseStudiesSection = memo(() => (
-  <section id="case-studies" className="py-24 px-4 sm:px-6 bg-[#030810]">
+  <section id="case-studies" className="py-12 px-4 sm:px-6 bg-[#030810]">
     <div className="max-w-6xl mx-auto">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-        className="text-center mb-14"
+        className="text-center mb-8"
       >
         <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-700 text-gray-400 text-xs tracking-wider uppercase mb-4">
           <CheckCircle2 className="w-3 h-3" />
@@ -503,7 +503,7 @@ const CaseStudiesSection = memo(() => (
 CaseStudiesSection.displayName = "CaseStudiesSection";
 
 const CTASection = memo(() => (
-  <section className="py-24 px-4 sm:px-6 bg-[#0a192f]">
+  <section className="py-12 px-4 sm:px-6 bg-[#0a192f]">
     <div className="max-w-3xl mx-auto text-center">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}

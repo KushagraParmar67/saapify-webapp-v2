@@ -311,7 +311,7 @@ export function WaapClient() {
   return (
     <div className="min-h-screen bg-[#0a192f]">
       {/* Hero */}
-      <section className="pt-28 pb-10 px-4 sm:px-6">
+      <section className="pt-20 pb-8 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -358,7 +358,7 @@ export function WaapClient() {
       </section>
 
       {/* Tabs + content */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-10">
         {/* Tab bar */}
         <div className="flex w-full bg-gray-800/30 rounded-2xl p-1 backdrop-blur-sm gap-1">
           {tabs.map((tab, idx) => {
@@ -433,7 +433,7 @@ export function WaapClient() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

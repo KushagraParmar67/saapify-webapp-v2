@@ -70,11 +70,11 @@ export function ContactClient() {
 
   return (
     <div className="min-h-screen bg-[#0a192f]">
-      <section className="pt-28 pb-20 px-4 sm:px-6">
+      <section className="pt-20 pb-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial="hidden" animate="show" variants={stagger}
-            className="text-center mb-14"
+            className="text-center mb-8"
           >
             <motion.p variants={fadeUp} className="text-[#6E8CFB] text-xs tracking-widest uppercase mb-3">Get in touch</motion.p>
             <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">

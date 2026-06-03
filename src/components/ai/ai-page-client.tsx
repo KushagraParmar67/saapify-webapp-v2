@@ -164,7 +164,7 @@ const AIHero = memo(() => {
     offset: ["start start", "end start"],
   });
   const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.4], [0, 80]);
+  const y = useTransform(scrollYProgress, [0, 0.4], [0, -60]);
 
   const stats = useMemo(
     () => [
@@ -182,10 +182,10 @@ const AIHero = memo(() => {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-[#010007]/90 via-transparent to-[#010007]/90 pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#636CCB]/[0.04] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#50589C]/[0.06] rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div style={{ opacity, y }} className="relative z-10 min-h-screen flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-1 mb-0">
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             {/* Left */}
             <div className="lg:col-span-7">
@@ -208,7 +208,7 @@ const AIHero = memo(() => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tight">
+                <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tight">
                   <span className="block text-white">AI is</span>
                   <span className="block bg-gradient-to-r from-[#6E8CFB] via-[#636CCB] to-[#50589C] bg-clip-text text-transparent">
                     Already
@@ -221,7 +221,7 @@ const AIHero = memo(() => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="text-xl text-gray-500 mt-8 max-w-lg leading-relaxed"
+                className="text-base sm:text-xl text-gray-500 mt-6 sm:mt-8 max-w-lg leading-relaxed"
               >
                 While others are still thinking,{" "}
                 <span className="text-gray-300">SaaPify clients</span>{" "}
@@ -255,7 +255,7 @@ const AIHero = memo(() => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 }}
-                className="flex gap-12 mt-16 pt-8 border-t border-gray-800/50"
+                className="flex flex-wrap gap-8 sm:gap-12 mt-12 sm:mt-16 pt-8 border-t border-gray-800/50"
               >
                 {stats.map((stat) => (
                   <div key={stat.label}>
@@ -298,9 +298,9 @@ const AIHero = memo(() => {
                   <motion.div
                     animate={{
                       boxShadow: [
-                        "0 0 40px rgba(34, 211, 238, 0.3)",
-                        "0 0 80px rgba(34, 211, 238, 0.6)",
-                        "0 0 40px rgba(34, 211, 238, 0.3)",
+                        "0 0 40px rgba(110, 140, 251, 0.3)",
+                        "0 0 80px rgba(110, 140, 251, 0.6)",
+                        "0 0 40px rgba(110, 140, 251, 0.3)",
                       ],
                     }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -319,7 +319,7 @@ const AIHero = memo(() => {
                   >
                     <div
                       className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#6E8CFB]"
-                      style={{ boxShadow: "0 0 15px rgba(34, 211, 238, 0.8)" }}
+                      style={{ boxShadow: "0 0 15px rgba(110, 140, 251, 0.8)" }}
                     />
                   </motion.div>
                 ))}
@@ -329,21 +329,7 @@ const AIHero = memo(() => {
         </div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-12"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex items-center gap-3 text-gray-600"
-        >
-          <div className="w-px h-6 bg-gradient-to-b from-transparent via-gray-600 to-transparent" />
-          <span className="text-xs tracking-[0.2em] uppercase">Explore capabilities</span>
-        </motion.div>
-      </motion.div>
+      
     </section>
   );
 });
@@ -397,7 +383,7 @@ const AIPower = memo(() => {
   );
 
   return (
-    <section className="relative py-32 px-6 bg-[#010007]">
+    <section className="relative py-1 px-6 bg-[#010007]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -417,7 +403,7 @@ const AIPower = memo(() => {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] max-w-4xl">
+          <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] max-w-4xl">
             This is what{" "}
             <span className="text-gray-500 line-through decoration-gray-700">possible</span>
             <br />
@@ -457,31 +443,45 @@ const AIPower = memo(() => {
           viewport={{ once: true }}
           className="max-w-3xl"
         >
-          <div className="text-sm text-gray-500 tracking-widest mb-6 uppercase">
-            Manual vs AI-Powered
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[11px] font-semibold tracking-[0.22em] text-gray-500 uppercase">Manual vs AI-Powered</span>
+            <div className="flex-1 h-px bg-gray-800" />
           </div>
-          <div className="space-y-1">
-            <div className="grid grid-cols-4 gap-4 pb-3 border-b border-gray-800">
-              <div className="text-gray-500 text-xs tracking-wider">TASK</div>
-              <div className="text-gray-500 text-xs tracking-wider text-center">MANUAL</div>
-              <div className="text-[#6E8CFB] text-xs tracking-wider text-center">WITH AI</div>
-              <div className="text-gray-500 text-xs tracking-wider text-right">FASTER BY</div>
+          <div className="overflow-x-auto rounded-2xl border border-gray-800/70" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%)" }}>
+            <div className="min-w-[500px]">
+              {/* Header */}
+              <div className="grid grid-cols-4 gap-4 px-5 py-3 border-b border-gray-800/80" style={{ background: "rgba(255,255,255,0.03)" }}>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Task</div>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase text-center">Manual</div>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-[#6E8CFB] uppercase text-center">With AI</div>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase text-right">Faster By</div>
+              </div>
+              {/* Rows */}
+              {comparisons.map((row, i) => (
+                <motion.div
+                  key={row.task}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="grid grid-cols-4 gap-4 px-5 py-4 items-center border-b border-gray-800/30 last:border-0 hover:bg-white/[0.025] transition-colors"
+                  style={{ background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
+                >
+                  <div className="text-white text-sm font-medium">{row.task}</div>
+                  <div className="text-gray-600 text-sm text-center line-through decoration-gray-700">{row.manual}</div>
+                  <div className="flex justify-center">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-[#6E8CFB]" style={{ background: "rgba(110,140,251,0.12)", border: "1px solid rgba(110,140,251,0.2)" }}>
+                      {row.ai}
+                    </span>
+                  </div>
+                  <div className="flex justify-end">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
+                      {row.imp}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            {comparisons.map((row, i) => (
-              <motion.div
-                key={row.task}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="grid grid-cols-4 gap-4 py-4 border-b border-gray-800/30 hover:bg-white/[0.02] transition-colors"
-              >
-                <div className="text-white text-sm">{row.task}</div>
-                <div className="text-gray-500 text-sm text-center">{row.manual}</div>
-                <div className="text-[#6E8CFB] text-sm text-center font-medium">{row.ai}</div>
-                <div className="text-emerald-400 text-sm text-right font-medium">{row.imp}</div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </div>
@@ -552,8 +552,39 @@ const AIApproach = memo(() => {
 
   return (
     <>
-      {/* Sticky scroll container — 500 vh gives ~100 vh per step */}
-      <div ref={containerRef} style={{ height: "500vh" }} className="relative">
+      {/* ── Mobile layout — simple vertical cards, no sticky scroll ── */}
+      <div className="md:hidden px-5 py-16" style={{ background: "radial-gradient(110% 70% at 90% -5%, rgba(110,140,251,0.12), transparent 55%), #020110" }}>
+        <div className="max-w-lg mx-auto">
+          <p className="uppercase mb-3 text-[#636CCB]" style={{ fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: "0.76rem", letterSpacing: "0.2em" }}>
+            Our engagement
+          </p>
+          <h2 className="text-3xl font-semibold text-white leading-tight mb-10">
+            How we bring{" "}
+            <em style={{ fontStyle: "normal", background: "linear-gradient(100deg, #636CCB, #6E8CFB)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>AI</em>{" "}
+            into your operations
+          </h2>
+          <div className="space-y-4">
+            {steps.map((step) => (
+              <article key={step.num} className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(150deg, #50589C 0%, #3C467B 100%)", padding: "24px", boxShadow: "0 16px 40px -20px rgba(60,70,123,0.55)" }}>
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 16 }}>
+                  <span style={{ fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: "2rem", fontWeight: 600, color: "#fff", lineHeight: 1 }}>{step.num}</span>
+                  <span style={{ fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.55)" }}>STEP {step.num} / 04</span>
+                </div>
+                <h3 style={{ fontSize: "1.2rem", fontWeight: 600, color: "#fff", marginBottom: 10 }}>{step.title}</h3>
+                <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", lineHeight: 1.55, marginBottom: 16 }}>{step.desc}</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {step.items.map((tag) => (
+                    <span key={tag} style={{ fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: "0.72rem", color: "rgba(255,255,255,0.9)", padding: "6px 12px", border: "1px solid rgba(255,255,255,0.22)", borderRadius: 100, background: "rgba(255,255,255,0.08)" }}>{tag}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Desktop: sticky scroll container — 500 vh gives ~100 vh per step ── */}
+      <div ref={containerRef} style={{ height: "500vh" }} className="relative hidden md:block">
         <div
           className="sticky top-0 h-screen flex items-center overflow-hidden"
           style={{
@@ -934,37 +965,50 @@ const AIApproach = memo(() => {
       </div>
 
       {/* Cost table — follows after sticky section */}
-      <section className="relative py-32 px-6 bg-[#020110]">
+      <section className="relative py-16 px-6 bg-[#020110]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-2 mb-8">
-              <TrendingUp className="w-5 h-5 text-emerald-400" />
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
+                <TrendingUp className="w-4 h-4 text-emerald-400" />
+              </div>
               <h3 className="text-xl font-bold text-white">Cost Impact of AI</h3>
+              <div className="flex-1 h-px bg-gray-800" />
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full max-w-3xl">
+            <div className="overflow-x-auto rounded-2xl border border-gray-800/70" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%)" }}>
+              <table className="w-full min-w-[500px]">
                 <thead>
-                  <tr className="border-b border-gray-800 text-left">
-                    <th className="pb-3 text-gray-500 text-xs tracking-wider font-medium">SERVICE</th>
-                    <th className="pb-3 text-gray-500 text-xs tracking-wider font-medium">BEFORE AI</th>
-                    <th className="pb-3 text-emerald-400 text-xs tracking-wider font-medium">WITH AI</th>
-                    <th className="pb-3 text-gray-500 text-xs tracking-wider font-medium text-right">
-                      SAVINGS
-                    </th>
+                  <tr className="border-b border-gray-800/80" style={{ background: "rgba(255,255,255,0.03)" }}>
+                    <th className="px-5 py-3 text-left text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Service</th>
+                    <th className="px-5 py-3 text-center text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Before AI</th>
+                    <th className="px-5 py-3 text-center text-[11px] font-semibold tracking-[0.18em] text-emerald-400 uppercase">With AI</th>
+                    <th className="px-5 py-3 text-right text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Savings</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {costData.map((row) => (
-                    <tr key={row.service} className="border-b border-gray-800/20">
-                      <td className="py-4 text-white text-sm">{row.service}</td>
-                      <td className="py-4 text-gray-600 text-sm line-through">{row.before}</td>
-                      <td className="py-4 text-emerald-400 text-sm">{row.after}</td>
-                      <td className="py-4 text-right">
-                        <span className="text-emerald-400 text-sm font-bold">{row.save}</span>
+                  {costData.map((row, i) => (
+                    <tr
+                      key={row.service}
+                      className="border-b border-gray-800/30 last:border-0 hover:bg-white/[0.025] transition-colors"
+                      style={{ background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
+                    >
+                      <td className="px-5 py-4 text-white text-sm font-medium">{row.service}</td>
+                      <td className="px-5 py-4 text-center">
+                        <span className="text-gray-600 text-sm line-through decoration-gray-700">{row.before}</span>
+                      </td>
+                      <td className="px-5 py-4 text-center">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-emerald-400" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
+                          {row.after}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 text-right">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400" style={{ background: "rgba(52,211,153,0.12)", border: "1px solid rgba(52,211,153,0.25)" }}>
+                          ↓ {row.save}
+                        </span>
                       </td>
                     </tr>
                   ))}
@@ -1249,7 +1293,7 @@ const AIServices = memo(() => {
   );
 
   return (
-    <section className="relative py-32 px-6 bg-[#010007]">
+    <section className="relative py-16 px-6 bg-[#010007]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -1265,7 +1309,7 @@ const AIServices = memo(() => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-16 max-w-3xl"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-10 max-w-3xl"
         >
           AI services built for{" "}
           <span className="text-[#6E8CFB]">real business</span> outcomes.
@@ -1306,12 +1350,12 @@ const AIServices = memo(() => {
             );
           })}
         </div>
-
-        <motion.div
+<br />
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl border border-gray-800"
+          className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl border border-gray-800"
           style={{
             background:
               "linear-gradient(135deg, rgba(110,140,251,0.03) 0%, rgba(99,108,203,0.03) 100%)",
@@ -1334,10 +1378,10 @@ const AIServices = memo(() => {
             Schedule Call
             <ArrowUpRight className="w-5 h-5" />
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </div>
 
-      <ScheduleCallModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      {/* <ScheduleCallModal isOpen={modalOpen} onClose={() => setModalOpen(false)} /> */}
     </section>
   );
 });
