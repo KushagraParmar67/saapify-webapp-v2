@@ -156,48 +156,107 @@ const CASE_STUDIES = [
 
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
-const HeroSection = memo(() => (
-  <section className="relative pt-20 pb-12 px-4 sm:px-6 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.04] via-transparent to-transparent pointer-events-none" />
-    <div className="absolute left-1/2 top-24 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/[0.06] rounded-full blur-[100px] pointer-events-none" />
+const HERO_STATS = [
+  { value: "50+", label: "Projects Delivered" },
+  { value: "Fixed", label: "Price, Always" },
+  { value: "4–6 wk", label: "Avg. Turnaround" },
+  { value: "100%", label: "Ownership Transferred" },
+];
 
-    <div className="relative max-w-4xl mx-auto text-center">
-      <motion.div
-        initial="hidden" animate="show" variants={stagger}
-      >
-        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-6">
+const HERO_PILLS = [
+  { icon: Puzzle, label: "App Integrations" },
+  { icon: CreditCard, label: "Checkout Flows" },
+  { icon: RefreshCw, label: "Subscriptions" },
+  { icon: Bot, label: "AI Automation" },
+  { icon: Boxes, label: "Inventory Sync" },
+  { icon: LayoutDashboard, label: "Admin Dashboards" },
+];
+
+const HeroSection = memo(() => (
+  <section className="relative pt-24 pb-16 px-4 sm:px-6 overflow-hidden" style={{ background: "#070b15" }}>
+    {/* Glow blobs */}
+    <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[400px] bg-[#636CCB]/[0.07] rounded-full blur-[120px] pointer-events-none" />
+    <div className="absolute right-0 top-1/2 w-[300px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[80px] pointer-events-none" />
+    <div className="absolute left-0 bottom-0 w-[250px] h-[250px] bg-blue-500/[0.04] rounded-full blur-[80px] pointer-events-none" />
+
+    <div className="relative max-w-5xl mx-auto">
+      <motion.div initial="hidden" animate="show" variants={stagger} className="text-center">
+
+        {/* Badge */}
+        <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#636CCB]/30 bg-[#636CCB]/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-7">
           <ShoppingBag className="w-3 h-3" />
-          SaaPify Customization
+          SaaPify · Customization as a Product
         </motion.div>
 
-        <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
-          Customization{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            as a Product
+        {/* Headline */}
+        <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-[3.75rem] font-bold text-white leading-[1.1] tracking-tight">
+          Your SaaPify Store,{" "}
+          <br className="hidden sm:block" />
+          <span
+            className="bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #6E8CFB 0%, #4fc3f7 60%, #38bdf8 100%)" }}
+          >
+            Built Exactly How You Need It
           </span>
-          <span className="text-gray-500 text-2xl sm:text-3xl font-medium ml-3">(CaaP)</span>
         </motion.h1>
 
+        {/* Sub-copy */}
         <motion.p variants={fadeUp} className="mt-5 text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Tailored SaaPify customizations designed to improve store performance, customer experience, and operational efficiency.
+          We build bespoke SaaPify features — checkout flows, integrations, subscriptions, and automation — on a fixed scope, fixed price model. No retainers, no surprises.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+        {/* CTAs */}
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center mt-9">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5"
+            style={{ background: "linear-gradient(135deg, #636CCB 0%, #4a90d9 100%)", boxShadow: "0 0 24px rgba(99,108,203,0.35)" }}
           >
             Get Your Custom Solution
             <ArrowUpRight className="w-4 h-4" />
           </Link>
           <Link
             href="#case-studies"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-700 text-gray-300 font-semibold hover:border-gray-500 hover:text-white transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-700/80 text-gray-300 font-semibold hover:border-gray-500 hover:text-white transition-all"
           >
             View Case Studies
             <ChevronRight className="w-4 h-4" />
           </Link>
         </motion.div>
+
+        {/* Floating capability pills */}
+        <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-2">
+          {HERO_PILLS.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-700/70 bg-gray-800/30 text-gray-400 text-xs hover:border-[#636CCB]/50 hover:text-gray-300 transition-colors"
+            >
+              <Icon className="w-3 h-3 text-[#6E8CFB]" />
+              {label}
+            </div>
+          ))}
+        </motion.div>
+
+      </motion.div>
+
+      {/* Stats row */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.55 }}
+        className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-gray-800/60"
+        style={{ background: "rgba(255,255,255,0.04)" }}
+      >
+        {HERO_STATS.map(({ value, label }) => (
+          <div
+            key={label}
+            className="flex flex-col items-center justify-center py-5 px-4 text-center"
+            style={{ background: "#070b15" }}
+          >
+            <span className="text-2xl sm:text-3xl font-bold text-white tracking-tight">{value}</span>
+            <span className="mt-1 text-xs text-gray-500 leading-snug">{label}</span>
+          </div>
+        ))}
       </motion.div>
     </div>
   </section>
@@ -205,7 +264,7 @@ const HeroSection = memo(() => (
 HeroSection.displayName = "HeroSection";
 
 const ServicesSection = memo(() => (
-  <section className="py-12 px-4 sm:px-6 bg-[#030810]">
+  <section className="py-12 px-4 sm:px-6" style={{ background: "#070b15" }}>
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
@@ -251,7 +310,7 @@ const ServicesSection = memo(() => (
 ServicesSection.displayName = "ServicesSection";
 
 const HowItWorksSection = memo(() => (
-  <section className="py-14 px-4 sm:px-6 bg-[#0a192f] overflow-hidden">
+  <section className="py-14 px-4 sm:px-6 overflow-hidden" style={{ background: "#070b15" }}>
     <div className="max-w-6xl mx-auto">
 
       {/* Header */}
@@ -307,7 +366,7 @@ const HowItWorksSection = memo(() => (
                 className="w-14 h-14 rounded-full p-[2px]"
                 style={{ background: "linear-gradient(135deg, #636CCB, #50589C)" }}
               >
-                <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
+                <div className="w-full h-full rounded-full bg-[#070b15] flex items-center justify-center">
                   <span className="text-[#6E8CFB] font-bold text-sm tracking-wide">{step.num}</span>
                 </div>
               </div>
@@ -374,7 +433,7 @@ const HowItWorksSection = memo(() => (
                 className="w-12 h-12 rounded-full p-[2px] flex-shrink-0"
                 style={{ background: "linear-gradient(135deg, #636CCB, #50589C)" }}
               >
-                <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
+                <div className="w-full h-full rounded-full bg-[#070b15] flex items-center justify-center">
                   <span className="text-[#6E8CFB] font-bold text-xs">{step.num}</span>
                 </div>
               </div>
@@ -412,7 +471,7 @@ const HowItWorksSection = memo(() => (
 HowItWorksSection.displayName = "HowItWorksSection";
 
 const CaseStudiesSection = memo(() => (
-  <section id="case-studies" className="py-12 px-4 sm:px-6 bg-[#030810]">
+  <section id="case-studies" className="py-12 px-4 sm:px-6" style={{ background: "#070b15" }}>
     <div className="max-w-6xl mx-auto">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
@@ -503,7 +562,7 @@ const CaseStudiesSection = memo(() => (
 CaseStudiesSection.displayName = "CaseStudiesSection";
 
 const CTASection = memo(() => (
-  <section className="py-12 px-4 sm:px-6 bg-[#0a192f]">
+  <section className="py-12 px-4 sm:px-6" style={{ background: "#070b15" }}>
     <div className="max-w-3xl mx-auto text-center">
       <motion.div
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
@@ -518,24 +577,10 @@ const CTASection = memo(() => (
             SaaPify Solution?
           </span>
         </motion.h2>
-        <motion.p variants={fadeUp} className="mt-4 text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+        <motion.p variants={fadeUp} className="mt-4 mb-5 text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
           Let&apos;s build something tailored specifically for your business. Fixed scope, fixed price, guaranteed delivery.
         </motion.p>
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all"
-          >
-            Book Consultation
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-700 text-gray-300 font-semibold hover:border-gray-500 hover:text-white transition-all"
-          >
-            Contact Us
-          </Link>
-        </motion.div>
+      
       </motion.div>
     </div>
   </section>
@@ -546,7 +591,7 @@ CTASection.displayName = "CTASection";
 
 export function CaapClient() {
   return (
-    <div className="min-h-screen bg-[#0a192f]">
+    <div className="min-h-screen" style={{ background: "#070b15" }}>
       <HeroSection />
       <InfinityLoopSection />
       <ServicesSection />

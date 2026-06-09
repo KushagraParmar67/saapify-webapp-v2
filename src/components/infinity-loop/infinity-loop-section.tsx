@@ -30,8 +30,7 @@ const InfinityLoopSection = memo(function InfinityLoopSection() {
     <section
       className="relative overflow-hidden"
       style={{
-        background:
-          "radial-gradient(ellipse 80% 60% at 50% 45%, #121b3a 0%, #07091c 55%, #02030a 100%)",
+        background: "#070b15",
         padding: "clamp(40px, 8vh, 96px) 16px",
       }}
     >

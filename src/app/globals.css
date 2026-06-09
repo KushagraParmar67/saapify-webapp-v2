@@ -98,6 +98,17 @@ body {
   }
 }
 
+/* ─── FAQ Marquee ───────────────────────────────────────────────────────────── */
+@keyframes faq-marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+.faq-marquee-track {
+  animation: faq-marquee-scroll 32s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-marquee-track { animation: none; }
+}
+
 @keyframes fadeInText {
   from {
     opacity: 0;

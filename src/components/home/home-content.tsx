@@ -1,12 +1,12 @@
 "use client";
 
-import { memo } from "react";
+import React, { memo, useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Code2, Smartphone, Brain, Cloud, Workflow, LineChart,
   ArrowUpRight, Zap, Target, Clock, Shield, Check, ChevronRight,
-  Search, Rocket, Star,
+  Search, Rocket,
 } from "lucide-react";
 
 // ─── Shared animation variants ────────────────────────────────────────────────
@@ -410,98 +410,215 @@ const ProcessSection = memo(() => (
 ));
 ProcessSection.displayName = "ProcessSection";
 
-// ─── 6. Testimonials ──────────────────────────────────────────────────────────
+// ─── 6. FAQ ───────────────────────────────────────────────────────────────────
 
-const TESTIMONIALS = [
+const FAQS = [
   {
-    quote: "SaaPify delivered our platform in exactly the timeline they promised. Not a week late, not a feature short. That's rare.",
-    name: "Riya Sharma",
-    role: "CTO",
-    company: "NovaPay",
-    initial: "RS",
-    color: "#6E8CFB",
+    topic: "Timelines",
+    q: "How long until we see something real?",
+    a: "Most engagements produce a working, clickable build inside the first 2–3 weeks. You'll never wait a quarter to see progress — we ship in tight, reviewable increments from day one.",
   },
   {
-    quote: "Their AI automation reduced our manual ops overhead by 60%. ROI was positive within the first quarter of deployment.",
-    name: "Omar Al-Farsi",
-    role: "Head of Operations",
-    company: "Falcon Logistics",
-    initial: "OF",
-    color: "#818cf8",
+    topic: "Pricing",
+    q: "What does a typical project cost?",
+    a: "We start with a fixed-price discovery sprint, then move to milestone-based or monthly pricing scoped to your roadmap. You approve every budget before we write a line of production code.",
   },
   {
-    quote: "Finally a team that speaks both business and engineering. They understood what we needed before we finished explaining.",
-    name: "Priya Nair",
-    role: "Founder",
-    company: "Bloomware",
-    initial: "PN",
-    color: "#34d399",
+    topic: "Your stack",
+    q: "Can you work with our existing team and stack?",
+    a: "Yes. We embed alongside your engineers, match your tooling and conventions, and hand back clean, documented code — never a black box you can't maintain.",
+  },
+  {
+    topic: "Scope changes",
+    q: "What happens when requirements change mid-build?",
+    a: "They will, and that's fine. We work in short cycles with re-prioritization built in, so a change of direction costs days of planning — not a rewrite.",
+  },
+  {
+    topic: "Ownership",
+    q: "Who owns the code and the IP?",
+    a: "You do, fully. Every repository, asset, and credential is transferred to you, and ownership is written into the contract from the very first day.",
+  },
+  {
+    topic: "Support",
+    q: "Do you stick around after launch?",
+    a: "We offer ongoing support and SLAs, but never lock you in. Many clients keep us on retainer; others take the wheel with a complete handoff, runbook, and walkthrough.",
   },
 ];
 
-const TestimonialsSection = memo(() => (
-  <section className="py-14 px-6 bg-[#0a192f]">
-    <div className="max-w-7xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger}
-        className="text-center mb-10"
-      >
-        <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-4">
-          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-          <span className="text-gray-500 text-sm tracking-[0.22em] uppercase">Client results</span>
-        </motion.div>
-        <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white">
-          Don&apos;t take our word for it.
-        </motion.h2>
-      </motion.div>
+const CHIPS = [...FAQS, ...FAQS];
 
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger}
-        className="grid md:grid-cols-3 gap-5"
+interface FAQItem {
+  topic: string;
+  q: string;
+  a: string;
+}
+
+interface FAQCardProps {
+  item: FAQItem;
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+const FAQCard = ({ item, index, isOpen, onToggle }: FAQCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isOpen || !cardRef.current) return;
+    const r = cardRef.current.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    cardRef.current.style.transform = `perspective(800px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-4px)`;
+  };
+
+  const handlePointerLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = "";
+  };
+
+  const handleToggle = () => {
+    if (cardRef.current) cardRef.current.style.transform = "";
+    onToggle();
+  };
+
+  return (
+    <motion.div variants={fadeUp}>
+      <div
+        ref={cardRef}
+        className={`group relative border rounded-2xl overflow-hidden transition-[border-color,background,box-shadow] duration-300 ${
+          isOpen
+            ? "border-[#636CCB]/40 bg-[#112240]"
+            : "border-gray-800/60 bg-[#0a192f] hover:border-[#6E8CFB]/25 hover:shadow-[0_26px_60px_-34px_rgba(0,0,0,0.9)]"
+        }`}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        style={{ transformStyle: "preserve-3d", willChange: "transform" }}
       >
-        {TESTIMONIALS.map(({ quote, name, role, company, initial, color }) => (
-          <motion.div
-            key={name}
-            variants={fadeUp}
-            whileHover={{ y: -4 }}
-            className="flex flex-col p-7 rounded-2xl border border-gray-800/60 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+        <button
+          className="w-full bg-transparent border-0 cursor-pointer text-left flex items-center gap-4 p-6"
+          style={{ fontFamily: "inherit" }}
+          aria-expanded={isOpen}
+          onClick={handleToggle}
+        >
+          <span
+            className={`flex-none w-[34px] h-[34px] rounded-[10px] flex items-center justify-center text-[13px] font-bold tabular-nums border transition-all duration-300 ${
+              isOpen
+                ? "bg-gradient-to-br from-[#636CCB] to-[#6E8CFB] text-[#030810] border-transparent shadow-[0_6px_18px_-6px_rgba(110,140,251,0.6)]"
+                : "text-gray-500 border-gray-700 group-hover:bg-gradient-to-br group-hover:from-[#636CCB] group-hover:to-[#6E8CFB] group-hover:text-[#030810] group-hover:border-transparent"
+            }`}
           >
-            <div className="flex gap-1 mb-5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              ))}
-            </div>
-            <p className="text-gray-300 text-sm leading-relaxed flex-1">&ldquo;{quote}&rdquo;</p>
-            <div className="flex items-center gap-3 mt-6 pt-5 border-t border-gray-800/50">
-              <div
-                className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                style={{
-                  background: `linear-gradient(135deg, ${color}50, ${color}20)`,
-                  border: `1px solid ${color}40`,
-                }}
-              >
-                {initial}
-              </div>
-              <div>
-                <div className="text-white text-sm font-medium">{name}</div>
-                <div className="text-gray-500 text-xs">
-                  {role}, {company}
-                </div>
-              </div>
-            </div>
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="flex-1 text-white font-semibold text-[17px] leading-snug tracking-tight">
+            {item.q}
+          </span>
+          <span
+            className={`flex-none w-[11px] h-[11px] border-r-2 border-b-2 transition-all duration-300 ${
+              isOpen
+                ? "rotate-[-135deg] mt-0.5 border-[#6E8CFB]"
+                : "rotate-45 -mt-1 border-gray-500"
+            }`}
+            aria-hidden="true"
+          />
+        </button>
+        <div
+          className="grid transition-all duration-[420ms]"
+          style={{
+            gridTemplateRows: isOpen ? "1fr" : "0fr",
+            transitionTimingFunction: "cubic-bezier(0.3, 0.7, 0.2, 1)",
+          }}
+        >
+          <div className="overflow-hidden">
+            <p className="text-gray-400 text-[15px] leading-relaxed px-6 pb-6 pl-[74px]">
+              {item.a}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const FAQSection = memo(() => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [marqueeHovered, setMarqueeHovered] = useState(false);
+
+  return (
+    <section className="py-24 px-6 bg-[#0a192f]">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={stagger}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-[#636CCB] to-[#6E8CFB] shadow-[0_0_0_4px_rgba(110,140,251,0.14)]" />
+            <span className="text-[#6E8CFB] text-xs font-semibold tracking-[0.2em] uppercase">Before you commit</span>
           </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-));
-TestimonialsSection.displayName = "TestimonialsSection";
+          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white leading-[1.05]">
+            Everything you&apos;re{" "}
+            <span className="bg-gradient-to-r from-[#6E8CFB] via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              wondering about.
+            </span>
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-gray-500 mt-5 text-base leading-relaxed max-w-md mx-auto">
+            No fine print, no runaround. Here&apos;s exactly how we work — and what you can expect from day one.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          className="relative mb-10 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent)",
+            WebkitMaskImage: "linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent)",
+          }}
+          onMouseEnter={() => setMarqueeHovered(true)}
+          onMouseLeave={() => setMarqueeHovered(false)}
+        >
+          <div
+            className="faq-marquee-track flex gap-3.5 w-max"
+            style={{ animationPlayState: marqueeHovered ? "paused" : "running" }}
+          >
+            {CHIPS.map((f, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2 whitespace-nowrap px-4 py-2.5 border border-gray-800 rounded-full bg-white/[0.02] text-gray-400 text-sm font-medium transition-all duration-300 hover:text-white hover:border-gray-600 hover:bg-[rgba(110,140,251,0.07)] cursor-default"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6E8CFB] opacity-70" />
+                {f.topic}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={stagger}
+          className="grid md:grid-cols-2 gap-4 max-w-[1080px] mx-auto items-start"
+        >
+          {FAQS.map((faq, i) => (
+            <FAQCard
+              key={faq.q}
+              item={faq}
+              index={i}
+              isOpen={openIndex === i}
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+});
+FAQSection.displayName = "FAQSection";
 
 // ─── 7. CTA ───────────────────────────────────────────────────────────────────
 
@@ -537,7 +654,7 @@ const CTASection = memo(() => (
           Tell us what you&apos;re building. We&apos;ll tell you exactly how we&apos;d deliver it, what it will cost, and when you&apos;ll have it.
         </motion.p>
 
-        <motion.div
+        {/* <motion.div
           variants={fadeUp}
           className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
         >
@@ -554,7 +671,7 @@ const CTASection = memo(() => (
           >
             Explore Services
           </Link>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   </section>
@@ -571,7 +688,7 @@ export function HomeContent() {
       <WhySection />
       <AIBanner />
       <ProcessSection />
-      <TestimonialsSection />
+      <FAQSection />
       <CTASection />
     </>
   );

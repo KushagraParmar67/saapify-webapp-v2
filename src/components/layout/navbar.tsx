@@ -309,15 +309,36 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const navLinksRef = useRef<HTMLUListElement>(null);
   const servicesBtnRef = useRef<HTMLButtonElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const current = window.scrollY;
+      const delta = current - lastScrollY.current;
+
+      if (current < 80) {
+        // Always show near top of page
+        setNavVisible(true);
+      } else if (delta > 6) {
+        // Scrolling down — hide
+        setNavVisible(false);
+        setServicesHovered(false);
+      } else if (delta < -6) {
+        // Scrolling up — reveal
+        setNavVisible(true);
+      }
+
+      setScrolled(current > 24);
+      lastScrollY.current = current;
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -343,7 +364,12 @@ export function Navbar() {
     <>
       <nav
         className="fixed top-0 left-0 right-0 z-[100] flex justify-center"
-        style={{ padding: "18px 22px", pointerEvents: "none" }}
+        style={{
+          padding: "18px 22px",
+          pointerEvents: "none",
+          transform: navVisible ? "translateY(0)" : "translateY(-120%)",
+          transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
       >
         <div
           className="relative w-full flex items-center gap-[18px] transition-all duration-500"

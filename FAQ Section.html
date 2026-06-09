@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ Section — 2 Directions</title>
+<!-- Demo font. Drop this <link> to inherit your site's own font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     PAGE CHROME (presentation only — not part of the deliverable)
+     ============================================================ */
+  :root{
+    --ink-900:#060f1f;
+    --ink-800:#0a1830;
+    --ink-700:#0e2039;
+    --ink-600:#13284a;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.16);
+    --text:#eef3f9;
+    --muted:#92a3bd;
+    --muted-2:#6f819d;
+    --aqua:#3ee0c6;
+    --peri:#7b8cff;
+    --grad:linear-gradient(135deg,#3ee0c6,#7b8cff);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink-900);
+    color:var(--text);
+    font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .demo-head{
+    max-width:1240px;margin:0 auto;padding:56px 40px 8px;
+  }
+  .demo-kicker{
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted-2);font-weight:600;
+  }
+  .demo-title{
+    font-size:30px;font-weight:800;letter-spacing:-.02em;margin:10px 0 0;
+  }
+  .demo-sub{color:var(--muted);font-size:15px;line-height:1.6;max-width:680px;margin:14px 0 0;}
+  .opt-label{
+    max-width:1240px;margin:64px auto 0;padding:0 40px;
+    display:flex;align-items:baseline;gap:14px;
+  }
+  .opt-tag{
+    font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-900);background:var(--aqua);padding:5px 11px;border-radius:6px;
+  }
+  .opt-name{font-size:17px;font-weight:700;}
+  .opt-desc{color:var(--muted-2);font-size:14px;margin-left:auto;}
+  .frame{
+    max-width:1240px;margin:18px auto 0;
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.8);
+  }
+  .demo-foot{max-width:1240px;margin:48px auto 90px;padding:0 40px;color:var(--muted-2);font-size:14px;line-height:1.7;}
+  .demo-foot b{color:var(--muted);font-weight:600;}
+  @media(max-width:760px){
+    .demo-head,.opt-label,.demo-foot{padding-left:22px;padding-right:22px;}
+    .opt-desc{display:none;}
+  }
+
+  /* ============================================================
+     SHARED SECTION SHELL (mirrors your site's section rhythm)
+     ============================================================ */
+  .faq-sec{background:var(--ink-800);padding:104px 40px;}
+  .faq-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .faq-eyebrow .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--grad);
+    box-shadow:0 0 0 4px rgba(62,224,198,.14);
+  }
+  .faq-h2{
+    font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-.025em;
+    line-height:1.04;margin:18px 0 0;color:#fff;text-wrap:balance;
+  }
+  .faq-h2 .accent{
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  /* ---- reveal animation base ---- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;}}
+  .no-js .reveal{opacity:1;transform:none;}
+
+  /* ============================================================
+     OPTION A — EDITORIAL SPLIT ACCORDION
+     ============================================================ */
+  .faqA{display:grid;grid-template-columns:0.82fr 1.18fr;gap:72px;max-width:1160px;margin:0 auto;}
+  .faqA-rail{position:sticky;top:48px;align-self:start;}
+  .faqA-rail p{color:var(--muted);font-size:16px;line-height:1.65;margin:22px 0 0;max-width:380px;}
+  .faqA-mini{
+    margin-top:34px;border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+  }
+  .faqA-mini .lbl{font-size:13px;color:var(--muted-2);}
+  .faqA-mini a{
+    display:inline-flex;align-items:center;gap:8px;margin-top:8px;
+    color:var(--aqua);font-weight:600;font-size:15px;text-decoration:none;
+  }
+  .faqA-mini a .arr{transition:transform .3s;}
+  .faqA-mini a:hover .arr{transform:translateX(4px);}
+
+  .faqA-list{display:flex;flex-direction:column;}
+  .faqA-item{position:relative;border-top:1px solid var(--line);}
+  .faqA-item:last-child{border-bottom:1px solid var(--line);}
+  .faqA-item::before{
+    content:"";position:absolute;left:-22px;top:26px;bottom:26px;width:2px;border-radius:2px;
+    background:var(--grad);transform:scaleY(0);transform-origin:top;transition:transform .35s ease;
+  }
+  .faqA-item:hover::before,.faqA-item.open::before{transform:scaleY(1);}
+  .faqA-q{
+    width:100%;background:none;border:0;cursor:pointer;text-align:left;
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;
+    padding:28px 4px;color:var(--text);font-family:inherit;
+  }
+  .faqA-num{font-size:14px;font-weight:700;color:var(--muted-2);font-variant-numeric:tabular-nums;transition:color .3s;}
+  .faqA-item:hover .faqA-num,.faqA-item.open .faqA-num{color:var(--aqua);}
+  .faqA-qt{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35;transition:color .3s;}
+  .faqA-tog{
+    position:relative;width:30px;height:30px;flex:none;border-radius:50%;
+    border:1px solid var(--line-strong);transition:.35s;
+  }
+  .faqA-tog::before,.faqA-tog::after{
+    content:"";position:absolute;left:50%;top:50%;width:11px;height:2px;border-radius:2px;
+    background:var(--muted);transform:translate(-50%,-50%);transition:.35s;
+  }
+  .faqA-tog::after{transform:translate(-50%,-50%) rotate(90deg);}
+  .faqA-item.open .faqA-tog{border-color:transparent;background:var(--grad);box-shadow:0 6px 20px -6px rgba(62,224,198,.55);}
+  .faqA-item.open .faqA-tog::before,.faqA-item.open .faqA-tog::after{background:var(--ink-900);}
+  .faqA-item.open .faqA-tog::after{transform:translate(-50%,-50%) rotate(0deg);}
+  .faqA-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s cubic-bezier(.3,.7,.2,1);}
+  .faqA-item.open .faqA-a{grid-template-rows:1fr;}
+  .faqA-a-inner{overflow:hidden;}
+  .faqA-a p{margin:0;padding:0 60px 30px 36px;color:var(--muted);font-size:15.5px;line-height:1.7;max-width:560px;}
+
+  @media(max-width:900px){
+    .faqA{grid-template-columns:1fr;gap:40px;}
+    .faqA-rail{position:static;}
+    .faqA-item::before{left:-12px;}
+  }
+
+  /* ============================================================
+     OPTION B — SPOTLIGHT CARDS + AUTO MARQUEE
+     ============================================================ */
+  .faqB-head{text-align:center;max-width:720px;margin:0 auto;}
+  .faqB-head .faq-eyebrow{justify-content:center;}
+  .faqB-head .sub{color:var(--muted);font-size:16px;line-height:1.65;margin:18px auto 0;max-width:540px;}
+
+  .faqB-marquee{
+    position:relative;margin:46px auto 8px;max-width:1240px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  }
+  .faqB-track{display:flex;gap:14px;width:max-content;animation:faqB-scroll 32s linear infinite;}
+  .faqB-marquee:hover .faqB-track{animation-play-state:paused;}
+  @keyframes faqB-scroll{to{transform:translateX(-50%);}}
+  .faqB-chip{
+    display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+    padding:10px 18px;border:1px solid var(--line);border-radius:999px;
+    background:rgba(255,255,255,.02);color:var(--muted);font-size:14px;font-weight:500;
+    transition:.3s;
+  }
+  .faqB-chip .pip{width:6px;height:6px;border-radius:50%;background:var(--aqua);opacity:.7;}
+  .faqB-chip:hover{color:#fff;border-color:var(--line-strong);background:rgba(62,224,198,.07);}
+  @media(prefers-reduced-motion:reduce){.faqB-track{animation:none;}}
+
+  .faqB-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1080px;margin:42px auto 0;align-items:start;}
+  .faqB-card{
+    position:relative;border:1px solid var(--line);border-radius:16px;
+    background:var(--ink-700);overflow:hidden;
+    transition:transform .12s ease-out,border-color .35s,box-shadow .35s,background .35s;
+    transform-style:preserve-3d;will-change:transform;
+  }
+  .faqB-card::after{ /* glow ring */
+    content:"";position:absolute;inset:0;border-radius:16px;padding:1px;
+    background:var(--grad);opacity:0;transition:opacity .35s;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  }
+  .faqB-card:hover{box-shadow:0 26px 60px -34px rgba(0,0,0,.9);}
+  .faqB-card:hover::after,.faqB-card.open::after{opacity:.9;}
+  .faqB-card.open{background:var(--ink-600);}
+  .faqB-q{
+    width:100%;background:none;border:0;cursor:pointer;text-align:left;font-family:inherit;color:var(--text);
+    display:flex;align-items:center;gap:16px;padding:24px 24px;
+  }
+  .faqB-badge{
+    flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    font-size:13px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;
+    border:1px solid var(--line-strong);transition:.35s;
+  }
+  .faqB-card:hover .faqB-badge,.faqB-card.open .faqB-badge{
+    background:var(--grad);color:var(--ink-900);border-color:transparent;box-shadow:0 6px 18px -6px rgba(123,140,255,.6);
+  }
+  .faqB-qt{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.35;flex:1;}
+  .faqB-chev{flex:none;width:11px;height:11px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .35s,border-color .35s;margin-top:-4px;}
+  .faqB-card.open .faqB-chev{transform:rotate(-135deg);margin-top:2px;border-color:var(--aqua);}
+  .faqB-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s cubic-bezier(.3,.7,.2,1);}
+  .faqB-card.open .faqB-a{grid-template-rows:1fr;}
+  .faqB-a-inner{overflow:hidden;}
+  .faqB-a p{margin:0;padding:0 24px 26px 74px;color:var(--muted);font-size:15px;line-height:1.7;}
+
+  @media(max-width:860px){
+    .faqB-grid{grid-template-columns:1fr;}
+    .faqB-a p{padding-left:24px;}
+  }
+  @media(max-width:760px){
+    .faq-sec{padding:72px 22px;}
+  }
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');</script>
+
+  <!-- ===== presentation chrome ===== -->
+  <header class="demo-head">
+    <div class="demo-kicker">Replacement for the testimonials slot</div>
+    <h1 class="demo-title">FAQ section — two directions</h1>
+    <p class="demo-sub">Both are paste-ready plain HTML/CSS/JS, color-matched to your dark-navy site with a new aqua→periwinkle accent. Same copy in both so you compare layout, not words. Hover the cards, scroll to trigger reveals, and let the marquee in Option&nbsp;B run.</p>
+  </header>
+
+  <!-- ===== OPTION A ===== -->
+  <div class="opt-label">
+    <span class="opt-tag">A</span>
+    <span class="opt-name">Editorial Split</span>
+    <span class="opt-desc">Sticky rail · line accordion · restrained &amp; premium</span>
+  </div>
+  <div class="frame">
+    <section class="faq-sec" data-screen-label="Option A — Editorial Split">
+      <div class="faqA">
+        <div class="faqA-rail reveal">
+          <span class="faq-eyebrow"><span class="dot"></span>Common questions</span>
+          <h2 class="faq-h2">Straight answers.<br/><span class="accent">No fine print.</span></h2>
+          <p>The things every team asks before they trust us with their roadmap — answered plainly, before you ever get on a call.</p>
+          <div class="faqA-mini">
+            <div class="lbl">Still wondering about something?</div>
+            <a href="mailto:hello@saapify.com">Ask us directly <span class="arr">→</span></a>
+          </div>
+        </div>
+        <div class="faqA-list" id="faqA-list"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== OPTION B ===== -->
+  <div class="opt-label">
+    <span class="opt-tag">B</span>
+    <span class="opt-name">Spotlight + Marquee</span>
+    <span class="opt-desc">Drifting topic chips · tilt &amp; glow cards · playful</span>
+  </div>
+  <div class="frame">
+    <section class="faq-sec" data-screen-label="Option B — Spotlight + Marquee">
+      <div class="faqB-head reveal">
+        <span class="faq-eyebrow"><span class="dot"></span>Before you commit</span>
+        <h2 class="faq-h2">Everything you're <span class="accent">wondering about.</span></h2>
+        <p class="sub">No fine print, no runaround. Here's exactly how we work — and what you can expect from day one.</p>
+      </div>
+      <div class="faqB-marquee reveal">
+        <div class="faqB-track" id="faqB-track"></div>
+      </div>
+      <div class="faqB-grid" id="faqB-grid"></div>
+    </section>
+  </div>
+
+  <footer class="demo-foot">
+    <b>To use:</b> copy one <code>&lt;section class="faq-sec"&gt;</code> block plus its matching CSS (the shared shell + Option&nbsp;A or B rules) and JS init into your testimonials slot. &nbsp;<b>Font:</b> remove the Google Fonts &lt;link&gt; in the head to inherit your site's own typeface. &nbsp;<b>Accent:</b> change <code>--aqua</code> / <code>--peri</code> / <code>--grad</code> in <code>:root</code> to retune the color in one place.
+  </footer>
+
+<script>
+  /* ---------- FAQ content (shared) ---------- */
+  const FAQS = [
+    { topic:"Timelines",
+      q:"How long until we see something real?",
+      a:"Most engagements produce a working, clickable build inside the first 2–3 weeks. You'll never wait a quarter to see progress — we ship in tight, reviewable increments from day one." },
+    { topic:"Pricing",
+      q:"What does a typical project cost?",
+      a:"We start with a fixed-price discovery sprint, then move to milestone-based or monthly pricing scoped to your roadmap. You approve every budget before we write a line of production code." },
+    { topic:"Your stack",
+      q:"Can you work with our existing team and stack?",
+      a:"Yes. We embed alongside your engineers, match your tooling and conventions, and hand back clean, documented code — never a black box you can't maintain." },
+    { topic:"Scope changes",
+      q:"What happens when requirements change mid-build?",
+      a:"They will, and that's fine. We work in short cycles with re-prioritization built in, so a change of direction costs days of planning — not a rewrite." },
+    { topic:"Ownership",
+      q:"Who owns the code and the IP?",
+      a:"You do, fully. Every repository, asset, and credential is transferred to you, and ownership is written into the contract from the very first day." },
+    { topic:"Support",
+      q:"Do you stick around after launch?",
+      a:"We offer ongoing support and SLAs, but never lock you in. Many clients keep us on retainer; others take the wheel with a complete handoff, runbook, and walkthrough." },
+  ];
+
+  /* ---------- Option A: build line accordion ---------- */
+  const listA = document.getElementById('faqA-list');
+  FAQS.forEach((f,i)=>{
+    const item=document.createElement('div');
+    item.className='faqA-item reveal';
+    item.style.transitionDelay=(i*60)+'ms';
+    item.innerHTML=`
+      <button class="faqA-q" aria-expanded="false">
+        <span class="faqA-num">${String(i+1).padStart(2,'0')}</span>
+        <span class="faqA-qt">${f.q}</span>
+        <span class="faqA-tog" aria-hidden="true"></span>
+      </button>
+      <div class="faqA-a"><div class="faqA-a-inner"><p>${f.a}</p></div></div>`;
+    const btn=item.querySelector('.faqA-q');
+    btn.addEventListener('click',()=>{
+      const open=item.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+    });
+    listA.appendChild(item);
+  });
+
+  /* ---------- Option B: marquee chips ---------- */
+  const track=document.getElementById('faqB-track');
+  const chips=[...FAQS, ...FAQS]; // duplicate for seamless loop
+  chips.forEach(f=>{
+    const c=document.createElement('span');
+    c.className='faqB-chip';
+    c.innerHTML=`<span class="pip"></span>${f.topic}`;
+    track.appendChild(c);
+  });
+
+  /* ---------- Option B: build cards ---------- */
+  const grid=document.getElementById('faqB-grid');
+  FAQS.forEach((f,i)=>{
+    const card=document.createElement('div');
+    card.className='faqB-card reveal';
+    card.style.transitionDelay=(i*70)+'ms';
+    card.innerHTML=`
+      <button class="faqB-q" aria-expanded="false">
+        <span class="faqB-badge">${String(i+1).padStart(2,'0')}</span>
+        <span class="faqB-qt">${f.q}</span>
+        <span class="faqB-chev" aria-hidden="true"></span>
+      </button>
+      <div class="faqB-a"><div class="faqB-a-inner"><p>${f.a}</p></div></div>`;
+    const btn=card.querySelector('.faqB-q');
+    btn.addEventListener('click',()=>{
+      const open=card.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+      if(open) card.style.transform='';
+    });
+    /* pointer tilt (collapsed only) */
+    card.addEventListener('pointermove',e=>{
+      if(card.classList.contains('open')) return;
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-0.5;
+      const py=(e.clientY-r.top)/r.height-0.5;
+      card.style.transform=`perspective(800px) rotateX(${(-py*5).toFixed(2)}deg) rotateY(${(px*6).toFixed(2)}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave',()=>{ if(!card.classList.contains('open')) card.style.transform=''; });
+    grid.appendChild(card);
+  });
+
+  /* ---------- scroll reveals (rect-based; robust everywhere) ---------- */
+  function revealCheck(){
+    const wh=window.innerHeight||document.documentElement.clientHeight;
+    document.querySelectorAll('.reveal:not(.in)').forEach(el=>{
+      const r=el.getBoundingClientRect();
+      if(r.top < wh*0.88 && r.bottom > 0) el.classList.add('in');
+    });
+  }
+  window.addEventListener('scroll',revealCheck,{passive:true});
+  window.addEventListener('resize',revealCheck);
+  revealCheck();
+  requestAnimationFrame(revealCheck);
+  setTimeout(revealCheck,300);
+</script>
+</body>
+</html>
