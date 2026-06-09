@@ -544,7 +544,7 @@ const FAQSection = memo(() => {
   const [marqueeHovered, setMarqueeHovered] = useState(false);
 
   return (
-    <section className="py-24 px-6 bg-[#0a192f]">
+    <section className="py-12 px-6 bg-[#0a192f]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial="hidden"
@@ -636,7 +636,7 @@ const CTASection = memo(() => (
       >
         <motion.div
           variants={fadeUp}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#636CCB]/30 bg-[#636CCB]/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-[#636CCB]/30 bg-[#636CCB]/[0.08] text-[#6E8CFB] text-xs tracking-wider uppercase mb-8"
         >
           <Zap className="w-3 h-3" />
           Ready when you are

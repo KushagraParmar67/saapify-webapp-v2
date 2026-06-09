@@ -434,28 +434,7 @@ export function WaapClient() {
 
       {/* Bottom CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl p-7 sm:p-10 text-center border border-cyan-500/20"
-        >
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-            Not sure which plan fits your needs?
-          </h3>
-          <p className="text-gray-400 text-sm mb-6 max-w-md mx-auto">
-            Book a free consultation — we&apos;ll scope the right package for you.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#636CCB] to-[#6E8CFB] text-white rounded-xl font-semibold text-sm"
-          >
-            Schedule Free Consultation
-            <Rocket className="w-4 h-4" />
-          </motion.button>
-        </motion.div>
+       
       </section>
 
       <ScheduleModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
