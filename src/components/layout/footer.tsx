@@ -43,15 +43,15 @@ function ExternalArrow() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const SOLUTIONS_LINKS = [
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/" }, // /services page pending
   { label: "WaaP", href: "/waap" },
   { label: "CaaP", href: "/caap" },
   { label: "AI Suite", href: "/ai" },
 ];
 
 const COMPANY_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/" }, // redirects to home until WordPress is deployed
+  { label: "About", href: "/" }, // /about page pending
+  { label: "Blog", href: "/" }, // /blog pending WordPress deploy
   { label: "Contact", href: "/contact" },
 ];
 
@@ -114,7 +114,7 @@ export function Footer() {
               Schedule a call <ExternalArrow />
             </Link>
             <Link
-              href="/services"
+              href="/"
               className="inline-flex items-center gap-[7px] font-semibold text-[14.5px] rounded-full px-[24px] py-[13px] text-[#eaf1fb] hover:bg-white/[0.06] transition-colors duration-220"
               style={{ border: "1px solid rgba(255,255,255,.14)", background: "rgba(255,255,255,.035)" }}
             >

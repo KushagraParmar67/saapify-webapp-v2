@@ -77,7 +77,7 @@ function ExternalArrow() {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const SERVICES_ITEMS = [
-  { icon: <CodeIcon />, title: "Custom Software Development", desc: "Bespoke platforms engineered to scale.", href: "/services" },
+  { icon: <CodeIcon />, title: "Custom Software Development", desc: "Bespoke platforms engineered to scale.", href: "/" }, // /services page pending
   { icon: <AiIcon />, title: "AI Solutions & Automation", desc: "Agents & pipelines that do the work.", href: "/ai" },
   { icon: <GlobeIcon />, title: "WaaP — Website as a Product", desc: "Your site, run as a living product.", href: "/waap" },
   { icon: <BuildingIcon />, title: "CaaP — Customization as a Product", desc: "Operations productized end to end.", href: "/caap" },
@@ -87,8 +87,8 @@ const NAV_MAIN = [
   { label: "WaaP", href: "/waap" },
   { label: "CaaP", href: "/caap" },
   { label: "AI Suite", href: "/ai" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/" }, // redirects to home until WordPress is deployed
+  { label: "About", href: "/" }, // /about page pending
+  { label: "Blog", href: "/" }, // /blog pending WordPress deploy
 ];
 
 // ─── Mega Menu ────────────────────────────────────────────────────────────────

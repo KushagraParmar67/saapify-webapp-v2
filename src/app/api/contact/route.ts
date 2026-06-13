@@ -4,7 +4,6 @@ import nodemailer from "nodemailer";
 const REQUIRED_FIELDS = ["name", "email", "phone", "message"] as const;
 
 function buildEmailHtml(name: string, email: string, phone: string, message: string): string {
-  const logoUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/favicon.svg`;
   const submittedAt = new Date().toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
     dateStyle: "full",
@@ -27,22 +26,30 @@ function buildEmailHtml(name: string, email: string, phone: string, message: str
           <!-- Header -->
           <tr>
             <td style="background:#0a192f;padding:28px 36px;text-align:center;">
-              <img src="${logoUrl}" alt="SaaPify" width="40" height="40" style="display:inline-block;vertical-align:middle;margin-right:10px;" />
-              <span style="color:#ffffff;font-size:20px;font-weight:700;vertical-align:middle;letter-spacing:-0.3px;">SaaPify</span>
+              <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td style="background:linear-gradient(135deg,#636CCB,#6E8CFB);width:36px;height:36px;border-radius:8px;text-align:center;vertical-align:middle;">
+                    <span style="color:#ffffff;font-size:18px;font-weight:800;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:36px;display:block;">S</span>
+                  </td>
+                  <td style="padding-left:10px;vertical-align:middle;">
+                    <span style="color:#ffffff;font-size:20px;font-weight:700;letter-spacing:-0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">SaaPify</span>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
           <!-- Title band -->
           <tr>
             <td style="background:#636CCB;padding:14px 36px;">
-              <p style="margin:0;color:#ffffff;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">New Website Enquiry</p>
+              <p style="margin:0;color:#ffffff;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">New Website Enquiry</p>
             </td>
           </tr>
 
           <!-- Body -->
           <tr>
             <td style="padding:36px 36px 28px;">
-              <p style="margin:0 0 24px;color:#18181b;font-size:15px;line-height:1.6;">
+              <p style="margin:0 0 24px;color:#18181b;font-size:15px;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
                 You have received a new enquiry from your website contact form. Details are below.
               </p>
 
@@ -50,34 +57,34 @@ function buildEmailHtml(name: string, email: string, phone: string, message: str
               <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #f4f4f5;width:28%;vertical-align:top;">
-                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Name</span>
+                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Name</span>
                   </td>
                   <td style="padding:12px 0 12px 16px;border-bottom:1px solid #f4f4f5;vertical-align:top;">
-                    <span style="color:#18181b;font-size:14px;font-weight:500;">${name}</span>
+                    <span style="color:#18181b;font-size:14px;font-weight:500;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${name}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #f4f4f5;vertical-align:top;">
-                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Email</span>
+                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Email</span>
                   </td>
                   <td style="padding:12px 0 12px 16px;border-bottom:1px solid #f4f4f5;vertical-align:top;">
-                    <a href="mailto:${email}" style="color:#636CCB;font-size:14px;text-decoration:none;">${email}</a>
+                    <a href="mailto:${email}" style="color:#636CCB;font-size:14px;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${email}</a>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #f4f4f5;vertical-align:top;">
-                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Phone</span>
+                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Phone</span>
                   </td>
                   <td style="padding:12px 0 12px 16px;border-bottom:1px solid #f4f4f5;vertical-align:top;">
-                    <span style="color:#18181b;font-size:14px;">${phone}</span>
+                    <span style="color:#18181b;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${phone}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding:12px 0;vertical-align:top;">
-                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Message</span>
+                    <span style="color:#71717a;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Message</span>
                   </td>
                   <td style="padding:12px 0 12px 16px;vertical-align:top;">
-                    <span style="color:#18181b;font-size:14px;line-height:1.65;white-space:pre-wrap;">${message}</span>
+                    <span style="color:#18181b;font-size:14px;line-height:1.65;white-space:pre-wrap;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${message}</span>
                   </td>
                 </tr>
               </table>
@@ -88,7 +95,7 @@ function buildEmailHtml(name: string, email: string, phone: string, message: str
           <tr>
             <td style="padding:0 36px 36px;">
               <a href="mailto:${email}?subject=Re: Your enquiry with SaaPify"
-                 style="display:inline-block;background:#636CCB;color:#ffffff;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">
+                 style="display:inline-block;background:#636CCB;color:#ffffff;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;letter-spacing:0.02em;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
                 Reply to ${name}
               </a>
             </td>
@@ -97,7 +104,7 @@ function buildEmailHtml(name: string, email: string, phone: string, message: str
           <!-- Footer -->
           <tr>
             <td style="background:#fafafa;border-top:1px solid #e4e4e7;padding:20px 36px;">
-              <p style="margin:0;color:#a1a1aa;font-size:11px;line-height:1.6;">
+              <p style="margin:0;color:#a1a1aa;font-size:11px;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
                 Submitted on ${submittedAt} (IST) &nbsp;·&nbsp; SaaPify Website Contact Form
               </p>
             </td>
@@ -119,7 +126,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  // Server-side validation
   for (const field of REQUIRED_FIELDS) {
     if (!body[field] || typeof body[field] !== "string" || !(body[field] as string).trim()) {
       return NextResponse.json({ error: `${field} is required.` }, { status: 400 });
@@ -139,7 +145,7 @@ export async function POST(req: NextRequest) {
   const smtpPassword = process.env.SMTP_PASSWORD;
 
   if (!smtpUser || !smtpPassword) {
-    console.error("SMTP_USER or SMTP_PASSWORD env variables are not set.");
+    console.error("[contact] SMTP_USER or SMTP_PASSWORD env variables are not set.");
     return NextResponse.json({ error: "Server configuration error." }, { status: 500 });
   }
 
@@ -154,7 +160,7 @@ export async function POST(req: NextRequest) {
   });
 
   try {
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `"SaaPify Website" <${smtpUser}>`,
       to: smtpUser,
       replyTo: email,
@@ -162,9 +168,10 @@ export async function POST(req: NextRequest) {
       html: buildEmailHtml(name, email, phone, message),
     });
 
+    console.log("[contact] email sent — messageId:", info.messageId);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error("Failed to send contact email:", err);
+    console.error("[contact] sendMail failed:", err);
     return NextResponse.json({ error: "Failed to send message. Please try again." }, { status: 500 });
   }
 }
