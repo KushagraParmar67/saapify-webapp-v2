@@ -3,7 +3,7 @@
 import React, { useMemo, memo, useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import {
-  Brain, Zap, Sparkles, LineChart, Workflow, TrendingUp,
+  Brain, Zap, Sparkles, LineChart, TrendingUp,
   MessageSquare, FileText, Shield, ArrowUpRight, Code2, Cloud,
   X, Check, Users,
 } from "lucide-react";
@@ -454,7 +454,7 @@ const AIPower = memo(() => {
                 <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Task</div>
                 <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase text-center">Manual</div>
                 <div className="text-[11px] font-semibold tracking-[0.18em] text-[#6E8CFB] uppercase text-center">With AI</div>
-                <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase text-right">Faster By</div>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase text-right whitespace-nowrap">Faster By</div>
               </div>
               {/* Rows */}
               {comparisons.map((row, i) => (
@@ -468,14 +468,14 @@ const AIPower = memo(() => {
                   style={{ background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
                 >
                   <div className="text-white text-sm font-medium">{row.task}</div>
-                  <div className="text-gray-600 text-sm text-center line-through decoration-gray-700">{row.manual}</div>
+                  <div className="text-gray-600 text-sm text-center line-through decoration-gray-700 whitespace-nowrap">{row.manual}</div>
                   <div className="flex justify-center">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-[#6E8CFB]" style={{ background: "rgba(110,140,251,0.12)", border: "1px solid rgba(110,140,251,0.2)" }}>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-[#6E8CFB] whitespace-nowrap" style={{ background: "rgba(110,140,251,0.12)", border: "1px solid rgba(110,140,251,0.2)" }}>
                       {row.ai}
                     </span>
                   </div>
                   <div className="flex justify-end">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400 whitespace-nowrap" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
                       {row.imp}
                     </span>
                   </div>
@@ -584,7 +584,7 @@ const AIApproach = memo(() => {
       </div>
 
       {/* ── Desktop: sticky scroll container — 500 vh gives ~100 vh per step ── */}
-      <div ref={containerRef} style={{ height: "500vh" }} className="relative hidden md:block">
+      <div ref={containerRef} style={{ height: "500vh", position: "relative" }} className="hidden md:block">
         <div
           className="sticky top-0 h-screen flex items-center overflow-hidden"
           style={{
@@ -986,7 +986,7 @@ const AIApproach = memo(() => {
                     <th className="px-5 py-3 text-left text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Service</th>
                     <th className="px-5 py-3 text-center text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Before AI</th>
                     <th className="px-5 py-3 text-center text-[11px] font-semibold tracking-[0.18em] text-emerald-400 uppercase">With AI</th>
-                    <th className="px-5 py-3 text-right text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Savings</th>
+                    <th className="px-5 py-3 text-right text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">Savings</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -997,16 +997,16 @@ const AIApproach = memo(() => {
                       style={{ background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
                     >
                       <td className="px-5 py-4 text-white text-sm font-medium">{row.service}</td>
-                      <td className="px-5 py-4 text-center">
+                      <td className="px-5 py-4 text-center whitespace-nowrap">
                         <span className="text-gray-600 text-sm line-through decoration-gray-700">{row.before}</span>
                       </td>
-                      <td className="px-5 py-4 text-center">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-emerald-400" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
+                      <td className="px-5 py-4 text-center whitespace-nowrap">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold text-emerald-400 whitespace-nowrap" style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)" }}>
                           {row.after}
                         </span>
                       </td>
-                      <td className="px-5 py-4 text-right">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400" style={{ background: "rgba(52,211,153,0.12)", border: "1px solid rgba(52,211,153,0.25)" }}>
+                      <td className="px-5 py-4 text-right whitespace-nowrap">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400 whitespace-nowrap" style={{ background: "rgba(52,211,153,0.12)", border: "1px solid rgba(52,211,153,0.25)" }}>
                           ↓ {row.save}
                         </span>
                       </td>
@@ -1228,8 +1228,6 @@ const getTileClass = (size: TileSize): string => {
 };
 
 const AIServices = memo(() => {
-  const [modalOpen, setModalOpen] = useState(false);
-
   const tiles: ServiceTile[] = useMemo(
     () => [
       {

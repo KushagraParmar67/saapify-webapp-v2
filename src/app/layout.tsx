@@ -38,11 +38,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.saapify.in"
   ),
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    shortcut: "/favicon.ico",
+    icon: { url: "/favicon.svg", type: "image/svg+xml" },
+    shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
 };
