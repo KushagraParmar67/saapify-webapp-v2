@@ -51,7 +51,7 @@ const SOLUTIONS_LINKS = [
 
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/" }, // redirects to home until WordPress is deployed
   { label: "Contact", href: "/contact" },
 ];
 
@@ -238,14 +238,6 @@ export function Footer() {
             India · Remote-first
           </div>
 
-          <div className="flex items-center gap-[11px] text-[14.5px] mb-[15px]" style={{ color: "#8b97ad" }}>
-            <span className="text-[#6E8CFB] opacity-85 flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px]">
-                <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z" /><path d="m9 12 2 2 4-4" />
-              </svg>
-            </span>
-            SOC 2 Type II
-          </div>
 
           <Link
             href="/contact"

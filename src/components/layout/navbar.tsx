@@ -88,7 +88,7 @@ const NAV_MAIN = [
   { label: "CaaP", href: "/caap" },
   { label: "AI Suite", href: "/ai" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/" }, // redirects to home until WordPress is deployed
 ];
 
 // ─── Mega Menu ────────────────────────────────────────────────────────────────

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — SaaPify</title>
+  <meta name="description" content="Insights, updates, and thinking from the SaaPify team — covering product, engineering, company news, and the future of operations software." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a192f;
+      --surface: #112240;
+      --accent: #6E8CFB;
+      --muted: #8b97ad;
+      --body: #a8b2c3;
+      --white: #ffffff;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-strong: rgba(255, 255, 255, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glow backdrop */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, 90vw);
+      height: 520px;
+      background: radial-gradient(ellipse at center, rgba(110, 140, 251, 0.18), transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 104px) clamp(20px, 5vw, 48px) clamp(72px, 10vw, 140px);
+    }
+
+    /* ---------- Header ---------- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      white-space: nowrap;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .page-header { max-width: 760px; }
+
+    .page-header h1 {
+      color: var(--white);
+      font-weight: 600;
+      font-size: clamp(44px, 8vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-top: 22px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+      margin-top: 22px;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    /* ---------- Filter chips ---------- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: clamp(36px, 5vw, 56px);
+    }
+
+    .chip {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 9px 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chip:hover { color: var(--white); border-color: rgba(110,140,251,0.4); }
+    .chip.active {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ---------- Featured post ---------- */
+    .featured {
+      margin-top: clamp(40px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--surface);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .featured:hover {
+      border-color: rgba(110,140,251,0.4);
+      box-shadow: 0 30px 70px -30px rgba(0,0,0,0.6);
+    }
+    .featured:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    .featured-media {
+      position: relative;
+      min-height: 340px;
+      background:
+        radial-gradient(circle at 75% 25%, rgba(110,140,251,0.45), transparent 55%),
+        linear-gradient(135deg, #1e2a4a 0%, #133286 100%);
+      overflow: hidden;
+    }
+    .featured-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(115deg, transparent 0 22px, rgba(255,255,255,0.02) 22px 23px);
+    }
+
+    .featured-body {
+      padding: clamp(28px, 3.5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      background: rgba(110,140,251,0.1);
+      border: 1px solid rgba(110,140,251,0.2);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .featured-body h2 {
+      color: var(--white);
+      font-weight: 600;
+      font-size: clamp(26px, 3.6vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-top: 20px;
+      transition: color 0.2s ease;
+    }
+    .featured:hover .featured-body h2 { color: var(--accent); }
+
+    .featured-body .excerpt {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      margin-top: 16px;
+      max-width: 460px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .meta .author { color: var(--body); }
+    .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); flex: none; }
+    .featured-body .meta { margin-top: 28px; }
+
+    /* ---------- Grid ---------- */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 28px);
+      margin-top: clamp(20px, 2.5vw, 28px);
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      height: 100%;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .card-link:hover {
+      border-color: rgba(110,140,251,0.4);
+      box-shadow: 0 22px 50px -24px rgba(0,0,0,0.6);
+      transform: translateY(-5px);
+    }
+    .card-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .card-media {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      background: linear-gradient(135deg, #1e2a4a 0%, #133286 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(110,140,251,0.3), transparent 60%);
+      opacity: 0.7;
+      transition: transform 0.4s ease;
+    }
+    .card-link:hover .card-media::after { transform: scale(1.15); }
+
+    .card-body {
+      padding: clamp(20px, 2.2vw, 26px);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .category {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .card-body h3 {
+      color: var(--white);
+      font-weight: 600;
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-top: 12px;
+      transition: color 0.2s ease;
+    }
+    .card-link:hover .card-body h3 { color: var(--accent); }
+
+    .excerpt-sm {
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-top: 11px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .card-meta .author { color: var(--body); }
+    .card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); flex: none; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 900px) {
+      .featured { grid-template-columns: 1fr; }
+      .featured-media { min-height: 220px; }
+      .post-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .post-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <span class="eyebrow">SaaPify Blog</span>
+      <h1>Field notes from the&nbsp;operations layer.</h1>
+      <p>Insights, updates, and thinking from the SaaPify team.</p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filter posts by category">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="Product">Product</button>
+      <button class="chip" data-filter="Engineering">Engineering</button>
+      <button class="chip" data-filter="News">News</button>
+      <button class="chip" data-filter="Company">Company</button>
+    </div>
+
+    <!-- Featured -->
+    <a class="featured" href="blog-post.html" data-category="Product" aria-label="Featured: How AI is transforming food manufacturing operations">
+      <div class="featured-media" role="img" aria-label="Abstract gradient illustration of an automated food manufacturing line"></div>
+      <div class="featured-body">
+        <span class="featured-tag">Featured · Product</span>
+        <h2>How AI is transforming food manufacturing operations</h2>
+        <p class="excerpt">From demand forecasting to predictive maintenance, AI is quietly rewiring the factory floor. Here's how modern teams are putting it to work without ripping out what already runs.</p>
+        <div class="meta">
+          <span class="author">Kushagra</span>
+          <span class="dot"></span>
+          <time datetime="2026-06-09">June 9, 2026</time>
+          <span class="dot"></span>
+          <span>6 min read</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Grid -->
+    <section class="post-grid" aria-label="Blog posts">
+
+      <a class="card-link" href="blog-post.html" data-category="Engineering" aria-label="Read: Inside the architecture powering real-time ops dashboards">
+        <div class="card-media" role="img" aria-label="Visualization of a distributed real-time data pipeline"></div>
+        <div class="card-body">
+          <span class="category">Engineering</span>
+          <h3>Inside the architecture powering real-time ops dashboards</h3>
+          <p class="excerpt-sm">Sub-second latency at scale is hard. We break down the streaming pipeline, the trade-offs we made, and why we moved off polling.</p>
+          <div class="card-meta">
+            <span class="author">Priya Nair</span>
+            <span class="dot"></span>
+            <time datetime="2026-05-28">May 28, 2026</time>
+            <span class="dot"></span>
+            <span>8 min</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card-link" href="blog-post.html" data-category="News" aria-label="Read: SaaPify raises Series B to expand the operations platform">
+        <div class="card-media" role="img" aria-label="SaaPify team celebrating funding milestone"></div>
+        <div class="card-body">
+          <span class="category">News</span>
+          <h3>SaaPify raises Series B to expand the operations platform</h3>
+          <p class="excerpt-sm">A $42M round led by Northbridge Ventures will help us bring our operations layer to mid-market manufacturers in three new regions.</p>
+          <div class="card-meta">
+            <span class="author">Daniel Okafor</span>
+            <span class="dot"></span>
+            <time datetime="2026-05-15">May 15, 2026</time>
+            <span class="dot"></span>
+            <span>4 min</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card-link" href="blog-post.html" data-category="Product" aria-label="Read: The metrics that actually predict churn in B2B SaaS">
+        <div class="card-media" role="img" aria-label="Dashboard showing retention and churn analytics"></div>
+        <div class="card-body">
+          <span class="category">Product</span>
+          <h3>The metrics that actually predict churn in B2B SaaS</h3>
+          <p class="excerpt-sm">Most teams track the wrong signals. After analyzing two years of account data, five leading indicators told us more than NPS ever did.</p>
+          <div class="card-meta">
+            <span class="author">Mara Lindqvist</span>
+            <span class="dot"></span>
+            <time datetime="2026-04-30">April 30, 2026</time>
+            <span class="dot"></span>
+            <span>7 min</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card-link" href="blog-post.html" data-category="Company" aria-label="Read: Building a culture of shipping small, often, and safely">
+        <div class="card-media" role="img" aria-label="Engineers reviewing a continuous deployment pipeline"></div>
+        <div class="card-body">
+          <span class="category">Company</span>
+          <h3>Building a culture of shipping small, often, and safely</h3>
+          <p class="excerpt-sm">Feature flags, trunk-based development, and a blameless review ritual. How our engineering org ships dozens of times a day.</p>
+          <div class="card-meta">
+            <span class="author">Tom Reyes</span>
+            <span class="dot"></span>
+            <time datetime="2026-04-12">April 12, 2026</time>
+            <span class="dot"></span>
+            <span>5 min</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card-link" href="blog-post.html" data-category="Engineering" aria-label="Read: Why we rebuilt our API around idempotency keys">
+        <div class="card-media" role="img" aria-label="Diagram of API request retries with idempotency keys"></div>
+        <div class="card-body">
+          <span class="category">Engineering</span>
+          <h3>Why we rebuilt our API around idempotency keys</h3>
+          <p class="excerpt-sm">Duplicate writes were costing customers real money. The fix touched every endpoint we own — and made the platform calmer.</p>
+          <div class="card-meta">
+            <span class="author">Priya Nair</span>
+            <span class="dot"></span>
+            <time datetime="2026-03-22">March 22, 2026</time>
+            <span class="dot"></span>
+            <span>9 min</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card-link" href="blog-post.html" data-category="Company" aria-label="Read: Designing onboarding that respects an operator's time">
+        <div class="card-media" role="img" aria-label="Illustration of a streamlined product onboarding flow"></div>
+        <div class="card-body">
+          <span class="category">Company</span>
+          <h3>Designing onboarding that respects an operator's time</h3>
+          <p class="excerpt-sm">Plant managers don't have spare hours. We rebuilt activation around the first job to be done — and watched time-to-value collapse.</p>
+          <div class="card-meta">
+            <span class="author">Mara Lindqvist</span>
+            <span class="dot"></span>
+            <time datetime="2026-03-04">March 4, 2026</time>
+            <span class="dot"></span>
+            <span>6 min</span>
+          </div>
+        </div>
+      </a>
+
+    </section>
+
+    <p id="empty-state" class="excerpt-sm hidden" style="text-align:center; margin-top:48px; font-size:16px;">No posts in this category yet.</p>
+  </main>
+
+  <script>
+    (function () {
+      var chips = document.querySelectorAll('.chip');
+      var featured = document.querySelector('.featured');
+      var cards = document.querySelectorAll('.post-grid .card-link');
+      var empty = document.getElementById('empty-state');
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var filter = chip.getAttribute('data-filter');
+          var visible = 0;
+
+          if (filter === 'all' || featured.getAttribute('data-category') === filter) {
+            featured.classList.remove('hidden');
+            if (filter === 'all' || featured.getAttribute('data-category') === filter) visible++;
+          } else {
+            featured.classList.add('hidden');
+          }
+
+          cards.forEach(function (card) {
+            var match = filter === 'all' || card.getAttribute('data-category') === filter;
+            card.classList.toggle('hidden', !match);
+            if (match) visible++;
+          });
+
+          empty.classList.toggle('hidden', visible > 0);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

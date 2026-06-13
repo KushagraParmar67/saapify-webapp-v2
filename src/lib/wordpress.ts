@@ -37,10 +37,6 @@ export async function getAllPosts(): Promise<WPPost[]> {
               }
             }
           }
-          seo {
-            title
-            metaDesc
-          }
         }
       }
     }
@@ -84,17 +80,6 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
               url
             }
           }
-        }
-        seo {
-          title
-          metaDesc
-          opengraphTitle
-          opengraphDescription
-          opengraphImage {
-            sourceUrl
-          }
-          twitterTitle
-          twitterDescription
         }
       }
     }
