@@ -41,7 +41,6 @@ interface Tab {
   icon: string;
   description: string;
   plans: Plan[];
-  metrics: { profitMargin: string; internalHours: string };
 }
 
 // ─── Icon map (JSON stores string names) ─────────────────────────────────────
@@ -407,18 +406,7 @@ export function WaapClient() {
                 ))}
               </div>
 
-              {/* Metrics bar */}
-              <div className="mt-8 pt-5 border-t border-gray-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm">
-                <div className="flex flex-wrap gap-x-6 gap-y-1">
-                  <span className="text-gray-500">
-                    Profit Margin:{" "}
-                    <span className="text-emerald-400 font-medium">{current.metrics.profitMargin}</span>
-                  </span>
-                  <span className="text-gray-500">
-                    Internal Hours:{" "}
-                    <span className="text-[#6E8CFB] font-medium">{current.metrics.internalHours}</span>
-                  </span>
-                </div>
+              <div className="mt-8 pt-5 border-t border-gray-800 flex justify-end">
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="flex items-center gap-1 text-[#6E8CFB] hover:text-cyan-300 text-xs transition-colors"

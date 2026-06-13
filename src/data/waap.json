@@ -20,8 +20,7 @@
             { "name": "Admin Panel", "value": "No", "included": false },
             { "name": "Contact Form", "value": "Basic Email", "included": true },
             { "name": "Resume Download", "value": "Yes", "included": true }
-          ],
-          "metrics": { "margin": "62–74%", "hours": "16–18 hrs" }
+          ]
         },
         {
           "name": "Professional Portfolio",
@@ -37,8 +36,7 @@
             { "name": "Admin Panel", "value": "Simple (Add Projects)", "included": true },
             { "name": "Contact Form", "value": "Email + Google Sheets", "included": true },
             { "name": "Blog & SEO", "value": "Yes", "included": true }
-          ],
-          "metrics": { "margin": "62–72%", "hours": "27–30 hrs" }
+          ]
         },
         {
           "name": "Agency / Studio Portfolio",
@@ -54,16 +52,14 @@
             { "name": "Admin Panel", "value": "Custom Dashboard with Analytics", "included": true },
             { "name": "Contact Form", "value": "Auto-responder + WhatsApp", "included": true },
             { "name": "Animations & Analytics", "value": "Yes", "included": true }
-          ],
-          "metrics": { "margin": "68–74%", "hours": "46–52 hrs" }
+          ]
         }
       ],
       "targetCustomers": [
         "Freelancers", "Creators & Influencers", "Individual Professionals",
         "Trainers & Coaches", "Small Agencies", "Production Houses",
         "Event & Wedding Planners", "Real Estate Agents"
-      ],
-      "metrics": { "profitMargin": "62–74%", "internalHours": "16–52 hrs" }
+      ]
     },
     {
       "id": "landing",
@@ -86,8 +82,7 @@
             { "name": "Animations", "value": "None", "included": false },
             { "name": "Tracking", "value": "Basic Google Analytics", "included": true },
             { "name": "Hosting", "value": "Shared Hosting", "included": true }
-          ],
-          "metrics": { "margin": "61–74%", "hours": "8–12 hrs" }
+          ]
         },
         {
           "name": "Conversion-Optimized",
@@ -104,8 +99,7 @@
             { "name": "Animations", "value": "Basic", "included": true },
             { "name": "Tracking", "value": "Google Analytics + Hotjar", "included": true },
             { "name": "Hosting", "value": "Vercel / Standard", "included": true }
-          ],
-          "metrics": { "margin": "50–74%", "hours": "14–18 hrs" }
+          ]
         },
         {
           "name": "Advanced Multi-Section",
@@ -122,16 +116,14 @@
             { "name": "Animations", "value": "Advanced (GSAP / Lottie)", "included": true },
             { "name": "Tracking", "value": "GA4 + Heatmaps + A/B Testing", "included": true },
             { "name": "Hosting", "value": "AWS + CloudFront CDN", "included": true }
-          ],
-          "metrics": { "margin": "49–68%", "hours": "28–35 hrs" }
+          ]
         }
       ],
       "targetCustomers": [
         "Local Businesses Launching Offers", "Coaches & Trainers",
         "Startup MVP Validation", "Course / Webinar Sellers",
         "SaaS / Tech Startups", "Event & Launch Campaigns", "High-Ticket Offers"
-      ],
-      "metrics": { "profitMargin": "49–74%", "internalHours": "8–35 hrs" }
+      ]
     },
     {
       "id": "ecommerce",
@@ -154,8 +146,7 @@
             { "name": "Payment Gateway", "value": "Razorpay / Stripe", "included": true },
             { "name": "Hosting", "value": "Shared Hosting", "included": true },
             { "name": "Security", "value": "Basic SSL", "included": true }
-          ],
-          "metrics": { "margin": "72–80%", "hours": "30–34 hrs" }
+          ]
         },
         {
           "name": "Standard E-Commerce",
@@ -172,8 +163,7 @@
             { "name": "Payment Gateway", "value": "Razorpay, PayPal, COD", "included": true },
             { "name": "Hosting", "value": "Managed VPS", "included": true },
             { "name": "Security", "value": "Advanced SSL & Firewall", "included": true }
-          ],
-          "metrics": { "margin": "76–81%", "hours": "44–49 hrs" }
+          ]
         },
         {
           "name": "Advanced E-Commerce",
@@ -190,16 +180,14 @@
             { "name": "Payment Gateway", "value": "Multi-gateway + Wallet", "included": true },
             { "name": "Hosting", "value": "Dedicated Server", "included": true },
             { "name": "Security", "value": "Enterprise-grade + CDN", "included": true }
-          ],
-          "metrics": { "margin": "76–82%", "hours": "68–74 hrs" }
+          ]
         }
       ],
       "targetCustomers": [
         "Local Sellers", "Instagram / WhatsApp Sellers",
         "Growing E-Commerce Brands", "Niche Market E-Commerce",
         "Retail Brands Shifting Online", "Startups with Funding", "Global Sellers"
-      ],
-      "metrics": { "profitMargin": "72–82%", "internalHours": "30–74 hrs" }
+      ]
     },
     {
       "id": "branding",
@@ -220,8 +208,7 @@
             { "name": "CMS Editable", "value": "No", "included": false },
             { "name": "Admin Panel", "value": "No", "included": false },
             { "name": "Contact Form", "value": "Direct email (1 email)", "included": true }
-          ],
-          "metrics": { "margin": "75–88%", "hours": "16–20 hrs" }
+          ]
         },
         {
           "name": "Professional Branding",
@@ -236,8 +223,7 @@
             { "name": "CMS Editable", "value": "Yes (Content change only)", "included": true },
             { "name": "Admin Panel", "value": "Yes", "included": true },
             { "name": "Contact Form", "value": "Submission to 3 emails", "included": true }
-          ],
-          "metrics": { "margin": "80–88%", "hours": "25–31 hrs" }
+          ]
         },
         {
           "name": "Advanced Branding",
@@ -252,8 +238,7 @@
             { "name": "CMS Editable", "value": "Yes (Fully editable)", "included": true },
             { "name": "Admin Panel", "value": "Yes", "included": true },
             { "name": "Contact Form", "value": "Submission to 5 emails", "included": true }
-          ],
-          "metrics": { "margin": "84–89%", "hours": "35–45 hrs" }
+          ]
         }
       ],
       "targetCustomers": [
@@ -261,8 +246,7 @@
         "Medical & Wellness", "Event & Wedding Planners",
         "Real Estate Agents", "Agencies & Startups",
         "NGOs & Non-Profits", "Restaurants & Cafes", "Artists & Creators"
-      ],
-      "metrics": { "profitMargin": "75–89%", "internalHours": "16–45 hrs" }
+      ]
     },
     {
       "id": "webapps",
@@ -285,8 +269,7 @@
             { "name": "API Integration", "value": "REST Only", "included": true },
             { "name": "Database", "value": "MongoDB / PostgreSQL", "included": true },
             { "name": "Deployment", "value": "Shared Hosting / Basic Cloud", "included": true }
-          ],
-          "metrics": { "margin": "51–73%", "hours": "45–60 hrs" }
+          ]
         },
         {
           "name": "Standard Web App",
@@ -303,8 +286,7 @@
             { "name": "API Integration", "value": "REST + 3rd-party APIs", "included": true },
             { "name": "Database", "value": "MongoDB / PostgreSQL / MySQL", "included": true },
             { "name": "Deployment", "value": "AWS EC2 / DigitalOcean", "included": true }
-          ],
-          "metrics": { "margin": "52–69%", "hours": "90–120 hrs" }
+          ]
         },
         {
           "name": "Enterprise Web App",
@@ -321,8 +303,7 @@
             { "name": "API Integration", "value": "REST + GraphQL + WebSocket", "included": true },
             { "name": "Database", "value": "Distributed DB (Cassandra / DynamoDB)", "included": true },
             { "name": "Deployment", "value": "Kubernetes / Serverless + CI/CD", "included": true }
-          ],
-          "metrics": { "margin": "51–69%", "hours": "180–220 hrs" }
+          ]
         }
       ],
       "targetCustomers": [
@@ -330,8 +311,7 @@
         "Marketplace Platforms", "Operations Tools",
         "FinTech / Loan Apps", "Healthcare Tech",
         "EduTech Platforms", "Enterprise Applications", "Agencies (Resellers)"
-      ],
-      "metrics": { "profitMargin": "51–73%", "internalHours": "45–220 hrs" }
+      ]
     }
   ]
 }

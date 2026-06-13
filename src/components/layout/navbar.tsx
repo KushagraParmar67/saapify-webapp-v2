@@ -115,7 +115,7 @@ function MegaMenu() {
     >
       {SERVICES_ITEMS.map((item) => (
         <Link
-          key={item.href}
+          key={item.title}
           href={item.href}
           className="flex gap-[13px] p-[13px] rounded-xl border border-transparent hover:border-white/8 hover:bg-white/[0.035] transition-all duration-200 group"
         >
@@ -252,7 +252,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
             <div className="ml-[12px] border-l border-white/[0.08] flex flex-col">
               {SERVICES_ITEMS.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.title}
                   href={item.href}
                   onClick={onClose}
                   className="flex items-center gap-[11px] px-[12px] py-[11px] text-[14.5px] text-[#8b97ad] hover:text-[#eaf1fb] transition-colors"
@@ -266,7 +266,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 
           {NAV_MAIN.map(({ label, href }) => (
             <Link
-              key={href}
+              key={label}
               href={href}
               onClick={onClose}
               className="flex items-center justify-between px-[12px] py-[14px] rounded-xl text-[16px] font-semibold hover:bg-white/[0.035] transition-colors"
@@ -467,7 +467,7 @@ export function Navbar() {
             </li>
 
             {NAV_MAIN.map(({ label, href }) => (
-              <li key={href}>
+              <li key={label}>
                 <Link
                   href={href}
                   className="group relative z-[1] inline-flex items-center gap-[7px] px-[16px] py-[9px] rounded-full text-[14px] font-semibold tracking-[-0.005em] transition-colors duration-250 whitespace-nowrap"
